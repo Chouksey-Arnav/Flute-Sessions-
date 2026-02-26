@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arnav's Flute Tutoring</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Arnav's Flute Tutoring</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#tutorials">Tutorials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Arnav's Flute Tutoring</h1>
+            <p>Free flute lessons and guidance for 6th, 7th, and 8th graders in North Carolina</p>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <img src="https://via.placeholder.com/300x300?text=Arnav+Choksey" alt="Arnav Choksey" class="profile-img">
+            <p>Hi, I'm Arnav Choksey, a passionate flute player based in Apex, North Carolina. With years of experience playing the flute, I'm dedicated to helping young students in my community discover the joy of music. I offer free tutorials and personalized guidance to 6th, 7th, and 8th graders to help them improve their skills, prepare for band classes, and build confidence in their musical abilities.</p>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-item">
+                <h3>Free Flute Tutorials</h3>
+                <p>Step-by-step video and written guides on basic to intermediate flute techniques.</p>
+            </div>
+            <div class="service-item">
+                <h3>Beginner Guidance</h3>
+                <p>Help with assembling your flute, proper posture, and first notes for absolute beginners.</p>
+            </div>
+            <div class="service-item">
+                <h3>Intermediate Support</h3>
+                <p>Assistance with scales, fingerings, and preparing for school band auditions.</p>
+            </div>
+            <div class="service-item">
+                <h3>Community Sessions</h3>
+                <p>Group lessons and Q&A sessions for kids in the Apex area.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tutorials" class="tutorials">
+        <h2>Flute Tutorials</h2>
+        <div class="tutorials-list">
+            <div class="tutorial-item">
+                <h3>Getting Started with the Flute</h3>
+                <p>Learn how to hold your flute, blow your first note, and basic care. Perfect for 6th graders new to the instrument.</p>
+                <a href="#contact" class="tutorial-link">Access Tutorial</a>
+            </div>
+            <div class="tutorial-item">
+                <h3>Mastering Basic Scales</h3>
+                <p>Practice major and minor scales with finger charts and audio examples for 7th graders building fundamentals.</p>
+                <a href="#contact" class="tutorial-link">Access Tutorial</a>
+            </div>
+            <div class="tutorial-item">
+                <h3>Advanced Techniques</h3>
+                <p>Tips on vibrato, tonguing, and dynamics for 8th graders preparing for more complex pieces.</p>
+                <a href="#contact" class="tutorial-link">Access Tutorial</a>
+            </div>
+            <div class="tutorial-item">
+                <h3>Common Mistakes and Fixes</h3>
+                <p>Troubleshooting squeaks, breath control issues, and posture problems that middle schoolers often face.</p>
+                <a href="#contact" class="tutorial-link">Access Tutorial</a>
+            </div>
+        </div>
+        <p class="note">Note: Tutorials are free, but you may need to contact me for access to video content or personalized feedback.</p>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact Me</h2>
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="grade">Grade Level:</label>
+            <select id="grade" name="grade">
+                <option value="6th">6th Grade</option>
+                <option value="7th">7th Grade</option>
+                <option value="8th">8th Grade</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+        <p id="form-message"></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Arnav Choksey. All rights reserved. Serving Apex, North Carolina and surrounding communities.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
