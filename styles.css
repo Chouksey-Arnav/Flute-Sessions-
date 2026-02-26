@@ -1,0 +1,236 @@
+/* styles.css */
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #4CAF50;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+ul li a:hover {
+    text-decoration: underline;
+}
+
+.hero {
+    background-image: url('https://via.placeholder.com/1920x600?text=Flute+Hero+Image'); /* Replace with a real image URL */
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-content {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.cta-button:hover {
+    background-color: #45a049;
+}
+
+.about {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.profile-img {
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.about p {
+    max-width: 600px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.services {
+    background-color: #e8f5e9;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.service-item {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service-item h3 {
+    color: #4CAF50;
+}
+
+.tutorials {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.tutorials-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.tutorial-item {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.tutorial-item h3 {
+    color: #4CAF50;
+}
+
+.tutorial-link {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.tutorial-link:hover {
+    text-decoration: underline;
+}
+
+.note {
+    font-style: italic;
+    margin-top: 20px;
+}
+
+.contact {
+    background-color: #4CAF50;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.contact form {
+    max-width: 600px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact label {
+    text-align: left;
+    font-weight: bold;
+}
+
+.contact input,
+.contact select,
+.contact textarea {
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.contact button {
+    background-color: white;
+    color: #4CAF50;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.contact button:hover {
+    background-color: #f1f1f1;
+}
+
+#form-message {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
