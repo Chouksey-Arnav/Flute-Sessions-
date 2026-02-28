@@ -1,3 +1,4 @@
+/* styles.css */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Poppins:wght@300;400;600;700&amp;display=swap');
 
 :root {
@@ -35,11 +36,7 @@ header {
     gap: 14px;
 }
 .logo i { font-size: 2.8rem; animation: spin 8s linear infinite; }
-ul {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-}
+ul { display: flex; gap: 2.5rem; list-style: none; }
 ul a {
     color: white;
     text-decoration: none;
@@ -213,6 +210,7 @@ ul a:hover:after { width: 100%; }
     margin-bottom: 1.5rem;
     display: block;
     transition: transform 0.4s;
+    color: var(--teal);
 }
 .service-card:hover .icon, .tutorial-card:hover .icon {
     transform: scale(1.25) rotate(15deg);
