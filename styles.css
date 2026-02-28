@@ -1,9 +1,10 @@
 /* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Poppins:wght@300;400;600;700&amp;display=swap');
+
 :root {
-    --primary: #00BFA5;
-    --accent: #2196F3;
-    --dark: #0A2540;
-    --light: #F8FDFF;
+    --teal: #00f5d4;
+    --purple: #7b2cbf;
+    --dark: #0f172a;
 }
 
 * {
@@ -13,26 +14,25 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(to bottom, #f0f9ff, #e0f2f1);
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(180deg, #e0f2fe 0%, #f0fdf4 100%);
     color: var(--dark);
-    line-height: 1.6;
+    line-height: 1.7;
     overflow-x: hidden;
 }
 
 h1, h2, h3 {
     font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    color: var(--dark);
 }
 
+/* HEADER */
 header {
-    background: linear-gradient(135deg, #00BFA5, #2196F3);
-    padding: 1.2rem 5%;
+    background: linear-gradient(135deg, var(--teal), var(--purple));
+    padding: 1.5rem 5%;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 10px 30px rgba(0, 191, 165, 0.2);
+    box-shadow: 0 15px 40px rgba(123, 44, 191, 0.3);
 }
 
 nav {
@@ -45,261 +45,351 @@ nav {
 
 .logo {
     color: white;
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     font-weight: 700;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 14px;
+}
+
+.logo i {
+    font-size: 2.8rem;
+    animation: spin 8s linear infinite;
 }
 
 ul {
-    list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
+    list-style: none;
 }
 
-ul li a {
+ul a {
     color: white;
     text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s;
+    font-weight: 600;
+    font-size: 1.15rem;
     position: relative;
+    transition: 0.3s;
 }
 
-ul li a:after {
+ul a:after {
     content: '';
     position: absolute;
     width: 0;
-    height: 2px;
-    bottom: -4px;
+    height: 3px;
+    bottom: -6px;
     left: 0;
     background: white;
-    transition: width 0.3s;
+    transition: width 0.4s ease;
 }
 
-ul li a:hover:after {
+ul a:hover:after {
     width: 100%;
 }
 
+/* HERO */
 .hero {
     height: 100vh;
-    min-height: 700px;
-    background-image: linear-gradient(rgba(10, 37, 64, 0.65), rgba(10, 37, 64, 0.65)), url('https://picsum.photos/id/1015/1920/1080');
-    background-size: cover;
-    background-position: center;
+    min-height: 720px;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
-    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(15,23,42,0.78), rgba(15,23,42,0.72)), url('https://picsum.photos/id/1015/2000/1200');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(1.05);
+    z-index: -2;
+}
+
+.floating-notes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.note {
+    position: absolute;
+    font-size: 5rem;
+    color: rgba(255,255,255,0.22);
+    animation: floatNote linear infinite;
+    text-shadow: 0 0 30px rgba(255,255,255,0.6);
+}
+
+.note:nth-child(1) { left: 8%; top: 15%; font-size: 6rem; animation-duration: 22s; }
+.note:nth-child(2) { left: 22%; top: 38%; font-size: 4.5rem; animation-duration: 17s; animation-delay: 2s; }
+.note:nth-child(3) { left: 48%; top: 12%; font-size: 7rem; animation-duration: 28s; animation-delay: 5s; }
+.note:nth-child(4) { left: 65%; top: 55%; font-size: 5rem; animation-duration: 19s; animation-delay: 8s; }
+.note:nth-child(5) { left: 82%; top: 28%; font-size: 4rem; animation-duration: 25s; animation-delay: 3s; }
+.note:nth-child(6) { left: 35%; top: 72%; font-size: 6.5rem; animation-duration: 21s; animation-delay: 11s; }
+
+@keyframes floatNote {
+    0% { transform: translateY(110vh) rotate(0deg); opacity: 0.3; }
+    100% { transform: translateY(-120vh) rotate(1080deg); opacity: 0; }
 }
 
 .hero-content {
-    max-width: 900px;
-    padding: 2.5rem;
-    animation: heroPulse 4s infinite alternate ease-in-out;
+    max-width: 960px;
+    padding: 2rem;
+    z-index: 10;
+    animation: heroPop 2s ease-out forwards;
+}
+
+.badge {
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(16px);
+    padding: 10px 28px;
+    border-radius: 50px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.3);
 }
 
 .hero h1 {
-    font-size: clamp(3rem, 8vw, 5.5rem);
-    margin-bottom: 1rem;
-    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 20px 50px rgba(0,0,0,0.6);
 }
 
 .hero p {
-    font-size: 1.45rem;
-    max-width: 720px;
-    margin: 0 auto 2.5rem;
-    text-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    font-size: 1.55rem;
+    max-width: 780px;
+    margin: 0 auto 2.8rem;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .cta-button {
     background: white;
-    color: var(--primary);
-    padding: 18px 42px;
-    font-size: 1.3rem;
+    color: var(--purple);
+    font-size: 1.5rem;
     font-weight: 700;
-    border-radius: 50px;
+    padding: 22px 52px;
+    border-radius: 60px;
     text-decoration: none;
     display: inline-block;
-    box-shadow: 0 15px 35px rgba(0, 191, 165, 0.3);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 25px 60px rgba(123,44,191,0.45);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .cta-button:hover {
-    transform: translateY(-8px) scale(1.08);
-    box-shadow: 0 25px 50px rgba(0, 191, 165, 0.4);
+    transform: scale(1.15) translateY(-10px);
+    box-shadow: 0 35px 80px rgba(123,44,191,0.6);
 }
 
-.about, .services, .tutorials {
+/* ABOUT */
+.about {
     max-width: 1300px;
-    margin: 100px auto;
+    margin: 140px auto;
     padding: 0 5%;
 }
 
-h2 {
-    font-size: 3.2rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    position: relative;
-}
-
-h2:after {
-    content: '';
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(to right, var(--primary), var(--accent));
-    position: absolute;
-    bottom: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 2px;
-}
-
-.about-content {
+.about-container {
     display: flex;
     align-items: center;
-    gap: 4rem;
+    gap: 6rem;
     flex-wrap: wrap;
-    justify-content: center;
+}
+
+.profile-container {
+    flex: 1;
+    min-width: 340px;
 }
 
 .profile-img {
-    width: 340px;
-    height: 340px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 12px solid white;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-    transition: all 0.5s;
+    width: 100%;
+    max-width: 520px;
+    border-radius: 30px;
+    box-shadow: 0 40px 90px rgba(0,245,212,0.45);
+    transition: all 0.7s;
 }
 
 .profile-img:hover {
-    transform: scale(1.08) rotate(3deg);
+    transform: scale(1.08) rotate(4deg);
+    box-shadow: 0 60px 120px rgba(123,44,191,0.55);
 }
 
 .about-text {
     flex: 1;
-    min-width: 300px;
-    font-size: 1.15rem;
+    min-width: 340px;
 }
 
-.services-grid, .tutorials-list {
+.about-text h2 {
+    font-size: 3.8rem;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.about-text p {
+    font-size: 1.35rem;
+    margin-bottom: 1.8rem;
+}
+
+/* SERVICES & TUTORIALS */
+.services, .tutorials {
+    max-width: 1300px;
+    margin: 140px auto;
+    padding: 0 5%;
+}
+
+.services h2, .tutorials h2 {
+    font-size: 3.6rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    background: linear-gradient(90deg, var(--teal), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.services-grid, .tutorials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
-.service-item, .tutorial-item {
+.service-card, .tutorial-card {
     background: white;
-    padding: 2.5rem 2rem;
-    border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0, 191, 165, 0.1);
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    padding: 3rem 2.2rem;
+    border-radius: 32px;
+    box-shadow: 0 30px 70px rgba(0,245,212,0.15);
     text-align: center;
+    transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(80px);
 }
 
-.service-item.visible, .tutorial-item.visible {
+.service-card.visible, .tutorial-card.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-.service-item:hover, .tutorial-item:hover {
-    transform: translateY(-20px) scale(1.04);
-    box-shadow: 0 35px 70px rgba(0, 191, 165, 0.25);
+.service-card:hover, .tutorial-card:hover {
+    transform: translateY(-30px) scale(1.05);
+    box-shadow: 0 50px 100px rgba(123,44,191,0.3);
 }
 
-.service-item i, .tutorial-item i {
-    color: var(--primary);
+.icon {
+    font-size: 4.5rem;
     margin-bottom: 1.5rem;
+    display: block;
+    transition: transform 0.4s;
 }
 
-.service-item h3, .tutorial-item h3 {
-    font-size: 1.6rem;
+.service-card:hover .icon, .tutorial-card:hover .icon {
+    transform: scale(1.25) rotate(15deg);
+}
+
+.service-card h3, .tutorial-card h3 {
+    font-size: 1.85rem;
     margin-bottom: 1rem;
-    color: var(--dark);
 }
 
-.note {
-    text-align: center;
+.service-card p, .tutorial-card p {
     font-size: 1.15rem;
-    font-style: italic;
-    max-width: 800px;
-    margin: 3rem auto 0;
     color: #555;
 }
 
+/* CONTACT */
 .contact {
-    background: linear-gradient(135deg, #00BFA5, #2196F3);
+    background: linear-gradient(135deg, var(--teal), var(--purple));
     color: white;
-    padding: 110px 5%;
+    padding: 140px 5%;
     text-align: center;
 }
 
-.contact-content {
-    max-width: 820px;
-    margin: 0 auto;
+.contact h2 {
+    font-size: 3.8rem;
+    margin-bottom: 1rem;
 }
 
-.email-boxes {
+.contact-subtitle {
+    font-size: 1.6rem;
+    max-width: 680px;
+    margin: 0 auto 3rem;
+}
+
+.email-grid {
     display: flex;
     gap: 2rem;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 2.5rem 0;
+    margin-bottom: 4rem;
 }
 
-.email-link {
+.email-card {
     background: rgba(255,255,255,0.15);
-    padding: 1.8rem 2.5rem;
-    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    padding: 3rem 2.5rem;
+    border-radius: 28px;
+    min-width: 300px;
     text-decoration: none;
     color: white;
-    min-width: 260px;
     transition: all 0.4s;
-    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
-.email-link:hover {
+.email-card:hover {
     background: rgba(255,255,255,0.3);
-    transform: translateY(-10px);
+    transform: translateY(-15px);
 }
 
-.email-link span {
+.email-card i {
+    font-size: 3.8rem;
+    margin-bottom: 1rem;
     display: block;
-    font-size: 1.35rem;
+}
+
+.email-card strong {
+    font-size: 1.65rem;
+    display: block;
     margin-top: 8px;
-    font-weight: 500;
 }
 
-.encouragement {
-    font-size: 1.35rem;
-    max-width: 680px;
-    margin: 2rem auto 0;
-    font-weight: 300;
+.final-encouragement {
+    font-size: 1.55rem;
+    max-width: 720px;
+    margin: 0 auto;
+    font-weight: 400;
 }
 
+/* FOOTER */
 footer {
     background: var(--dark);
     color: white;
     text-align: center;
-    padding: 3rem 5%;
-    font-size: 0.95rem;
+    padding: 4rem 5%;
+    font-size: 1.1rem;
 }
 
-@keyframes heroPulse {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.03); }
+/* ANIMATIONS */
+@keyframes heroPop {
+    0% { opacity: 0; transform: scale(0.7) translateY(80px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* Scroll fade-in */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Scroll reveal */
 .fade-in {
     opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(60px);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .fade-in.visible {
