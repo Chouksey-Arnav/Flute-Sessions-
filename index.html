@@ -3,125 +3,333 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Arnav Chouksey – First Chair Flute at Mills Park | All-County & All-District Honors | Free expert flute tutoring & video sessions for 6th-8th graders in Apex, NC">
-    <title>Arnav's Flute Tutoring | Apex, NC</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Roboto:wght@300;400;700&amp;display=swap" rel="stylesheet">
+    <meta name="description" content="First-Chair Flute Legend Arnav Chouksey is turning middle schoolers into audition superstars! Epic free tutorials + live video sessions for 6th-8th graders in Apex &amp; Wake County.">
+    <title>Arnav's Flute Quest • Become a Legend</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Poppins:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Poppins:wght@300;400;600;700&amp;display=swap');
+        
+        :root {
+            --teal: #00f5d4;
+            --purple: #7b2cbf;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.65)), url('https://picsum.photos/id/1015/2000/1200');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .neon-text {
+            text-shadow: 
+                0 0 10px #00f5d4,
+                0 0 20px #00f5d4,
+                0 0 40px #7b2cbf;
+        }
+
+        .floating-note {
+            animation: floatNote 15s linear infinite;
+            opacity: 0.25;
+        }
+
+        @keyframes floatNote {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-150vh) rotate(720deg); }
+        }
+
+        .section-pop {
+            animation: sectionPop 1.2s ease-out forwards;
+        }
+
+        @keyframes sectionPop {
+            0% { opacity: 0; transform: translateY(80px) scale(0.85); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .cta-glow {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .cta-glow:hover {
+            box-shadow: 0 0 60px 15px rgba(123, 44, 191, 0.6);
+            transform: scale(1.12) translateY(-6px);
+        }
+
+        .profile-glow {
+            box-shadow: 0 0 80px 30px rgba(0, 245, 212, 0.6);
+            transition: all 0.6s;
+        }
+        
+        .profile-glow:hover {
+            box-shadow: 0 0 100px 50px rgba(123, 44, 191, 0.7);
+            transform: scale(1.08) rotate(3deg);
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">
-                <i class="fas fa-music"></i> Arnav's Flute Tutoring
+<body class="bg-gradient-to-br from-sky-50 via-emerald-50 to-violet-50 text-slate-900 overflow-x-hidden">
+
+    <!-- HEADER -->
+    <header class="bg-gradient-to-r from-[#00f5d4] to-[#7b2cbf] sticky top-0 z-50 shadow-2xl">
+        <nav class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-4 text-white text-3xl font-bold tracking-tighter">
+                <i class="fa-solid fa-flute text-4xl animate-spin-slow"></i>
+                <span class="heading-font">Arnav's Flute Quest</span>
             </div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#tutorials">Tutorials</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <ul class="flex gap-10 text-white font-medium text-lg">
+                <li><a href="#home" class="hover:underline decoration-2 underline-offset-8 transition">Home</a></li>
+                <li><a href="#about" class="hover:underline decoration-2 underline-offset-8 transition">Meet Arnav</a></li>
+                <li><a href="#services" class="hover:underline decoration-2 underline-offset-8 transition">Level Up</a></li>
+                <li><a href="#tutorials" class="hover:underline decoration-2 underline-offset-8 transition">Free Adventures</a></li>
+                <li><a href="#contact" class="hover:underline decoration-2 underline-offset-8 transition">Join the Quest</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Unlock Your Flute Potential</h1>
-            <p>Proven excellence from the first-chair flutist at Mills Park (Ethos). Clear, step-by-step methods that actually work for middle school success (Logos). And a heartfelt passion to cheer you on every single note so you fall in love with playing (Pathos).</p>
-            <a href="#contact" class="cta-button">I'm Ready – Let's Play!</a>
+    <!-- HERO -->
+    <section id="home" class="hero-bg h-screen flex items-center relative">
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <i class="fas fa-music text-8xl floating-note" style="left: 8%; top: 20%; animation-delay: 0s;"></i>
+            <i class="fas fa-music text-7xl floating-note" style="left: 25%; top: 45%; animation-delay: 3s;"></i>
+            <i class="fas fa-music text-9xl floating-note" style="left: 65%; top: 15%; animation-delay: 7s;"></i>
+            <i class="fas fa-music text-6xl floating-note" style="left: 82%; top: 60%; animation-delay: 12s;"></i>
+            <i class="fas fa-music text-8xl floating-note" style="left: 40%; top: 75%; animation-delay: 5s;"></i>
+        </div>
+
+        <div class="max-w-5xl mx-auto text-center px-6 relative z-10">
+            <div class="inline-flex items-center gap-3 bg-white/20 backdrop-blur-xl px-8 py-3 rounded-full text-white text-lg font-semibold mb-6 border border-white/30">
+                <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
+                FIRST CHAIR • ALL-COUNTY • ALL-DISTRICT
+            </div>
+            
+            <h1 class="heading-font text-7xl md:text-8xl leading-none text-white neon-text mb-8 tracking-tighter">
+                HEY FUTURE<br>FLUTE LEGEND!
+            </h1>
+            
+            <p class="text-2xl md:text-3xl text-white max-w-3xl mx-auto leading-tight mb-12">
+                I'm Arnav Chouksey — first-chair at Mills Park, pre-MPA soloist, and All-County &amp; All-District honors band member. 
+                I know exactly how it feels to go from squeaks to standing ovations, and I'm here to help YOU get there — with proven steps, real results, and nonstop hype!
+            </p>
+            
+            <a href="#contact" 
+               class="cta-glow inline-block bg-white text-[#7b2cbf] font-bold text-2xl px-14 py-7 rounded-3xl shadow-2xl hover:bg-emerald-400 hover:text-white transition-all">
+                START YOUR LEGENDARY JOURNEY →
+            </a>
+        </div>
+
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/70">
+            <div class="text-sm tracking-widest mb-2">SCROLL TO BEGIN</div>
+            <i class="fa-solid fa-chevron-down text-3xl animate-bounce"></i>
         </div>
     </section>
 
-    <section id="about" class="about">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <img src="https://via.placeholder.com/320x320/00BFA5/ffffff?text=Arnav+Chouksey" alt="Arnav Chouksey – First Chair Flute" class="profile-img">
-            <div class="about-text">
-                <p>Hey friend, I'm Arnav Chouksey — first-chair flutist at Mills Park, soloist in pre-MPA concerts, and a proud member of both All-County and All-District Honors Bands. I've stood on stage in front of the Green Level Band and delivered performances that earned respect from directors and peers alike.</p>
-                <p>But here's what matters most to me: I remember exactly how it felt to be a middle-schooler learning flute — the nerves, the squeaks, the excitement when something finally clicked. That's why I'm here. With the same dedication that got me to honors bands, I'll guide you logically from your very first note all the way to audition-ready solos. Most importantly, I'll be your biggest cheerleader, celebrating every win until you feel unstoppable and completely in love with the flute.</p>
+    <!-- ABOUT -->
+    <section id="about" class="max-w-7xl mx-auto px-6 py-28">
+        <div class="grid md:grid-cols-12 gap-16 items-center">
+            <div class="md:col-span-5">
+                <img src="https://via.placeholder.com/520x520/00f5d4/ffffff?text=Arnav+Chouksey" 
+                     alt="Arnav Chouksey – First Chair Flute" 
+                     class="profile-glow rounded-3xl w-full aspect-square object-cover">
+            </div>
+            <div class="md:col-span-7 space-y-10">
+                <h2 class="heading-font text-6xl leading-none">I'm Arnav —<br>Your Personal Flute Coach</h2>
+                <div class="text-2xl leading-relaxed text-slate-700">
+                    <p class="mb-8">I sat in the exact same band chair you're in right now. I felt the nerves before my first solo, the frustration of squeaky notes, and the pure magic when everything finally clicked. Now I'm first chair at Mills Park, I've performed solos that brought the house down at pre-MPA concerts, and I've earned my spot in both All-County and All-District Honors Bands.</p>
+                    <p>Everything I learned the hard way, I'm giving to you the easy way — with step-by-step systems that actually work, and the kind of encouragement that makes you excited to practice every single day. You're not just learning flute. You're becoming unstoppable.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="services">
-        <h2>Services Built for Your Success</h2>
-        <div class="services-grid">
-            <div class="service-item">
-                <i class="fas fa-video fa-3x"></i>
-                <h3>Personalized Video Sessions</h3>
-                <p>One-on-one or small-group Google Meets tailored exactly to your level. Beginners get patient foundations, intermediates get polished technique, and advanced players get audition-level mastery — because every student deserves teaching that actually fits them.</p>
-            </div>
-            <div class="service-item">
-                <i class="fas fa-trophy fa-3x"></i>
-                <h3>All-County &amp; All-District Audition Prep</h3>
-                <p>Proven strategies that have already helped students make honors bands. Sight-reading drills, solo repertoire deep-dives, tone work, and performance psychology — everything you need to walk into auditions confident and prepared.</p>
-            </div>
-            <div class="service-item">
-                <i class="fas fa-seedling fa-3x"></i>
-                <h3>Fundamentals Mastery</h3>
-                <p>Rock-solid basics (posture, breathing, fingerings, tone) taught in fun, bite-sized steps. Perfect for 6th graders just starting — or anyone who wants to finally fix those squeaks for good.</p>
-            </div>
-            <div class="service-item">
-                <i class="fas fa-book-music fa-3x"></i>
-                <h3>Repertoire &amp; Band Music Support</h3>
-                <p>We'll play through your school pieces, concert repertoire, scales, and dynamics together. Whether it's helping you sound amazing in band class or preparing a solo that wows the judges — I've got you.</p>
+    <!-- SERVICES -->
+    <section id="services" class="bg-white py-28">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="heading-font text-6xl text-center mb-20">Choose Your Epic Power-Up</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card rounded-3xl p-10 text-center transition-all hover:-translate-y-6 group">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-teal-400 to-purple-600 rounded-2xl flex items-center justify-center mb-8 text-white text-5xl group-hover:rotate-12 transition">
+                        📹
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4">Live Video Sessions</h3>
+                    <p class="text-xl text-slate-600">One-on-one Google Meets where we fix everything together. Beginners feel safe, intermediates explode with progress, audition stars get pro-level secrets. It's like having your own personal flute coach who actually cares.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card rounded-3xl p-10 text-center transition-all hover:-translate-y-6 group">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-amber-400 to-red-500 rounded-2xl flex items-center justify-center mb-8 text-white text-5xl group-hover:rotate-12 transition">
+                        🏆
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4">Audition Domination</h3>
+                    <p class="text-xl text-slate-600">Sight-reading tricks, solo polishing, tone secrets, and confidence hacks that have already helped kids just like you make All-County &amp; All-District. Walk in nervous, walk out legendary.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card rounded-3xl p-10 text-center transition-all hover:-translate-y-6 group">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-emerald-400 to-cyan-500 rounded-2xl flex items-center justify-center mb-8 text-white text-5xl group-hover:rotate-12 transition">
+                        🌱
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4">Beginner Magic</h3>
+                    <p class="text-xl text-slate-600">Perfect posture, breathing, first beautiful notes — taught in fun, bite-sized steps that actually stick. No more guessing. Just steady wins and huge smiles.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-card rounded-3xl p-10 text-center transition-all hover:-translate-y-6 group">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-violet-400 to-fuchsia-500 rounded-2xl flex items-center justify-center mb-8 text-white text-5xl group-hover:rotate-12 transition">
+                        🎼
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4">Band &amp; Repertoire Mastery</h3>
+                    <p class="text-xl text-slate-600">We'll crush your school pieces, scales, and expression until your band director does a double-take. Sound confident, musical, and totally unstoppable.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="tutorials" class="tutorials">
-        <h2>Free Flute Tutorials</h2>
-        <div class="tutorials-list">
-            <div class="tutorial-item">
-                <i class="fas fa-play-circle"></i>
-                <h3>Getting Started with the Flute</h3>
-                <p>Everything a 6th grader needs: assembling your flute correctly, perfect posture, first beautiful tones, and daily care tips. Start here and feel proud from day one.</p>
-            </div>
-            <div class="tutorial-item">
-                <i class="fas fa-chart-line"></i>
-                <h3>Mastering Scales &amp; Fingerings</h3>
-                <p>Clear finger charts, practice routines, and speed-building exercises that 7th graders love. Watch your fingers fly and your confidence soar.</p>
-            </div>
-            <div class="tutorial-item">
-                <i class="fas fa-eye"></i>
-                <h3>Sight-Reading &amp; Audition Secrets</h3>
-                <p>Proven techniques that make sight-reading feel easy and auditions exciting instead of scary — perfect for 8th graders chasing All-County &amp; All-District spots.</p>
-            </div>
-            <div class="tutorial-item">
-                <i class="fas fa-music"></i>
-                <h3>Repertoire &amp; Expression</h3>
-                <p>Learn how to bring real emotion and musicality to every piece — dynamics, articulation, phrasing — so your band director and judges hear the difference immediately.</p>
+    <!-- TUTORIALS -->
+    <section id="tutorials" class="py-28 bg-gradient-to-b from-violet-50 to-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="heading-font text-6xl text-center mb-20">Free Flute Adventures (Start Right Now!)</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass-card rounded-3xl p-10 text-center transition-all hover:-translate-y-6 group section-pop">
+                    <div class="text-7xl mb-6">🎯</div>
+                    <h3 class="text-3xl font-bold mb-4">Level 1: First Epic Notes</h3>
+                    <p class="text-xl text-slate-600">Assemble like a pro, nail posture, breathe right, and play your very first clear tone. Perfect for 6th graders who want to feel awesome immediately.</p>
+                </div>
+                <div class="glass-card rounded-3xl p-10 text-center transition-all hover:-translate-y-6 group section-pop">
+                    <div class="text-7xl mb-6">⚡</div>
+                    <h3 class="text-3xl font-bold mb-4">Level 2: Scales That Fly</h3>
+                    <p class="text-xl text-slate-600">Major &amp; minor scales with finger charts and speed drills that feel like a game. 7th graders level up fast and love it.</p>
+                </div>
+                <div class="glass-card rounded-3xl p-10 text-center transition-all hover:-translate-y-6 group section-pop">
+                    <div class="text-7xl mb-6">👀</div>
+                    <h3 class="text-3xl font-bold mb-4">Level 3: Audition Power</h3>
+                    <p class="text-xl text-slate-600">Sight-reading secrets that turn scary into exciting + All-County &amp; All-District prep. 8th graders swear by these.</p>
+                </div>
+                <div class="glass-card rounded-3xl p-10 text-center transition-all hover:-translate-y-6 group section-pop">
+                    <div class="text-7xl mb-6">✨</div>
+                    <h3 class="text-3xl font-bold mb-4">Level 4: Make It Shine</h3>
+                    <p class="text-xl text-slate-600">Dynamics, emotion, phrasing — turn every piece into a performance that makes people stop and listen.</p>
+                </div>
             </div>
         </div>
-        <p class="note">All tutorials are 100% free and created with the same care I bring to my own playing. Want video feedback or live help? Just email me — I'm here for you.</p>
     </section>
 
-    <section id="contact" class="contact">
-        <h2>Let's Make Music Together</h2>
-        <div class="contact-content">
-            <p><strong>Email me anytime</strong> — I'm a real middle-schooler just like you and I answer every message personally:</p>
-            <div class="email-boxes">
-                <a href="mailto:achouksey@students.wcpss.net" class="email-link">
-                    <i class="fas fa-school"></i>
-                    Student Email<br>
-                    <span>achouksey@students.wcpss.net</span>
+    <!-- CONTACT -->
+    <section id="contact" class="bg-gradient-to-br from-[#00f5d4] via-[#7b2cbf] to-violet-700 text-white py-32">
+        <div class="max-w-4xl mx-auto text-center px-6">
+            <h2 class="heading-font text-6xl mb-6">Let's Make Magic Happen</h2>
+            <p class="text-3xl mb-16 max-w-2xl mx-auto">Don't be shy — every email makes me smile! I'm just a middle-schooler like you and I answer everyone personally.</p>
+            
+            <div class="flex flex-col md:flex-row gap-8 justify-center">
+                <a href="mailto:achouksey@students.wcpss.net" 
+                   class="glass-card bg-white/10 backdrop-blur-3xl border border-white/30 rounded-3xl p-12 hover:bg-white/20 transition-all group">
+                    <i class="fa-solid fa-school text-6xl mb-6 group-hover:scale-110 transition"></i>
+                    <div class="text-2xl font-semibold">School Email</div>
+                    <div class="text-4xl font-bold mt-2 tracking-wider">achouksey@students.wcpss.net</div>
                 </a>
-                <a href="mailto:chouksey.arnav@gmail.com" class="email-link">
-                    <i class="fas fa-envelope"></i>
-                    Personal Email<br>
-                    <span>chouksey.arnav@gmail.com</span>
+                
+                <a href="mailto:chouksey.arnav@gmail.com" 
+                   class="glass-card bg-white/10 backdrop-blur-3xl border border-white/30 rounded-3xl p-12 hover:bg-white/20 transition-all group">
+                    <i class="fa-solid fa-envelope text-6xl mb-6 group-hover:scale-110 transition"></i>
+                    <div class="text-2xl font-semibold">Personal Email</div>
+                    <div class="text-4xl font-bold mt-2 tracking-wider">chouksey.arnav@gmail.com</div>
                 </a>
             </div>
-            <p class="encouragement">Don't be nervous — every single email makes me smile! Whether you're a total beginner scared to play your first note or an audition warrior who wants to sound unstoppable, I'm rooting for you 100%. You've already taken the bravest step by being here. Now let's turn that talent into something magical.</p>
+            
+            <p class="mt-16 text-3xl max-w-2xl mx-auto leading-tight">
+                Whether you're scared to play your first note or prepping for All-County and want to sound unstoppable — I'm here cheering louder than anyone. You've already taken the coolest step. Now let's turn that flute into your superpower!
+            </p>
         </div>
     </section>
 
-    <footer>
-        <p>© 2026 Arnav Chouksey • First Chair Flute • All-County &amp; All-District Honors • Apex, North Carolina</p>
-        <p>Serving 6th, 7th &amp; 8th graders across Wake County with passion, proof, and encouragement.</p>
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-white/70 py-16 text-center">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-center gap-6 text-4xl mb-8 text-white/30">
+                <i class="fa-solid fa-music"></i>
+                <i class="fa-solid fa-music"></i>
+                <i class="fa-solid fa-music"></i>
+            </div>
+            <p class="text-2xl font-medium">© 2026 Arnav Chouksey • First Chair • All-County &amp; All-District Honors • Apex, North Carolina</p>
+            <p class="mt-4 text-lg">Made with pure hype for every 6th, 7th &amp; 8th grader ready to become legendary.</p>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Tailwind script already loaded via CDN
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll reveal for cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('section-pop');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Click confetti on CTA
+        function launchConfetti() {
+            for (let i = 0; i < 80; i++) {
+                const note = document.createElement('div');
+                note.textContent = ['♪', '♫', '🎵', '🎶'][Math.floor(Math.random() * 4)];
+                note.style.position = 'fixed';
+                note.style.left = Math.random() * 100 + 'vw';
+                note.style.top = '-50px';
+                note.style.fontSize = '2.5rem';
+                note.style.zIndex = '99999';
+                note.style.pointerEvents = 'none';
+                document.body.appendChild(note);
+                
+                const duration = Math.random() * 2800 + 3200;
+                note.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight + 300}px) rotate(${Math.random() * 1200 - 600}deg)`, opacity: 0 }
+                ], {
+                    duration: duration,
+                    easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)'
+                });
+                
+                setTimeout(() => note.remove(), duration);
+            }
+        }
+
+        document.querySelectorAll('.cta-glow').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (Math.random() > 0.4) launchConfetti();
+            });
+        });
+    </script>
 </body>
 </html>
