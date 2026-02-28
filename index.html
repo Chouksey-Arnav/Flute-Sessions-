@@ -3,11 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="First-Chair Flute Legend Arnav Chouksey is turning middle schoolers into audition superstars! Epic free tutorials + live video sessions for 6th-8th graders in Apex &amp; Wake County.">
-    <title>Arnav's Flute Quest • Become a Legend</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Arnav's Flute Quest • Apex, NC</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Poppins:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Poppins:wght@300;400;600;700&amp;display=swap');
+        
+        :root {
+            --teal: #00f5d4;
+            --purple: #7b2cbf;
+            --dark: #0f172a;
+        }
+        
+        * { margin:0; padding:0; box-sizing:border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, #e0f2fe 0%, #f0fdf4 100%);
+            color: var(--dark);
+            line-height: 1.75;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--teal), var(--purple));
+            padding: 1.5rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 15px 40px rgba(123,44,191,0.3);
+        }
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .logo i { font-size: 2.8rem; animation: spin 8s linear infinite; }
+        ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        ul a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.15rem;
+            position: relative;
+        }
+        ul a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -6px;
+            left: 0;
+            background: white;
+            transition: width 0.4s;
+        }
+        ul a:hover:after { width: 100%; }
+        
+        /* HERO - EVERYTHING VISIBLE */
+        .hero {
+            height: 100vh;
+            min-height: 720px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(15,23,42,0.78), rgba(15,23,42,0.72)), url('https://picsum.photos/id/1015/2000/1200');
+            background-size: cover;
+            z-index: -2;
+        }
+        .floating-notes {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .note {
+            position: absolute;
+            font-size: 5rem;
+            color: rgba(255,255,255,0.22);
+            animation: floatNote linear infinite;
+        }
+        .note:nth-child(1){left:8%;top:15%;font-size:6rem;animation-duration:22s;}
+        .note:nth-child(2){left:22%;top:38%;font-size:4.5rem;animation-duration:17s;animation-delay:2s;}
+        .note:nth-child(3){left:48%;top:12%;font-size:7rem;animation-duration:28s;animation-delay:5s;}
+        .note:nth-child(4){left:65%;top:55%;font-size:5rem;animation-duration:19s;animation-delay:8s;}
+        .note:nth-child(5){left:82%;top:28%;font-size:4rem;animation-duration:25s;animation-delay:3s;}
+        .note:nth-child(6){left:35%;top:72%;font-size:6.5rem;animation-duration:21s;animation-delay:11s;}
+        
+        @keyframes floatNote {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0.3; }
+            100% { transform: translateY(-120vh) rotate(1080deg); opacity: 0; }
+        }
+        
+        .hero-content {
+            max-width: 960px;
+            padding: 2rem;
+            z-index: 10;
+        }
+        .badge {
+            background: rgba(255,255,255,0.18);
+            backdrop-filter: blur(16px);
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .hero h1 {
+            font-size: clamp(3.5rem, 9vw, 7rem);
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+        .hero p {
+            font-size: 1.55rem;
+            max-width: 780px;
+            margin: 0 auto 2.8rem;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .cta-button {
+            background: white;
+            color: var(--purple);
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 22px 52px;
+            border-radius: 60px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 25px 60px rgba(123,44,191,0.45);
+            transition: all 0.5s cubic-bezier(0.175,0.885,0.32,1.275);
+        }
+        .cta-button:hover {
+            transform: scale(1.15) translateY(-10px);
+            box-shadow: 0 35px 80px rgba(123,44,191,0.6);
+        }
+        
+        /* ABOUT */
+        .about {
+            max-width: 1300px;
+            margin: 140px auto;
+            padding: 0 5%;
+        }
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 6rem;
+            flex-wrap: wrap;
+        }
+        .profile-img {
+            width: 100%;
+            max-width: 520px;
+            border-radius: 30px;
+            box-shadow: 0 40px 90px rgba(0,245,212,0.45);
+            transition: all 0.7s;
+        }
+        .profile-img:hover {
+            transform: scale(1.08) rotate(4deg);
+            box-shadow: 0 60px 120px rgba(123,44,191,0.55);
+        }
+        .about-text {
+            flex: 1;
+            min-width: 340px;
+        }
+        .about-text h2 {
+            font-size: 3.8rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+        .about-text p {
+            font-size: 1.35rem;
+            margin-bottom: 1.8rem;
+        }
+        
+        /* SERVICES & TUTORIALS - BIG VISIBLE CARDS */
+        .services, .tutorials {
+            max-width: 1300px;
+            margin: 140px auto;
+            padding: 0 5%;
+        }
+        .services h2, .tutorials h2 {
+            font-size: 3.6rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(90deg, var(--teal), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .services-grid, .tutorials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+        }
+        .service-card, .tutorial-card {
+            background: white;
+            padding: 3rem 2.2rem;
+            border-radius: 32px;
+            box-shadow: 0 30px 70px rgba(0,245,212,0.15);
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
+            height: 100%;
+        }
+        .service-card:hover, .tutorial-card:hover {
+            transform: translateY(-30px) scale(1.05);
+            box-shadow: 0 50px 100px rgba(123,44,191,0.3);
+        }
+        .icon {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            transition: transform 0.4s;
+        }
+        .service-card:hover .icon, .tutorial-card:hover .icon {
+            transform: scale(1.25) rotate(15deg);
+        }
+        .service-card h3, .tutorial-card h3 {
+            font-size: 1.85rem;
+            margin-bottom: 1rem;
+        }
+        .service-card p, .tutorial-card p {
+            font-size: 1.18rem;
+            color: #444;
+            line-height: 1.75;
+        }
+        
+        /* CONTACT */
+        .contact {
+            background: linear-gradient(135deg, var(--teal), var(--purple));
+            color: white;
+            padding: 140px 5%;
+            text-align: center;
+        }
+        .contact h2 { font-size: 3.8rem; margin-bottom: 1rem; }
+        .contact-subtitle { font-size: 1.6rem; max-width: 680px; margin: 0 auto 3rem; }
+        .email-grid {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+        .email-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(20px);
+            padding: 3rem 2.5rem;
+            border-radius: 28px;
+            min-width: 300px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.4s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .email-card:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-15px);
+        }
+        .email-card strong {
+            font-size: 1.65rem;
+            display: block;
+            margin-top: 8px;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 4rem 5%;
+            font-size: 1.1rem;
+        }
+        
+        /* ANIMATIONS */
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes floatNote { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0.3; } 100% { transform: translateY(-120vh) rotate(1080deg); opacity: 0; } }
+        
+        .cta-button:active { transform: scale(0.95); }
+    </style>
 </head>
 <body>
     <!-- HEADER -->
@@ -41,7 +339,7 @@
         <div class="hero-content">
             <div class="badge">FIRST CHAIR • ALL-COUNTY • ALL-DISTRICT</div>
             <h1>HEY FUTURE<br>FLUTE LEGEND!</h1>
-            <p>I'm Arnav Chouksey — first-chair at Mills Park, pre-MPA soloist, and All-County &amp; All-District honors band member. I know exactly how it feels to go from squeaks to standing ovations, and I'm here to help YOU get there — with proven steps, real results, and nonstop hype!</p>
+            <p>I'm Arnav Chouksey — first chair at Mills Park, pre-MPA soloist, and All-County &amp; All-District honors band member. I know exactly how it feels to go from squeaks to standing ovations, and I'm here to help YOU get there with real steps that work and nonstop encouragement.</p>
             <a href="#contact" class="cta-button">START YOUR LEGENDARY JOURNEY →</a>
         </div>
     </section>
@@ -50,12 +348,12 @@
     <section id="about" class="about">
         <div class="about-container">
             <div class="profile-container">
-                <img src="https://via.placeholder.com/520x520/00f5d4/ffffff?text=Arnav+Chouksey" alt="Arnav Chouksey – First Chair Flute" class="profile-img">
+                <img src="https://via.placeholder.com/520x520/00f5d4/ffffff?text=Arnav+Chouksey" alt="Arnav Chouksey" class="profile-img">
             </div>
             <div class="about-text">
-                <h2>I'm Arnav —<br>Your Personal Flute Coach</h2>
-                <p>I sat in the exact same band chair you're in right now. I felt the nerves before my first solo, the frustration of squeaky notes, and the pure magic when everything finally clicked. Now I'm first chair at Mills Park, I've performed solos that brought the house down at pre-MPA concerts, and I've earned my spot in both All-County and All-District Honors Bands.</p>
-                <p>Everything I learned the hard way, I'm giving to you the easy way — with step-by-step systems that actually work, and the kind of encouragement that makes you excited to practice every single day. You're not just learning flute. You're becoming unstoppable.</p>
+                <h2>I'm Arnav — Your Personal Flute Coach</h2>
+                <p>I was exactly where you are right now — sitting in band class, nervous about solos, frustrated with squeaky notes. Now I'm first chair at Mills Park, I've played solos that got the whole audience hyped at pre-MPA concerts, and I've made All-County and All-District Honors Bands. Everything I learned the hard way, I'm giving to you the easy way.</p>
+                <p>We'll build real skills that actually sound good, and I'll be cheering for you the whole time until you start sounding like the player everyone notices.</p>
             </div>
         </div>
     </section>
@@ -67,22 +365,22 @@
             <div class="service-card">
                 <div class="icon">📹</div>
                 <h3>Live Video Sessions</h3>
-                <p>One-on-one Google Meets where we fix everything together. Beginners feel safe, intermediates explode with progress, audition stars get pro-level secrets. It's like having your own personal flute coach who actually cares.</p>
+                <p>One-on-one or small group Google Meets where we actually play together. I'll watch you play, fix your posture, breathing, tone, and fingerings in real time. Beginners get rock-solid basics, intermediates get clean technique, and audition kids get the exact stuff that makes judges go "whoa." Every session ends with you sounding noticeably better — and actually excited to practice.</p>
             </div>
             <div class="service-card">
                 <div class="icon">🏆</div>
-                <h3>Audition Domination</h3>
-                <p>Sight-reading tricks, solo polishing, tone secrets, and confidence hacks that have already helped kids just like you make All-County &amp; All-District. Walk in nervous, walk out legendary.</p>
+                <h3>All-County &amp; All-District Audition Prep</h3>
+                <p>I know exactly what the judges want because I've been through it. We'll drill the scales, etudes, and sight-reading that show up every year, plus the tone tricks and mental game that separate the good players from the ones who actually make it. You'll walk into the audition room confident instead of nervous — and you'll sound like you belong there.</p>
             </div>
             <div class="service-card">
                 <div class="icon">🌱</div>
-                <h3>Beginner Magic</h3>
-                <p>Perfect posture, breathing, first beautiful notes — taught in fun, bite-sized steps that actually stick. No more guessing. Just steady wins and huge smiles.</p>
+                <h3>Beginner Fundamentals That Actually Stick</h3>
+                <p>If you're in 6th grade or just starting, this is perfect. We'll go super slow and clear: how to hold the flute without tension, get a strong steady sound, play your first real notes without squeaking, and put together your first songs. No guessing — just steady progress so you actually enjoy playing instead of getting frustrated.</p>
             </div>
             <div class="service-card">
                 <div class="icon">🎼</div>
-                <h3>Band &amp; Repertoire Mastery</h3>
-                <p>We'll crush your school pieces, scales, and expression until your band director does a double-take. Sound confident, musical, and totally unstoppable.</p>
+                <h3>Band Music &amp; Repertoire Mastery</h3>
+                <p>Your band music is what you play every day — let's make it sound fire. We'll break down the hard parts, fix intonation, work on dynamics and articulation so your section stands out, and even add musical expression that makes your director do a double-take. Perfect for 7th and 8th graders who want to sound pro in class and concerts.</p>
             </div>
         </div>
     </section>
@@ -94,22 +392,22 @@
             <div class="tutorial-card">
                 <div class="icon">🎯</div>
                 <h3>Level 1: First Epic Notes</h3>
-                <p>Assemble like a pro, nail posture, breathe right, and play your very first clear tone. Perfect for 6th graders who want to feel awesome immediately.</p>
+                <p>Everything a brand-new 6th grader needs. How to put your flute together the right way, perfect posture, breathing that actually works, and your very first clear tones. By the end you'll be playing real notes and feeling proud instead of embarrassed.</p>
             </div>
             <div class="tutorial-card">
                 <div class="icon">⚡</div>
-                <h3>Level 2: Scales That Fly</h3>
-                <p>Major &amp; minor scales with finger charts and speed drills that feel like a game. 7th graders level up fast and love it.</p>
+                <h3>Level 2: Scales That Actually Sound Good</h3>
+                <p>Major and minor scales with clear finger charts and practice routines that feel like a game. 7th graders use this to finally get smooth, fast fingers and stop sounding choppy. You'll hear yourself improve every single day.</p>
             </div>
             <div class="tutorial-card">
                 <div class="icon">👀</div>
-                <h3>Level 3: Audition Power</h3>
-                <p>Sight-reading secrets that turn scary into exciting + All-County &amp; All-District prep. 8th graders swear by these.</p>
+                <h3>Level 3: Sight-Reading &amp; Audition Secrets</h3>
+                <p>The exact strategies that turn scary sight-reading into something you actually enjoy. Plus the tone work and performance tips that help 8th graders crush All-County and All-District auditions. This is the stuff that makes the difference.</p>
             </div>
             <div class="tutorial-card">
                 <div class="icon">✨</div>
-                <h3>Level 4: Make It Shine</h3>
-                <p>Dynamics, emotion, phrasing — turn every piece into a performance that makes people stop and listen.</p>
+                <h3>Level 4: Make Every Piece Sound Pro</h3>
+                <p>Dynamics, articulation, phrasing, and emotion — the things that make your band music and solos actually sound musical instead of just "correct." This is where good players become the ones everyone listens to.</p>
             </div>
         </div>
     </section>
@@ -117,8 +415,7 @@
     <!-- CONTACT -->
     <section id="contact" class="contact">
         <h2>Let's Make Magic Happen</h2>
-        <p class="contact-subtitle">Don't be shy — every email makes me smile! I'm just a middle-schooler like you and I answer everyone personally.</p>
-        
+        <p class="contact-subtitle">Don't be shy — every single email makes me smile. I'm a middle-schooler just like you and I answer everyone personally.</p>
         <div class="email-grid">
             <a href="mailto:achouksey@students.wcpss.net" class="email-card">
                 <i class="fas fa-school"></i>
@@ -131,16 +428,46 @@
                 <strong>chouksey.arnav@gmail.com</strong>
             </a>
         </div>
-        
-        <p class="final-encouragement">Whether you're scared to play your first note or prepping for All-County and want to sound unstoppable — I'm here cheering louder than anyone. You've already taken the coolest step. Now let's turn that flute into your superpower!</p>
+        <p class="final-encouragement">Whether you're just starting and scared to play in front of anyone, or you're prepping for auditions and want to sound unstoppable — I'm here. You've already taken the coolest step by checking this out. Now let's make your flute sound insane.</p>
     </section>
 
-    <!-- FOOTER -->
     <footer>
-        <p>© 2026 Arnav Chouksey • First Chair • All-County &amp; All-District Honors • Apex, North Carolina</p>
-        <p>Made with pure hype for every 6th, 7th &amp; 8th grader ready to become legendary.</p>
+        <p>© 2026 Arnav Chouksey • First Chair Flute • All-County &amp; All-District Honors • Apex, North Carolina</p>
+        <p>Made with real hype for every 6th, 7th &amp; 8th grader who wants to sound amazing.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Confetti on CTA click
+        function launchConfetti() {
+            for (let i = 0; i < 90; i++) {
+                const note = document.createElement('div');
+                note.textContent = ['♪','♫','🎵','🎶'][Math.floor(Math.random()*4)];
+                note.style.position = 'fixed';
+                note.style.left = Math.random() * 100 + 'vw';
+                note.style.top = '-30px';
+                note.style.fontSize = Math.random()*2 + 2.5 + 'rem';
+                note.style.zIndex = '99999';
+                note.style.pointerEvents = 'none';
+                document.body.appendChild(note);
+                const duration = Math.random()*2800 + 3500;
+                note.animate([
+                    {transform:'translateY(0) rotate(0deg)', opacity:1},
+                    {transform:`translateY(${window.innerHeight+400}px) rotate(${Math.random()*1400-700}deg)`, opacity:0}
+                ], {duration, easing:'cubic-bezier(0.25,0.1,0.25,1)'});
+                setTimeout(() => note.remove(), duration);
+            }
+        }
+        document.querySelectorAll('.cta-button').forEach(btn => {
+            btn.addEventListener('click', () => { if(Math.random()>0.3) launchConfetti(); });
+        });
+    </script>
 </body>
 </html>
