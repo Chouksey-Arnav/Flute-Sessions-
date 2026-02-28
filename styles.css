@@ -1,4 +1,3 @@
-/* styles.css */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Poppins:wght@300;400;600;700&amp;display=swap');
 
 :root {
@@ -7,23 +6,16 @@
     --dark: #0f172a;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin:0; padding:0; box-sizing:border-box; }
 
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(180deg, #e0f2fe 0%, #f0fdf4 100%);
     color: var(--dark);
-    line-height: 1.7;
-    overflow-x: hidden;
+    line-height: 1.75;
 }
 
-h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
-}
+h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
 /* HEADER */
 header {
@@ -32,17 +24,8 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 15px 40px rgba(123, 44, 191, 0.3);
+    box-shadow: 0 15px 40px rgba(123,44,191,0.3);
 }
-
-nav {
-    max-width: 1300px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .logo {
     color: white;
     font-size: 2.2rem;
@@ -51,27 +34,19 @@ nav {
     align-items: center;
     gap: 14px;
 }
-
-.logo i {
-    font-size: 2.8rem;
-    animation: spin 8s linear infinite;
-}
-
+.logo i { font-size: 2.8rem; animation: spin 8s linear infinite; }
 ul {
     display: flex;
     gap: 2.5rem;
     list-style: none;
 }
-
 ul a {
     color: white;
     text-decoration: none;
     font-weight: 600;
     font-size: 1.15rem;
     position: relative;
-    transition: 0.3s;
 }
-
 ul a:after {
     content: '';
     position: absolute;
@@ -80,12 +55,9 @@ ul a:after {
     bottom: -6px;
     left: 0;
     background: white;
-    transition: width 0.4s ease;
+    transition: width 0.4s;
 }
-
-ul a:hover:after {
-    width: 100%;
-}
+ul a:hover:after { width: 100%; }
 
 /* HERO */
 .hero {
@@ -99,24 +71,14 @@ ul a:hover:after {
     color: white;
     overflow: hidden;
 }
-
 .hero-bg {
     position: absolute;
     inset: 0;
     background: linear-gradient(rgba(15,23,42,0.78), rgba(15,23,42,0.72)), url('https://picsum.photos/id/1015/2000/1200');
     background-size: cover;
-    background-position: center;
-    filter: brightness(1.05);
     z-index: -2;
 }
-
-.floating-notes {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-}
-
+.floating-notes { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
 .note {
     position: absolute;
     font-size: 5rem;
@@ -124,26 +86,17 @@ ul a:hover:after {
     animation: floatNote linear infinite;
     text-shadow: 0 0 30px rgba(255,255,255,0.6);
 }
-
-.note:nth-child(1) { left: 8%; top: 15%; font-size: 6rem; animation-duration: 22s; }
-.note:nth-child(2) { left: 22%; top: 38%; font-size: 4.5rem; animation-duration: 17s; animation-delay: 2s; }
-.note:nth-child(3) { left: 48%; top: 12%; font-size: 7rem; animation-duration: 28s; animation-delay: 5s; }
-.note:nth-child(4) { left: 65%; top: 55%; font-size: 5rem; animation-duration: 19s; animation-delay: 8s; }
-.note:nth-child(5) { left: 82%; top: 28%; font-size: 4rem; animation-duration: 25s; animation-delay: 3s; }
-.note:nth-child(6) { left: 35%; top: 72%; font-size: 6.5rem; animation-duration: 21s; animation-delay: 11s; }
-
+.note:nth-child(1){left:8%;top:15%;font-size:6rem;animation-duration:22s;}
+.note:nth-child(2){left:22%;top:38%;font-size:4.5rem;animation-duration:17s;animation-delay:2s;}
+.note:nth-child(3){left:48%;top:12%;font-size:7rem;animation-duration:28s;animation-delay:5s;}
+.note:nth-child(4){left:65%;top:55%;font-size:5rem;animation-duration:19s;animation-delay:8s;}
+.note:nth-child(5){left:82%;top:28%;font-size:4rem;animation-duration:25s;animation-delay:3s;}
+.note:nth-child(6){left:35%;top:72%;font-size:6.5rem;animation-duration:21s;animation-delay:11s;}
 @keyframes floatNote {
     0% { transform: translateY(110vh) rotate(0deg); opacity: 0.3; }
     100% { transform: translateY(-120vh) rotate(1080deg); opacity: 0; }
 }
-
-.hero-content {
-    max-width: 960px;
-    padding: 2rem;
-    z-index: 10;
-    animation: heroPop 2s ease-out forwards;
-}
-
+.hero-content { max-width: 960px; padding: 2rem; z-index: 10; }
 .badge {
     background: rgba(255,255,255,0.18);
     backdrop-filter: blur(16px);
@@ -157,21 +110,18 @@ ul a:hover:after {
     margin-bottom: 1.5rem;
     border: 1px solid rgba(255,255,255,0.3);
 }
-
 .hero h1 {
     font-size: clamp(3.5rem, 9vw, 7rem);
     line-height: 1.05;
     margin-bottom: 1.5rem;
     text-shadow: 0 20px 50px rgba(0,0,0,0.6);
 }
-
 .hero p {
     font-size: 1.55rem;
     max-width: 780px;
     margin: 0 auto 2.8rem;
     text-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
-
 .cta-button {
     background: white;
     color: var(--purple);
@@ -182,9 +132,8 @@ ul a:hover:after {
     text-decoration: none;
     display: inline-block;
     box-shadow: 0 25px 60px rgba(123,44,191,0.45);
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.5s cubic-bezier(0.175,0.885,0.32,1.275);
 }
-
 .cta-button:hover {
     transform: scale(1.15) translateY(-10px);
     box-shadow: 0 35px 80px rgba(123,44,191,0.6);
@@ -196,19 +145,12 @@ ul a:hover:after {
     margin: 140px auto;
     padding: 0 5%;
 }
-
 .about-container {
     display: flex;
     align-items: center;
     gap: 6rem;
     flex-wrap: wrap;
 }
-
-.profile-container {
-    flex: 1;
-    min-width: 340px;
-}
-
 .profile-img {
     width: 100%;
     max-width: 520px;
@@ -216,23 +158,19 @@ ul a:hover:after {
     box-shadow: 0 40px 90px rgba(0,245,212,0.45);
     transition: all 0.7s;
 }
-
 .profile-img:hover {
     transform: scale(1.08) rotate(4deg);
     box-shadow: 0 60px 120px rgba(123,44,191,0.55);
 }
-
 .about-text {
     flex: 1;
     min-width: 340px;
 }
-
 .about-text h2 {
     font-size: 3.8rem;
     line-height: 1.1;
     margin-bottom: 2rem;
 }
-
 .about-text p {
     font-size: 1.35rem;
     margin-bottom: 1.8rem;
@@ -244,7 +182,6 @@ ul a:hover:after {
     margin: 140px auto;
     padding: 0 5%;
 }
-
 .services h2, .tutorials h2 {
     font-size: 3.6rem;
     text-align: center;
@@ -253,13 +190,11 @@ ul a:hover:after {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
 .services-grid, .tutorials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 2.5rem;
 }
-
 .service-card, .tutorial-card {
     background: white;
     padding: 3rem 2.2rem;
@@ -267,39 +202,29 @@ ul a:hover:after {
     box-shadow: 0 30px 70px rgba(0,245,212,0.15);
     text-align: center;
     transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
-    opacity: 0;
-    transform: translateY(80px);
+    height: 100%;
 }
-
-.service-card.visible, .tutorial-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 .service-card:hover, .tutorial-card:hover {
     transform: translateY(-30px) scale(1.05);
     box-shadow: 0 50px 100px rgba(123,44,191,0.3);
 }
-
 .icon {
     font-size: 4.5rem;
     margin-bottom: 1.5rem;
     display: block;
     transition: transform 0.4s;
 }
-
 .service-card:hover .icon, .tutorial-card:hover .icon {
     transform: scale(1.25) rotate(15deg);
 }
-
 .service-card h3, .tutorial-card h3 {
     font-size: 1.85rem;
     margin-bottom: 1rem;
 }
-
 .service-card p, .tutorial-card p {
-    font-size: 1.15rem;
-    color: #555;
+    font-size: 1.18rem;
+    color: #444;
+    line-height: 1.75;
 }
 
 /* CONTACT */
@@ -309,18 +234,8 @@ ul a:hover:after {
     padding: 140px 5%;
     text-align: center;
 }
-
-.contact h2 {
-    font-size: 3.8rem;
-    margin-bottom: 1rem;
-}
-
-.contact-subtitle {
-    font-size: 1.6rem;
-    max-width: 680px;
-    margin: 0 auto 3rem;
-}
-
+.contact h2 { font-size: 3.8rem; margin-bottom: 1rem; }
+.contact-subtitle { font-size: 1.6rem; max-width: 680px; margin: 0 auto 3rem; }
 .email-grid {
     display: flex;
     gap: 2rem;
@@ -328,7 +243,6 @@ ul a:hover:after {
     flex-wrap: wrap;
     margin-bottom: 4rem;
 }
-
 .email-card {
     background: rgba(255,255,255,0.15);
     backdrop-filter: blur(20px);
@@ -340,29 +254,14 @@ ul a:hover:after {
     transition: all 0.4s;
     border: 1px solid rgba(255,255,255,0.2);
 }
-
 .email-card:hover {
     background: rgba(255,255,255,0.3);
     transform: translateY(-15px);
 }
-
-.email-card i {
-    font-size: 3.8rem;
-    margin-bottom: 1rem;
-    display: block;
-}
-
 .email-card strong {
     font-size: 1.65rem;
     display: block;
     margin-top: 8px;
-}
-
-.final-encouragement {
-    font-size: 1.55rem;
-    max-width: 720px;
-    margin: 0 auto;
-    font-weight: 400;
 }
 
 /* FOOTER */
@@ -375,24 +274,4 @@ footer {
 }
 
 /* ANIMATIONS */
-@keyframes heroPop {
-    0% { opacity: 0; transform: scale(0.7) translateY(80px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* Scroll reveal */
-.fade-in {
-    opacity: 0;
-    transform: translateY(60px);
-    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
