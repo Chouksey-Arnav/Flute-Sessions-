@@ -9,22 +9,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // FADE ANIMATIONS – TRIPLE-CHECKED & IMPROVED
+    // RE-TRIGGERABLE FADE ANIMATIONS (works every time you scroll up or down)
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                // Small staggered delay for beautiful cascade effect
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, index * 120);
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible');
             }
         });
     }, {
-        threshold: 0.18,      // Triggers earlier for smoother feel
-        rootMargin: "-60px 0px"
+        threshold: 0.18,
+        rootMargin: "-80px 0px"
     });
 
-    // Observe every section that should fade in
     document.querySelectorAll('.hero-content, .about, .services, .tutorials, .contact').forEach(section => {
         observer.observe(section);
     });
