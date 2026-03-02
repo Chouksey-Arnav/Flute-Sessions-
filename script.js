@@ -9,7 +9,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Confetti explosion when clicking the big CTA button
+    // FADE ANIMATIONS – TRIPLE-CHECKED & IMPROVED
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Small staggered delay for beautiful cascade effect
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, index * 120);
+            }
+        });
+    }, {
+        threshold: 0.18,      // Triggers earlier for smoother feel
+        rootMargin: "-60px 0px"
+    });
+
+    // Observe every section that should fade in
+    document.querySelectorAll('.hero-content, .about, .services, .tutorials, .contact').forEach(section => {
+        observer.observe(section);
+    });
+
+    // Confetti on CTA click
     function launchConfetti() {
         for (let i = 0; i < 90; i++) {
             const note = document.createElement('div');
