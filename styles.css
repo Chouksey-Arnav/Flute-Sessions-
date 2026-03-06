@@ -261,20 +261,22 @@ body.bg-contact {
   padding: 0 32px;
 }
 
-/* ===== FADE ANIMATION ===== */
+/* ===== FADE ANIMATION =====
+   CRITICAL: Elements start VISIBLE by default.
+   JS adds .js-ready to body which enables the animation.
+   Text is ALWAYS visible — animation is progressive enhancement.
+============================================ */
 .fade-el {
-  opacity: 0;
-  transform: translateY(60px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1),
               transform 0.8s cubic-bezier(0.4,0,0.2,1);
 }
-.fade-el.visible {
-  opacity: 1;
-  transform: translateY(0);
+body.js-ready .fade-el {
+  opacity: 0;
+  transform: translateY(50px);
 }
-/* Safety: show all content if JavaScript is disabled or blocked */
-.no-js .fade-el,
-noscript .fade-el {
+body.js-ready .fade-el.visible {
   opacity: 1;
   transform: translateY(0);
 }
