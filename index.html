@@ -1,501 +1,350 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arnav Chouksey Flute Academy</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-</head>
-<body class="bg-hero">
+/* ============================================
+   ARNAV CHOUKSEY FLUTE ACADEMY — script.js
+   IntersectionObserver, Confetti, Nav, Fades
+   ============================================ */
 
-  <div class="global-notes" aria-hidden="true">
-    <span class="gnote gnote-1">&#9834;</span>
-    <span class="gnote gnote-2">&#9835;</span>
-    <span class="gnote gnote-3">&#9833;</span>
-    <span class="gnote gnote-4">&#9836;</span>
-    <span class="gnote gnote-5">&#9834;</span>
-    <span class="gnote gnote-6">&#9835;</span>
-    <span class="gnote gnote-7">&#9833;</span>
-    <span class="gnote gnote-8">&#9836;</span>
-    <span class="gnote gnote-9">&#9834;</span>
-  </div>
+(function () {
+  'use strict';
 
-  <div id="confetti-container" aria-hidden="true"></div>
+  /* ===================================================
+     1. SMOOTH SCROLL FOR NAV LINKS
+     Manually offset by navbar height so section
+     headings aren't hidden under the fixed nav.
+  ==================================================== */
+  function getNavHeight() {
+    var nav = document.getElementById('navbar');
+    return nav ? nav.offsetHeight : 72;
+  }
 
-  <!-- NAVBAR -->
-  <nav id="navbar">
-    <div class="nav-inner">
-      <a href="#home" class="nav-logo">
-        <i class="fa-solid fa-music nav-logo-icon spinning-icon"></i>
-        <span>Arnav Chouksey Flute Academy</span>
-      </a>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About Me</a></li>
-        <li><a href="#why">Why Free?</a></li>
-        <li><a href="#journey">My Journey</a></li>
-        <li><a href="#services">Level Up</a></li>
-        <li><a href="#tutorials">Tutorials</a></li>
-        <li><a href="#summer">Summer Plan</a></li>
-        <li><a href="#contact" class="nav-cta-btn">Join Now</a></li>
-      </ul>
-    </div>
-  </nav>
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener('click', function (e) {
+      var href = this.getAttribute('href');
+      if (href === '#') return;
+      var target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      var top = target.getBoundingClientRect().top + window.pageYOffset - getNavHeight() - 8;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+      // Close mobile menu if open
+      var navLinksEl = document.getElementById('nav-links');
+      var hamEl = document.getElementById('hamburger');
+      if (navLinksEl && navLinksEl.classList.contains('open')) {
+        navLinksEl.classList.remove('open');
+        hamEl.classList.remove('open');
+      }
+    });
+  });
 
-  <!-- ===== HERO ===== -->
-  <section id="home" class="section hero-section">
-    <div class="hero-notes" aria-hidden="true">
-      <span class="hnote hnote-1">&#9834;</span>
-      <span class="hnote hnote-2">&#9835;</span>
-      <span class="hnote hnote-3">&#127925;</span>
-      <span class="hnote hnote-4">&#127926;</span>
-      <span class="hnote hnote-5">&#9836;</span>
-    </div>
-    <div class="hero-content">
-      <div class="hero-badge">&#127926; 100% FREE &middot; No Catch &middot; No Credit Card &middot; Just Real Help</div>
-      <h1 class="hero-title">HEY, FUTURE<br><span class="accent-text">FLUTE LEGEND.</span></h1>
-      <p class="hero-sub">
-        I'm Arnav &mdash; a real 8th grader from Apex, NC. I went from squeaking every single note in 6th grade to <strong>First Chair at Mills Park, All-County, All-District,</strong> and a real <strong>invitation to perform in Europe.</strong> I learned the shortcuts. The fixes. The stuff nobody ever tells you. And I'm handing every single one to you &mdash; <em>completely free.</em>
-      </p>
-      <p class="hero-sub hero-sub-2">
-        No expensive lessons. No adults who forgot what it's like to be a struggling beginner. Just a kid who was exactly where you are right now &mdash; squeaking, frustrated, ready to quit &mdash; and found the way through. One 30-minute session could save you <em>an entire year</em> of practicing the wrong things.
-      </p>
-      <div class="hero-cta-group">
-        <a href="#contact" class="btn-primary confetti-trigger" id="main-cta">
-          THE 5-MINUTE EMAIL THAT CHANGES EVERYTHING &rarr;
-        </a>
-        <a href="#journey" class="btn-ghost">Hear My Story First</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><span class="stat-num">1st</span><span class="stat-label">Chair &middot; Mills Park</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">2&times;</span><span class="stat-label">All-County &amp; All-District</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">&#9992;&#65039;</span><span class="stat-label">NC Bandmasters Europe</span></div>
-      </div>
-    </div>
-    <div class="scroll-hint" aria-hidden="true">
-      <span>Scroll to see more</span>
-      <i class="fa-solid fa-chevron-down bounce"></i>
-    </div>
-  </section>
+  /* ===================================================
+     2. HAMBURGER MENU TOGGLE
+  ==================================================== */
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('nav-links');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', function () {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+  }
 
-  <!-- ===== ABOUT ===== -->
-  <section id="about" class="section about-section">
-    <div class="container">
-      <div class="about-grid fade-el">
-        <div class="about-photo-col">
-          <div class="photo-frame">
-            <div class="photo-placeholder">
-              <i class="fa-solid fa-user photo-icon"></i>
-              <span>Arnav Chouksey</span>
-            </div>
-            <div class="photo-badge"><i class="fa-solid fa-star"></i> First Chair</div>
-          </div>
-          <div class="about-accolades">
-            <div class="accolade"><i class="fa-solid fa-trophy"></i> All-County Honors</div>
-            <div class="accolade"><i class="fa-solid fa-medal"></i> All-District Honors</div>
-            <div class="accolade"><i class="fa-solid fa-plane"></i> NC Bandmasters Europe Trip</div>
-            <div class="accolade"><i class="fa-solid fa-microphone"></i> Pre-MPA Soloist &middot; Green Level Band</div>
-          </div>
-        </div>
-        <div class="about-text-col">
-          <div class="section-tag">About Me</div>
-          <h2>I Was You. <span class="accent-text">Exactly.</span></h2>
-          <p>
-            Real talk &mdash; 6th grade me was rough. Every note squeaked. My tone was genuinely embarrassing. Everyone else in band was improving, and I was sitting there completely lost, too proud to admit I had no idea what I was doing wrong.
-          </p>
-          <p>
-            I almost quit. But I gave myself one more month. And in that month, things started clicking. Once they did, everything changed fast.
-          </p>
-          <p>
-            Fast forward to 8th grade: <strong>First Chair at Mills Park Middle School.</strong> <strong>Pre-MPA soloist in front of hundreds of people.</strong> <strong>All-County. All-District.</strong> And then the thing I still can't fully believe &mdash; an <strong>invitation to the NC Bandmasters Europe trip.</strong>
-          </p>
-          <p>
-            That jump &mdash; from worst in my section to performing in Europe &mdash; isn't about talent. It's about having the right information at the right time. And that information is now yours, totally free.
-          </p>
-          <p class="pullquote">"The same path that took me to Europe is now yours. All it takes is one email."</p>
-          <a href="#contact" class="btn-primary">Start Your Glow-Up &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  /* ===================================================
+     3. BACKGROUND SECTION SWITCHING
+     Uses IntersectionObserver — changes body class
+     based on which section is most visible.
+  ==================================================== */
+  const bgMap = {
+    'home':      'bg-hero',
+    'about':     'bg-about',
+    'why':       'bg-why',
+    'journey':   'bg-journey',
+    'services':  'bg-services',
+    'tutorials': 'bg-tutorials',
+    'summer':    'bg-summer',
+    'contact':   'bg-contact',
+  };
 
-  <!-- ===== WHY FREE ===== -->
-  <section id="why" class="section why-section">
-    <div class="container">
-      <div class="section-header fade-el">
-        <div class="section-tag">Why I'm Doing This</div>
-        <h2>No. Catch. <span class="accent-text">Period.</span></h2>
-        <p class="section-intro">Yeah, I get it &mdash; "nothing is actually free." That's the smart thing to think. So let me be completely honest with you about what's going on here.</p>
-      </div>
-      <div class="why-content fade-el">
+  const allBgClasses = Object.values(bgMap);
 
-        <div class="why-card glass-card">
-          <div class="why-icon"><i class="fa-solid fa-heart"></i></div>
-          <h3>I Know Exactly How Hard It Is</h3>
-          <p>
-            When I started in 6th grade, I had nobody who actually got it. My band director was great &mdash; but they had 60 other kids to worry about. I couldn't ask every question I had. I didn't even know if I was holding the flute right. I was embarrassed and totally on my own.
-          </p>
-          <p>
-            You know what would've helped? Someone who'd just been through it and could say "here's the exact fix." That person didn't exist for me. So I'm being that person for you.
-          </p>
-        </div>
+  function setBodyBg(bgClass) {
+    // Remove all bg classes
+    allBgClasses.forEach(function (cls) {
+      document.body.classList.remove(cls);
+    });
+    if (bgClass) {
+      document.body.classList.add(bgClass);
+    }
+  }
 
-        <div class="why-card glass-card">
-          <div class="why-icon"><i class="fa-solid fa-door-open"></i></div>
-          <h3>This Stuff Opens Real Doors</h3>
-          <p>
-            All-County. All-District. Solo &amp; Ensemble. Pre-MPA. These aren't just trophies &mdash; they're the moments that make band actually worth it. The honor bands. The stages you earn. The friends you make who care about music as much as you do.
-          </p>
-          <p>
-            I went from 10th chair to Europe in a single year. That's not luck. It's a plan. And that plan is yours now.
-          </p>
-          <p class="pullquote">"One email can flip your entire band year. Not someday &mdash; this year."</p>
-        </div>
+  // Track which sections are intersecting and how much
+  const sectionVisibility = {};
 
-        <div class="why-card glass-card">
-          <div class="why-icon"><i class="fa-solid fa-gift"></i></div>
-          <h3>Why Actually Free?</h3>
-          <p>
-            I genuinely don't want your money. I'm in 8th grade. What I want is for the musicians around me to be better, because better musicians push everyone higher. And honestly? Teaching is one of the best ways to truly master something yourself.
-          </p>
-          <p>
-            Video sessions, practice plans, tutorials, the summer guide &mdash; all of it. <strong>Free. Free. Free.</strong> I'll keep saying it until you stop second-guessing it.
-          </p>
-        </div>
+  const bgObserver = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        const id = entry.target.getAttribute('id');
+        sectionVisibility[id] = entry.intersectionRatio;
+      });
+      // Find the most visible section
+      let topId = null;
+      let topRatio = 0;
+      Object.keys(sectionVisibility).forEach(function (id) {
+        if (sectionVisibility[id] > topRatio) {
+          topRatio = sectionVisibility[id];
+          topId = id;
+        }
+      });
+      if (topId && bgMap[topId]) {
+        setBodyBg(bgMap[topId]);
+      }
+    },
+    {
+      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+      rootMargin: '0px',
+    }
+  );
 
-      </div>
-    </div>
-  </section>
+  Object.keys(bgMap).forEach(function (id) {
+    const el = document.getElementById(id);
+    if (el) bgObserver.observe(el);
+  });
 
-  <!-- ===== JOURNEY ===== -->
-  <section id="journey" class="section journey-section">
-    <div class="container">
-      <div class="section-header fade-el">
-        <div class="section-tag">My Journey</div>
-        <h2>From Squeaks to <span class="accent-text">Europe.</span></h2>
-        <p class="section-intro">Every struggle. Every breakthrough. Every lesson I had to learn the embarrassing way &mdash; so you don't have to.</p>
-      </div>
-      <div class="timeline">
+  /* ===================================================
+     4. FADE IN / OUT ANIMATIONS
+     Step 1: Add js-ready to body — this activates the
+     CSS that hides .fade-el elements. Without this class,
+     ALL content is visible (safe fallback).
+     Step 2: Observer watches elements and adds .visible
+     as they enter the viewport.
+  ==================================================== */
 
-        <div class="timeline-item">
-          <div class="timeline-badge">6th</div>
-          <div class="timeline-content glass-card">
-            <h3>6th Grade: The Worst Squeaks You've Ever Heard</h3>
-            <p>
-              I picked up the flute in 6th grade and immediately regretted it. The squeaks were nonstop. My embouchure &mdash; the shape your lips make on the mouthpiece &mdash; was completely wrong, and I had zero idea how to fix it. I'd watch everyone else get clean notes while I sat there making sounds that made people flinch.
-            </p>
-            <p>
-              Here's the thing nobody tells you: <strong>flute is one of the hardest instruments to get your first real sound on.</strong> Your lip angle, position, and airspeed all have to sync up perfectly at the same moment. Until they do, you squeak &mdash; in front of everyone, every single day.
-            </p>
-            <p>
-              I almost quit. I'm being completely real. But I gave myself one more month &mdash; and in that month, I cracked it. That was the moment everything changed.
-            </p>
-          </div>
-        </div>
+  // IMMEDIATELY signal JS is running — enables the fade animation
+  document.body.classList.add('js-ready');
 
-        <div class="timeline-item timeline-right">
-          <div class="timeline-badge">7th</div>
-          <div class="timeline-content glass-card">
-            <h3>7th Grade: 10th Chair. My Real Wake-Up Call.</h3>
-            <p>
-              Chair auditions, 7th grade. I checked the list. 10th chair &mdash; dead last in the flute section. Ngl, that one stung.
-            </p>
-            <p>
-              But here's what I did instead of feeling sorry for myself: I turned that placement into a to-do list. <strong>10th chair showed me my exact weak spots</strong> &mdash; shaky sight-reading, weak high notes, zero control over dynamics. I wrote every weakness down, then started destroying them one by one.
-            </p>
-            <p>
-              That's the move. Your chair placement isn't a judgment on you &mdash; it's a map of exactly what to fix. I'll teach you how to use it the same way I did.
-            </p>
-          </div>
-        </div>
+  // Pre-pass: give timeline items their class + stagger delay
+  document.querySelectorAll('.timeline-item').forEach(function (item, i) {
+    item.classList.add('fade-el');
+    item.style.transitionDelay = (i * 0.15) + 's';
+  });
 
-        <div class="timeline-item">
-          <div class="timeline-badge">&#9728;&#65039;</div>
-          <div class="timeline-content glass-card">
-            <h3>The Summer I Actually Locked In</h3>
-            <p>
-              Between 7th and 8th grade, I made one real decision: no more random practice. Every single day, I ran the same four-step plan:
-            </p>
-            <ul class="journey-list">
-              <li><i class="fa-solid fa-check-circle"></i> <strong>20 focused minutes every day</strong> &mdash; no skipping, no excuses, phone in another room.</li>
-              <li><i class="fa-solid fa-check-circle"></i> <strong>Recorded every session</strong> &mdash; your brain lies about how good you sound. A recording doesn't.</li>
-              <li><i class="fa-solid fa-check-circle"></i> <strong>Drilled my worst notes first</strong> &mdash; slowly, perfectly, until they stopped scaring me.</li>
-              <li><i class="fa-solid fa-check-circle"></i> <strong>Listened to pro flutists every day</strong> &mdash; you can't play what you've never truly heard. Simple as that.</li>
-            </ul>
-            <p>That whole plan is free. I break it down completely in the Summer Lock-In section below.</p>
-          </div>
-        </div>
+  // Collect ALL .fade-el elements (including the ones just added)
+  var allFadeEls = document.querySelectorAll('.fade-el');
 
-        <div class="timeline-item timeline-right">
-          <div class="timeline-badge">8th</div>
-          <div class="timeline-content glass-card">
-            <h3>8th Grade: First Chair. All-County. All-District. Europe.</h3>
-            <p>
-              8th grade chair auditions. Played my scales. Played my excerpt. Sat down and waited. The list went up. Found my name. <strong>First. Chair.</strong> The exact same kid who was 10th chair twelve months earlier was now leading the entire section.
-            </p>
-            <p>
-              Then All-County &mdash; made it. All-District &mdash; made it. Then I got asked to perform as a <strong>pre-MPA soloist in front of the entire Green Level Band.</strong> And then the message came: I was invited on the <strong>NC Bandmasters Europe trip.</strong>
-            </p>
-            <p>
-              That's not me flexing. That's a proof of concept. The steps work. I ran them. You can too.
-            </p>
-            <p class="pullquote">"From 10th chair to Europe in one year. The exact steps are right here, waiting for you."</p>
-            <a href="#contact" class="btn-primary">I Want Those Steps &rarr;</a>
-          </div>
-        </div>
+  var fadeObserver = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    },
+    {
+      threshold: 0.08,
+      rootMargin: '0px 0px -20px 0px',
+    }
+  );
 
-      </div>
-    </div>
-  </section>
+  allFadeEls.forEach(function (el) {
+    fadeObserver.observe(el);
+  });
 
-  <!-- ===== SERVICES ===== -->
-  <section id="services" class="section services-section">
-    <div class="container">
-      <div class="section-header fade-el">
-        <div class="section-tag">Level Up</div>
-        <h2>Four Ways I Help You. <span class="accent-text">All Free.</span></h2>
-        <p class="section-intro">Pick one. Pick all four. No cost, no sign-up fee, nothing sketchy buried in the fine print. Just real help for 6th, 7th, and 8th grade flutists.</p>
-      </div>
-      <div class="cards-grid fade-el">
+  // Immediately show anything already in the viewport on page load
+  requestAnimationFrame(function () {
+    allFadeEls.forEach(function (el) {
+      var rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) {
+        el.classList.add('visible');
+      }
+    });
+  });
 
-        <div class="glass-card service-card">
-          <div class="card-icon"><i class="fa-solid fa-video"></i></div>
-          <h3>30-Min 1-on-1 Video Sessions</h3>
-          <p>Just us on a private video call. I listen to you play and tell you exactly what to fix &mdash; not generic advice, your specific problems, solved specifically for you.</p>
-          <p>I had one bad habit for almost a year that one session would've fixed in a week. Don't lose months going in the wrong direction like I did.</p>
-          <div class="card-tag">Most Popular</div>
-        </div>
+  /* ===================================================
+     5. NAVBAR SCROLL EFFECT
+     Slightly increase nav opacity/shadow on scroll
+  ==================================================== */
+  const navbar = document.getElementById('navbar');
+  let lastScroll = 0;
 
-        <div class="glass-card service-card">
-          <div class="card-icon"><i class="fa-solid fa-trophy"></i></div>
-          <h3>Audition &amp; Competition Prep</h3>
-          <p>All-County. All-District. Solo &amp; Ensemble. Pre-MPA. I've done all of them. I know exactly what judges score, what common mistakes knock you out, and how to make your piece actually stand out.</p>
-          <p>Most kids walk into auditions just hoping. You'll walk in with a real game plan. That difference is everything.</p>
-          <div class="card-tag">High Impact</div>
-        </div>
+  window.addEventListener('scroll', function () {
+    const scrollY = window.scrollY;
+    if (navbar) {
+      if (scrollY > 60) {
+        navbar.style.background = 'rgba(6,6,20,0.92)';
+        navbar.style.boxShadow = '0 2px 40px rgba(0,0,0,0.5)';
+      } else {
+        navbar.style.background = '';
+        navbar.style.boxShadow = '';
+      }
+    }
+    lastScroll = scrollY;
+  }, { passive: true });
 
-        <div class="glass-card service-card">
-          <div class="card-icon"><i class="fa-solid fa-seedling"></i></div>
-          <h3>Beginner Fast-Track</h3>
-          <p>Just starting out, or still feeling shaky on the basics after a year? I'll take you from "I can barely make a sound" to actually sounding decent &mdash; faster than any YouTube playlist ever could.</p>
-          <p>Embouchure, posture, breath support, hand position, the first 12 notes you need to own cold. Everything I wish someone had shown me in month one &mdash; not year one.</p>
-          <div class="card-tag">6th Grade Friendly</div>
-        </div>
+  /* ===================================================
+     6. ACTIVE NAV LINK HIGHLIGHTING
+  ==================================================== */
+  const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
 
-        <div class="glass-card service-card">
-          <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
-          <h3>Custom Practice Plans</h3>
-          <p>I'll build you a daily practice plan designed around your actual weaknesses &mdash; not just generic exercises. Realistic. Targeted. 20 minutes max. Made specifically for you.</p>
-          <p>Random practice keeps you stuck. A structured plan is what actually moves the needle. I'll write yours from scratch, and adjust it as you improve.</p>
-          <div class="card-tag">Game Changer</div>
-        </div>
+  const navObserver = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navAnchors.forEach(function (a) {
+            a.style.color = '';
+            if (a.getAttribute('href') === '#' + id) {
+              a.style.color = 'var(--teal)';
+            }
+          });
+        }
+      });
+    },
+    {
+      threshold: 0.45,
+    }
+  );
 
-      </div>
-    </div>
-  </section>
+  Object.keys(bgMap).forEach(function (id) {
+    const el = document.getElementById(id);
+    if (el) navObserver.observe(el);
+  });
 
-  <!-- ===== TUTORIALS ===== -->
-  <section id="tutorials" class="section tutorials-section">
-    <div class="container">
-      <div class="section-header fade-el">
-        <div class="section-tag">Free Tutorials</div>
-        <h2>Learn On Your <span class="accent-text">Own Schedule.</span></h2>
-        <p class="section-intro">Not ready for a live session yet? These free guides cover the exact techniques that took me from squeaking in 6th grade to First Chair in 8th. Start anywhere.</p>
-      </div>
-      <div class="cards-grid fade-el">
+  /* ===================================================
+     7. CONFETTI ON CTA CLICK
+     Musical notes fall across the screen
+  ==================================================== */
+  const confettiContainer = document.getElementById('confetti-container');
+  const confettiPieces = ['♪', '♫', '🎵', '🎶', '♬', '♩', '🎼', '♪', '♫'];
+  const confettiColors = [
+    '#00f5d4', '#00cfff', '#e879f9', '#7c3aed', '#a3e635',
+    '#ffffff', '#fbbf24', '#f472b6', '#34d399'
+  ];
 
-        <div class="glass-card tutorial-card">
-          <div class="card-icon"><i class="fa-solid fa-circle-play"></i></div>
-          <h3>Tone Bootcamp: Get a Real Sound</h3>
-          <p>Tone is the #1 struggle for every new flute player &mdash; and the thing that holds most people back for way too long. I'll walk you through the exact lip adjustments, airspeed fixes, and warm-up routine that turned my 6th-grade squeaks into a clean, full tone.</p>
-          <p>The daily tone-check I still run before every practice session? It's in here &mdash; totally free.</p>
-          <div class="card-tag free-tag">Free</div>
-        </div>
+  function spawnConfetti() {
+    if (!confettiContainer) return;
 
-        <div class="glass-card tutorial-card">
-          <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
-          <h3>Scale Mastery: The Shortcut to Everything</h3>
-          <p>Scales feel like a chore. But here's the truth: every single piece you'll ever play is built on them. Know your scales cold and sight-reading gets easier, auditions get easier, everything clicks faster.</p>
-          <p>I'll show you how to run scales in a way that actually feels musical, plus the exact order I used leading up to All-County auditions.</p>
-          <div class="card-tag free-tag">Free</div>
-        </div>
+    // Clear old pieces first
+    confettiContainer.innerHTML = '';
 
-        <div class="glass-card tutorial-card">
-          <div class="card-icon"><i class="fa-solid fa-eye"></i></div>
-          <h3>Sight-Reading Without Freezing Up</h3>
-          <p>Sight-reading is on almost every audition rubric &mdash; and almost nobody actually practices it. That's exactly where most people give away easy points. I'll teach you a simple system to break down any new piece in 30 seconds before you play it.</p>
-          <p>Get genuinely good at this and walking into auditions feels completely different &mdash; in the best possible way.</p>
-          <div class="card-tag free-tag">Free</div>
-        </div>
+    const total = 55;
+    for (let i = 0; i < total; i++) {
+      const piece = document.createElement('span');
+      piece.classList.add('confetti-piece');
 
-        <div class="glass-card tutorial-card">
-          <div class="card-icon"><i class="fa-solid fa-music"></i></div>
-          <h3>Dynamics &amp; Phrasing: How to Actually Stand Out</h3>
-          <p>Here's what most players miss: two people can hit the exact same notes and sound totally different. The gap is expression &mdash; how loud, how soft, how you shape every phrase to make it feel like real music.</p>
-          <p>This is what I used as a pre-MPA soloist in front of the entire Green Level Band. Playing the right notes gets you in the room. Expression is what people remember.</p>
-          <div class="card-tag free-tag">Free</div>
-        </div>
+      // Random note emoji/char
+      piece.textContent = confettiPieces[Math.floor(Math.random() * confettiPieces.length)];
 
-      </div>
-    </div>
-  </section>
+      // Random horizontal position (% of container width = % of viewport)
+      piece.style.left = (Math.random() * 96) + '%';
 
-  <!-- ===== SUMMER LOCK-IN ===== -->
-  <section id="summer" class="section summer-section">
-    <div class="container">
-      <div class="section-header fade-el">
-        <div class="section-tag">Summer Lock-In</div>
-        <h2>The Plan That <span class="accent-text">Changed Everything.</span></h2>
-        <p class="section-intro">10th chair to First Chair, All-County, All-District, and Europe &mdash; in one summer. Here's exactly what I did, step by step.</p>
-      </div>
+      // Random color
+      piece.style.color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
 
-      <div class="summer-intro glass-card fade-el">
-        <p>
-          The summer between 7th and 8th grade, I made myself one real promise: <em>this summer is actually different.</em> Not "I'll practice when I feel like it." Truly locked in, every single day, on purpose. I came back to school in August and could feel that something had genuinely shifted &mdash; in my sound, my confidence, and the way the flute felt in my hands. Here's the four things that made it happen.
-        </p>
-      </div>
+      // Random size
+      const size = 1.0 + Math.random() * 1.8;
+      piece.style.fontSize = size + 'rem';
 
-      <div class="summer-pillars fade-el">
+      // Random delay so they fall in waves
+      const delay = Math.random() * 1.2;
+      piece.style.animationDelay = delay + 's';
 
-        <div class="pillar glass-card">
-          <div class="pillar-number">01</div>
-          <div class="pillar-icon"><i class="fa-solid fa-clock"></i></div>
-          <h3>20 Minutes. Every Single Day.</h3>
-          <p>
-            Not optional. Weekends. Vacation days. Days when you really, really don't want to. <strong>Twenty minutes. Phone in another room. Full focus.</strong>
-          </p>
-          <p>
-            Twenty focused minutes every day crushes two hours once a weekend, every single time. Your brain builds muscle memory through consistent daily repetition &mdash; not big, occasional bursts. Skipping days doesn't just pause progress &mdash; it starts undoing it.
-          </p>
-          <p>My split: 5 min long tones &middot; 5 min scales &middot; 5 min on your piece &middot; 5 min attacking your worst weakness.</p>
-        </div>
+      // Random duration
+      const dur = 2.0 + Math.random() * 2.0;
+      piece.style.animationDuration = dur + 's';
 
-        <div class="pillar glass-card">
-          <div class="pillar-number">02</div>
-          <div class="pillar-icon"><i class="fa-solid fa-crosshairs"></i></div>
-          <h3>Attack Your Weakest Spot First.</h3>
-          <p>
-            Most people practice the stuff they're already good at because it feels nice. That's not growth. That's just staying comfortable. <strong>Real improvement lives in the uncomfortable spots.</strong>
-          </p>
-          <p>
-            Every week I picked my single worst weakness and attacked it every session until it wasn't a weakness anymore. High D cracking? Attacked it. G-flat refusing to speak? Attacked it. Slow passage falling apart at tempo? Attacked it. One problem per week. Stack the wins. That's the actual formula.
-          </p>
-        </div>
+      confettiContainer.appendChild(piece);
 
-        <div class="pillar glass-card">
-          <div class="pillar-number">03</div>
-          <div class="pillar-icon"><i class="fa-solid fa-circle-dot"></i></div>
-          <h3>Record Yourself. Every Session.</h3>
-          <p>
-            This was the biggest game-changer and the most surprising one. Here's the thing: <em>your brain tricks you while you're playing.</em> It fills in what you expect to hear, not what's actually coming out. You think you sound solid. You hit record, play it back, and suddenly hear a completely different story.
-          </p>
-          <p>
-            Use your phone. Record a full run-through every session. Listen back like you're a judge hearing a stranger play. Fix what you hear. Record again. This one habit alone will make you improve faster than almost anything else on this list.
-          </p>
-        </div>
+      // Remove piece after animation ends
+      piece.addEventListener('animationend', function () {
+        piece.remove();
+      });
+    }
+  }
 
-        <div class="pillar glass-card">
-          <div class="pillar-number">04</div>
-          <div class="pillar-icon"><i class="fa-solid fa-headphones"></i></div>
-          <h3>Listen to the Best Players Every Day.</h3>
-          <p>
-            Every day that summer, I listened to world-class flutists &mdash; James Galway, Emmanuel Pahud, Jasmine Choi. Not as background noise. <strong>Active listening</strong> &mdash; really paying attention to their tone, their phrasing, where they breathe, how they shape every note.
-          </p>
-          <p>
-            Your ears need a target before your hands can aim for it. You literally cannot produce a sound you've never truly heard at a high level. Ten minutes of focused listening daily is one of the most powerful things on this entire list &mdash; and the easiest to start right now.
-          </p>
-        </div>
+  // Attach to all confetti triggers
+  document.querySelectorAll('.confetti-trigger').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      spawnConfetti();
+    });
+  });
 
-      </div>
+  /* ===================================================
+     8. CARD ICON SPIN ON HOVER (extra flair)
+     The CSS handles most of it, but we ensure
+     the animation resets properly via JS.
+  ==================================================== */
+  document.querySelectorAll('.glass-card').forEach(function (card) {
+    const icon = card.querySelector('.card-icon i, .why-icon i, .pillar-icon i, .contact-icon i');
+    if (!icon) return;
 
-      <div class="summer-cta fade-el">
-        <p class="pullquote">"The summer plan that turned 10th chair into First Chair and a Europe invite is yours &mdash; starting right now, for free."</p>
-        <a href="#contact" class="btn-primary">Get the Full Plan Free &rarr;</a>
-      </div>
-    </div>
-  </section>
+    card.addEventListener('mouseenter', function () {
+      icon.style.animation = 'none';
+      // Force reflow to restart animation
+      void icon.offsetWidth;
+      icon.style.animation = 'spinOnce 0.5s ease-out forwards';
+    });
 
-  <!-- ===== CONTACT ===== -->
-  <section id="contact" class="section contact-section">
-    <div class="container">
-      <div class="section-header fade-el">
-        <div class="section-tag">Join the Academy</div>
-        <h2>One Email. <span class="accent-text">Everything Changes.</span></h2>
-        <p class="section-intro">You've read the whole story. You know what's possible. This is the part where you stop reading and actually do something about it.</p>
-      </div>
+    card.addEventListener('mouseleave', function () {
+      icon.style.animation = '';
+    });
+  });
 
-      <div class="contact-content fade-el">
-        <div class="contact-story glass-card">
-          <h3>Here's Exactly What Happens When You Email Me</h3>
-          <p>
-            You send a short email &mdash; seriously, five minutes max. Tell me your name, your grade, and one thing you're struggling with or curious about. That's the whole email.
-          </p>
-          <p>
-            I write back personally, usually within 24&ndash;48 hours. We figure out what helps you most right now. Want a 30-minute video session? We'll schedule it. Want a custom practice plan built for your specific weaknesses? I'll write it. Just have a random flute question? I'll answer it directly.
-          </p>
-          <p>
-            I've been exactly where you're sitting &mdash; wanting to get better with no idea where to start. But I've also been on the other side: <strong>first chair, a stage in front of hundreds of people, an email inviting me to Europe.</strong> That other side is completely real. And it's closer than you think.
-          </p>
-          <p>
-            The five minutes it takes to send that email might be the most useful five minutes you spend all year. Don't skip them.
-          </p>
-          <p class="pullquote">"Don't practice harder in the wrong direction for another year. Just send the email. Let's fix it together."</p>
-        </div>
+  /* ===================================================
+     9. HERO ENTRANCE ANIMATIONS
+     hero-content has NO fade-el class so only this
+     JS runs. Each child element staggers in on load.
+  ==================================================== */
+  var heroEls = [
+    document.querySelector('.hero-badge'),
+    document.querySelector('.hero-title'),
+    document.querySelector('.hero-sub:first-of-type'),
+    document.querySelector('.hero-sub-2'),
+    document.querySelector('.hero-cta-group'),
+    document.querySelector('.hero-stats'),
+  ];
 
-        <div class="contact-methods">
-          <div class="contact-card glass-card">
-            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
-            <h3>Sessions, Plans &amp; Everything Else</h3>
-            <p>30-minute video sessions, custom practice plans, audition prep &mdash; email me here:</p>
-            <a href="mailto:arnav.chouksey@gmail.com" class="contact-email-link">
-              arnav.chouksey@gmail.com
-            </a>
-            <p class="contact-note">I reply to every single email. Usually within 48 hours.</p>
-          </div>
+  heroEls.forEach(function (el, i) {
+    if (!el) return;
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    // Use will-change for smoother GPU compositing
+    el.style.willChange = 'opacity, transform';
+    var delay = 0.10 + i * 0.13;
+    el.style.transition = 'opacity 0.85s cubic-bezier(0.4,0,0.2,1) ' + delay + 's, transform 0.85s cubic-bezier(0.4,0,0.2,1) ' + delay + 's';
+  });
 
-          <div class="contact-card glass-card">
-            <div class="contact-icon"><i class="fa-solid fa-circle-question"></i></div>
-            <h3>Quick Questions? Always Welcome.</h3>
-            <p>Random flute question? Not sure if this is for you? Just curious? Hit my school email anytime:</p>
-            <a href="mailto:achoksa@students.wcpss.net" class="contact-email-link">
-              achoksa@students.wcpss.net
-            </a>
-            <p class="contact-note">Seriously &mdash; no question is too small. I promise.</p>
-          </div>
+  // Trigger after a rAF to ensure styles are painted before transitioning
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      heroEls.forEach(function (el) {
+        if (!el) return;
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      });
+    });
+  });
 
-          <div class="contact-big-cta">
-            <p>Do it right now &mdash; before you close this tab, before you forget, before another week of confused practice goes by:</p>
-            <a href="mailto:arnav.chouksey@gmail.com" class="btn-primary btn-xl confetti-trigger">
-              THE 5-MINUTE EMAIL THAT CHANGES EVERYTHING &rarr;
-            </a>
-            <p class="contact-small">100% Free. No catch. Just a kid who genuinely wants to help you get better.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  /* ===================================================
+     10. SCROLL HINT — hide after first scroll
+  ==================================================== */
+  const scrollHint = document.querySelector('.scroll-hint');
+  if (scrollHint) {
+    window.addEventListener('scroll', function onFirstScroll() {
+      if (window.scrollY > 80) {
+        scrollHint.style.opacity = '0';
+        scrollHint.style.transition = 'opacity 0.5s';
+        window.removeEventListener('scroll', onFirstScroll);
+      }
+    }, { passive: true });
+  }
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-logo">
-        <i class="fa-solid fa-music spinning-icon-slow"></i>
-        <span>Arnav Chouksey Flute Academy</span>
-      </div>
-      <p class="footer-tagline">From Apex, NC &middot; Free for all 6th, 7th &amp; 8th graders &middot; No catch. Ever.</p>
-      <p class="footer-copy">&copy; 2025 Arnav Chouksey Flute Academy &middot; Made with &#9834; and a whole lot of focused practice</p>
-    </div>
-  </footer>
+  /* ===================================================
+     INIT
+  ==================================================== */
+  // Set initial bg class
+  setBodyBg('bg-hero');
 
-  <script src="script.js"></script>
-</body>
-</html>
+  // Log init (helpful for debugging, no console errors)
+  // console.log('[FlutAcademy] Script initialized successfully.');
+
+})();
