@@ -12,29 +12,493 @@
 </head>
 <body class="bg-hero">
 
-  <!-- Global Floating Music Notes (9 subtle) -->
   <div class="global-notes" aria-hidden="true">
-    <span class="gnote gnote-1">♪</span>
-    <span class="gnote gnote-2">♫</span>
-    <span class="gnote gnote-3">♩</span>
-    <span class="gnote gnote-4">♬</span>
-    <span class="gnote gnote-5">♪</span>
-    <span class="gnote gnote-6">♫</span>
-    <span class="gnote gnote-7">♩</span>
-    <span class="gnote gnote-8">♬</span>
-    <span class="gnote gnote-9">♪</span>
+    <span class="gnote gnote-1">&#9834;</span>
+    <span class="gnote gnote-2">&#9835;</span>
+    <span class="gnote gnote-3">&#9833;</span>
+    <span class="gnote gnote-4">&#9836;</span>
+    <span class="gnote gnote-5">&#9834;</span>
+    <span class="gnote gnote-6">&#9835;</span>
+    <span class="gnote gnote-7">&#9833;</span>
+    <span class="gnote gnote-8">&#9836;</span>
+    <span class="gnote gnote-9">&#9834;</span>
   </div>
 
-  <!-- Confetti Container -->
   <div id="confetti-container" aria-hidden="true"></div>
 
-  <!-- ===== NAVBAR ===== -->
+  <!-- NAVBAR -->
   <nav id="navbar">
     <div class="nav-inner">
       <a href="#home" class="nav-logo">
         <i class="fa-solid fa-music nav-logo-icon spinning-icon"></i>
         <span>Arnav Chouksey Flute Academy</span>
       </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#why">Why Free?</a></li>
+        <li><a href="#journey">My Journey</a></li>
+        <li><a href="#services">Level Up</a></li>
+        <li><a href="#tutorials">Tutorials</a></li>
+        <li><a href="#summer">Summer Plan</a></li>
+        <li><a href="#contact" class="nav-cta-btn">Join Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="section hero-section">
+    <div class="hero-notes" aria-hidden="true">
+      <span class="hnote hnote-1">&#9834;</span>
+      <span class="hnote hnote-2">&#9835;</span>
+      <span class="hnote hnote-3">&#127925;</span>
+      <span class="hnote hnote-4">&#127926;</span>
+      <span class="hnote hnote-5">&#9836;</span>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">&#127926; 100% FREE &middot; No Catch &middot; No Credit Card &middot; Just Real Help</div>
+      <h1 class="hero-title">HEY, FUTURE<br><span class="accent-text">FLUTE LEGEND.</span></h1>
+      <p class="hero-sub">
+        I'm Arnav &mdash; a real 8th grader from Apex, NC. I went from squeaking every single note in 6th grade to <strong>First Chair at Mills Park, All-County, All-District,</strong> and an actual <strong>invitation to perform in Europe.</strong> I figured out the shortcuts, the fixes, the stuff nobody tells you. And I'm giving all of it to you &mdash; <em>completely free.</em>
+      </p>
+      <p class="hero-sub hero-sub-2">
+        No expensive lessons. No adults who forgot what it feels like to be lost. Just a real kid who was exactly where you are &mdash; squeaking, frustrated, ready to quit &mdash; and found the way out. One 30-minute session could save you <em>an entire year</em> of practicing the wrong things.
+      </p>
+      <div class="hero-cta-group">
+        <a href="#contact" class="btn-primary confetti-trigger" id="main-cta">
+          THE 5-MINUTE EMAIL THAT CHANGES EVERYTHING &rarr;
+        </a>
+        <a href="#journey" class="btn-ghost">Hear My Story First</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">1st</span><span class="stat-label">Chair &middot; Mills Park</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">2&times;</span><span class="stat-label">All-County &amp; All-District</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">&#9992;&#65039;</span><span class="stat-label">NC Bandmasters Europe</span></div>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <span>Scroll to see more</span>
+      <i class="fa-solid fa-chevron-down bounce"></i>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <div class="about-grid fade-el">
+        <div class="about-photo-col">
+          <div class="photo-frame">
+            <div class="photo-placeholder">
+              <i class="fa-solid fa-user photo-icon"></i>
+              <span>Arnav Chouksey</span>
+            </div>
+            <div class="photo-badge"><i class="fa-solid fa-star"></i> First Chair</div>
+          </div>
+          <div class="about-accolades">
+            <div class="accolade"><i class="fa-solid fa-trophy"></i> All-County Honors</div>
+            <div class="accolade"><i class="fa-solid fa-medal"></i> All-District Honors</div>
+            <div class="accolade"><i class="fa-solid fa-plane"></i> NC Bandmasters Europe Trip</div>
+            <div class="accolade"><i class="fa-solid fa-microphone"></i> Pre-MPA Soloist &middot; Green Level Band</div>
+          </div>
+        </div>
+        <div class="about-text-col">
+          <div class="section-tag">About Me</div>
+          <h2>I Was You. <span class="accent-text">Exactly.</span></h2>
+          <p>
+            Real talk &mdash; 6th grade me was a disaster. Every note squeaked. My tone was so bad I'd cringe hearing myself play back. Everyone else in band was getting it, and I was sitting there completely lost, too embarrassed to even admit I had no idea what I was doing.
+          </p>
+          <p>
+            I almost quit. Genuinely. But something about the flute &mdash; the way a real player makes it sound &mdash; made me give it one more month. And in that month, things started to click.
+          </p>
+          <p>
+            Fast forward two years: <strong>First Chair at Mills Park Middle School.</strong> <strong>Pre-MPA soloist in front of hundreds of people.</strong> <strong>All-County. All-District.</strong> And then the thing I still can't believe &mdash; an <strong>invitation to the NC Bandmasters Europe trip.</strong>
+          </p>
+          <p>
+            That jump &mdash; from the worst in my section to Europe &mdash; isn't about talent. It's about having the right information. And that information is now yours, free.
+          </p>
+          <p class="pullquote">"The path from my worst squeaks to a stage in Europe is mapped out and waiting for you. One email starts it."</p>
+          <a href="#contact" class="btn-primary">Start Your Glow-Up &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY FREE -->
+  <section id="why" class="section why-section">
+    <div class="container">
+      <div class="section-header fade-el">
+        <div class="section-tag">Why I'm Doing This</div>
+        <h2>No. Catch. <span class="accent-text">Period.</span></h2>
+        <p class="section-intro">I know what you're thinking &mdash; "okay but what's the catch?" Smart. Let me be completely upfront about exactly why this is free.</p>
+      </div>
+      <div class="why-content fade-el">
+
+        <div class="why-card glass-card">
+          <div class="why-icon"><i class="fa-solid fa-heart"></i></div>
+          <h3>I Remember What It Felt Like</h3>
+          <p>
+            Starting in 6th grade, I had nobody who actually got it. My director was great &mdash; but 60 kids at once means you can't get individual help. I didn't know which YouTube videos to trust. I didn't even know if I was holding the flute right. I was embarrassed and completely on my own.
+          </p>
+          <p>
+            What I needed was someone who had just been through it and could say "here's the exact fix." That person didn't exist for me. So I'm being that person for you.
+          </p>
+        </div>
+
+        <div class="why-card glass-card">
+          <div class="why-icon"><i class="fa-solid fa-door-open"></i></div>
+          <h3>This Stuff Opens Real Doors</h3>
+          <p>
+            All-County. All-District. Solo &amp; Ensemble. Pre-MPA. These aren't just trophies to put on a shelf &mdash; they're the moments that make band actually worth it. The feeling of making the honor band. Standing on a stage you had to earn. The friends you meet who are just as serious about music as you are.
+          </p>
+          <p>
+            I went from 10th chair to Europe in a single year. That's not luck. It's a plan. And that plan is yours now.
+          </p>
+          <p class="pullquote">"One email can flip your entire band year. Not eventually &mdash; this year."</p>
+        </div>
+
+        <div class="why-card glass-card">
+          <div class="why-icon"><i class="fa-solid fa-gift"></i></div>
+          <h3>Why Actually Free?</h3>
+          <p>
+            I genuinely don't want your money. I'm in 8th grade. What I want is for the musicians around me to be better, because better musicians push everyone to the next level. And honestly? Teaching someone else is the fastest way to truly master something yourself.
+          </p>
+          <p>
+            Video sessions, practice plans, tutorials, the summer guide &mdash; every single thing. <strong>Free. Free. Free.</strong> I will keep saying it until you stop second-guessing it.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section id="journey" class="section journey-section">
+    <div class="container">
+      <div class="section-header fade-el">
+        <div class="section-tag">My Journey</div>
+        <h2>From Squeaks to <span class="accent-text">Europe.</span></h2>
+        <p class="section-intro">Every struggle. Every breakthrough. Every lesson I had to learn the embarrassing way &mdash; so you don't have to.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-badge">6th</div>
+          <div class="timeline-content glass-card">
+            <h3>6th Grade: The Squeaks Were Real</h3>
+            <p>
+              I picked up the flute in 6th grade and immediately regretted it. The squeaks were nonstop. My embouchure &mdash; the shape your lips make on the mouthpiece &mdash; was completely wrong, and I had zero idea how to fix it. I'd watch everyone else get clean notes while I sat there producing sounds that made people wince.
+            </p>
+            <p>
+              Here's the thing no one tells you: <strong>flute is one of the hardest instruments to get your first real sound on.</strong> Your angle, lip position, and airspeed all have to line up perfectly at the same time. That takes a while to figure out. And while you're figuring it out, you squeak &mdash; in front of everyone, every day.
+            </p>
+            <p>
+              I gave myself one more month before quitting. In that month, I cracked it. That was the moment everything changed.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item timeline-right">
+          <div class="timeline-badge">7th</div>
+          <div class="timeline-content glass-card">
+            <h3>7th Grade: 10th Chair. Honestly? Good.</h3>
+            <p>
+              7th grade chair auditions. I checked the list. 10th chair &mdash; last in the flute section. Ngl, that one hurt.
+            </p>
+            <p>
+              But here's what I did: instead of feeling sorry for myself, I turned that list into a to-do list. <strong>10th chair showed me my exact weak spots</strong> &mdash; shaky sight-reading, weak high notes, no control over dynamics (how loud or soft I played). I wrote every weakness down. Then I started destroying them, one by one, in order.
+            </p>
+            <p>
+              That's the move. Your chair placement isn't a judgment on you &mdash; it's a list of exactly what to fix. I'll show you how to use it the same way I did.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-badge">&#9728;&#65039;</div>
+          <div class="timeline-content glass-card">
+            <h3>The Summer I Stopped Messing Around</h3>
+            <p>
+              Between 7th and 8th grade, I made a decision: no more random practice sessions, no more "I'll do it later." Every single day, I ran the same four-step plan:
+            </p>
+            <ul class="journey-list">
+              <li><i class="fa-solid fa-check-circle"></i> <strong>20 focused minutes every day</strong> &mdash; no skipping, no excuses, phone in another room.</li>
+              <li><i class="fa-solid fa-check-circle"></i> <strong>Recorded every single session</strong> &mdash; your brain lies about how good you sound. The recording tells the truth.</li>
+              <li><i class="fa-solid fa-check-circle"></i> <strong>Drilled my worst notes first</strong> &mdash; slowly and perfectly, until they stopped feeling scary.</li>
+              <li><i class="fa-solid fa-check-circle"></i> <strong>Listened to pro flutists every day</strong> &mdash; you can't play something you've never actually heard done right.</li>
+            </ul>
+            <p>That whole plan is free. I break it down completely in the Summer Lock-In section below.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item timeline-right">
+          <div class="timeline-badge">8th</div>
+          <div class="timeline-content glass-card">
+            <h3>8th Grade: First Chair. All-County. Europe.</h3>
+            <p>
+              8th grade chair auditions. I played my scales, played my excerpt, sat back down. Waited. The list went up. I found my name. <strong>First. Chair.</strong> The same kid who was 10th chair twelve months earlier was now leading the whole section.
+            </p>
+            <p>
+              Then All-County &mdash; made it. All-District &mdash; made it. Then I got asked to perform as a <strong>pre-MPA soloist in front of the entire Green Level Band.</strong> And then the message came: I was invited on the <strong>NC Bandmasters Europe trip.</strong>
+            </p>
+            <p>
+              That's not a flex. That's a proof of concept. The steps work. I ran them. You can run them too.
+            </p>
+            <p class="pullquote">"10th chair to Europe in twelve months. The exact steps are sitting right here, free, waiting for you."</p>
+            <a href="#contact" class="btn-primary">I Want Those Steps &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section services-section">
+    <div class="container">
+      <div class="section-header fade-el">
+        <div class="section-tag">Level Up</div>
+        <h2>Four Ways I Help You. <span class="accent-text">All Free.</span></h2>
+        <p class="section-intro">Pick one. Pick all four. No cost, no sign-up fee, nothing sketchy buried in the fine print.</p>
+      </div>
+      <div class="cards-grid fade-el">
+
+        <div class="glass-card service-card">
+          <div class="card-icon"><i class="fa-solid fa-video"></i></div>
+          <h3>30-Min 1-on-1 Video Sessions</h3>
+          <p>A private video call &mdash; just us &mdash; where I listen to you play and pinpoint exactly what's holding you back. No generic advice. Your specific issues, fixed specifically for you.</p>
+          <p>I had one bad habit for almost an entire year that a single 30-minute session would have fixed. Don't spend months going in the wrong direction like I did.</p>
+          <div class="card-tag">Most Popular</div>
+        </div>
+
+        <div class="glass-card service-card">
+          <div class="card-icon"><i class="fa-solid fa-trophy"></i></div>
+          <h3>Audition &amp; Competition Prep</h3>
+          <p>All-County. All-District. Solo &amp; Ensemble. Pre-MPA. Done all of them. I know exactly what judges are scoring, what common mistakes knock you out, and how to make your specific piece stand out.</p>
+          <p>Most kids walk into auditions guessing. You'll walk in with an actual game plan. That difference alone changes everything.</p>
+          <div class="card-tag">High Impact</div>
+        </div>
+
+        <div class="glass-card service-card">
+          <div class="card-icon"><i class="fa-solid fa-seedling"></i></div>
+          <h3>Beginner Fast-Track</h3>
+          <p>Just starting out, or feel like your basics are still shaky after a year? I'll take you from "I can barely get a sound" to actually sounding decent &mdash; faster than any YouTube playlist.</p>
+          <p>We cover embouchure, posture, breath support, hand position, and the first 12 notes you need to own completely. This is what I wish someone had taught me in month one.</p>
+          <div class="card-tag">6th Grade Friendly</div>
+        </div>
+
+        <div class="glass-card service-card">
+          <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+          <h3>Custom Practice Plans</h3>
+          <p>I'll build a daily practice schedule that's actually built around your weaknesses &mdash; not just a random list of exercises. Twenty minutes max. Specific. Targeted. Designed to work.</p>
+          <p>The difference between random practice and structured practice is the difference between staying in the same spot and actually improving. I'll write yours from scratch.</p>
+          <div class="card-tag">Game Changer</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TUTORIALS -->
+  <section id="tutorials" class="section tutorials-section">
+    <div class="container">
+      <div class="section-header fade-el">
+        <div class="section-tag">Free Tutorials</div>
+        <h2>Learn On Your <span class="accent-text">Own Schedule.</span></h2>
+        <p class="section-intro">Not ready for a live session yet? These free guides cover the exact techniques that took me from squeaking to first chair. Start anywhere.</p>
+      </div>
+      <div class="cards-grid fade-el">
+
+        <div class="glass-card tutorial-card">
+          <div class="card-icon"><i class="fa-solid fa-circle-play"></i></div>
+          <h3>Tone Bootcamp: Get a Real Sound</h3>
+          <p>Tone is the #1 struggle for every new flute player. I'll walk you through the exact lip position, airspeed adjustments, and daily warm-up that turned my 6th-grade squeaks into a clean, full sound that actually sounds good.</p>
+          <p>The specific daily check I still do before every single practice session? It's in here, free.</p>
+          <div class="card-tag free-tag">Free</div>
+        </div>
+
+        <div class="glass-card tutorial-card">
+          <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Scale Mastery: The Shortcut to Everything</h3>
+          <p>Scales sound like a chore. But here's the truth &mdash; every piece you'll ever play is built on them. Know your scales cold and sight-reading gets easier, auditions get easier, everything just clicks faster.</p>
+          <p>I'll show you how to run scales in a way that actually feels musical, plus the exact sequence I used leading up to All-County.</p>
+          <div class="card-tag free-tag">Free</div>
+        </div>
+
+        <div class="glass-card tutorial-card">
+          <div class="card-icon"><i class="fa-solid fa-eye"></i></div>
+          <h3>Sight-Reading Without Freezing Up</h3>
+          <p>Sight-reading is worth points on almost every audition rubric &mdash; and almost nobody practices it on purpose. That's exactly where most people give away easy points. I'll teach you a simple way to scan any new piece in 30 seconds before you play it.</p>
+          <p>Get actually good at this and auditions start feeling way less scary.</p>
+          <div class="card-tag free-tag">Free</div>
+        </div>
+
+        <div class="glass-card tutorial-card">
+          <div class="card-icon"><i class="fa-solid fa-music"></i></div>
+          <h3>Dynamics &amp; Phrasing: How to Stand Out</h3>
+          <p>Here's the secret most people miss: two players can hit the exact same notes and sound totally different. The gap is expression &mdash; getting louder and softer at the right moments, shaping phrases so they actually feel like music.</p>
+          <p>This is what I used as a pre-MPA soloist in front of the Green Level Band. Playing the right notes is the baseline. This is what gets you remembered.</p>
+          <div class="card-tag free-tag">Free</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMMER LOCK-IN -->
+  <section id="summer" class="section summer-section">
+    <div class="container">
+      <div class="section-header fade-el">
+        <div class="section-tag">Summer Lock-In</div>
+        <h2>The Plan That <span class="accent-text">Changed Everything.</span></h2>
+        <p class="section-intro">10th chair to First Chair, All-County, All-District, and Europe &mdash; all in one summer. Here's exactly what I did.</p>
+      </div>
+
+      <div class="summer-intro glass-card fade-el">
+        <p>
+          The summer between 7th and 8th grade, I made myself one real promise: <em>this summer is actually different.</em> Not "I'll practice when I feel like it." Locked in. Daily. On purpose. I came back to school in August and I could feel something had genuinely changed &mdash; in my sound, in my confidence, in how the flute felt in my hands. Here's the exact four things I did.
+        </p>
+      </div>
+
+      <div class="summer-pillars fade-el">
+
+        <div class="pillar glass-card">
+          <div class="pillar-number">01</div>
+          <div class="pillar-icon"><i class="fa-solid fa-clock"></i></div>
+          <h3>20 Minutes. Every Single Day.</h3>
+          <p>
+            Not optional. Weekends, vacation days, days where you really don't feel like it &mdash; doesn't matter. <strong>Twenty minutes. Phone in another room. Full focus.</strong>
+          </p>
+          <p>
+            Twenty focused minutes daily beats two hours on the weekend every single time. Your brain builds muscle memory by doing the same thing over and over consistently &mdash; not occasionally. The daily repetition is what rewires how you play. Skip days and you undo the work.
+          </p>
+          <p>How I split it: 5 min long tones &middot; 5 min scales &middot; 5 min on your piece &middot; 5 min destroying your worst weakness.</p>
+        </div>
+
+        <div class="pillar glass-card">
+          <div class="pillar-number">02</div>
+          <div class="pillar-icon"><i class="fa-solid fa-crosshairs"></i></div>
+          <h3>Attack Your Weakest Spot First.</h3>
+          <p>
+            Most people practice the stuff they're already decent at because it feels good. That's not progress. That's just staying comfortable. <strong>Actual improvement happens where it's hard and uncomfortable.</strong>
+          </p>
+          <p>
+            Every week I found my single worst weakness and attacked it every session until it wasn't a weakness anymore. High D cracking every time? Attacked it. G-flat refusing to speak? Attacked it. Slow passage falling apart? Attacked it. One thing per week. Stack it up. That's the formula.
+          </p>
+        </div>
+
+        <div class="pillar glass-card">
+          <div class="pillar-number">03</div>
+          <div class="pillar-icon"><i class="fa-solid fa-circle-dot"></i></div>
+          <h3>Record Yourself. Every Session.</h3>
+          <p>
+            This was the biggest game-changer and the most surprising one. Here's why: <em>your brain tricks you while you play.</em> It fills in what you expect to hear instead of what's actually coming out. You think you sound solid. You hit record, play it back, and hear a completely different story.
+          </p>
+          <p>
+            Use your phone. Record one clean run-through per session. Listen back like it's a stranger you're judging. Fix every single thing you hear. Record again. This loop alone will make you improve faster than you expect.
+          </p>
+        </div>
+
+        <div class="pillar glass-card">
+          <div class="pillar-number">04</div>
+          <div class="pillar-icon"><i class="fa-solid fa-headphones"></i></div>
+          <h3>Listen to the Best Players Every Day.</h3>
+          <p>
+            Every day that summer, I listened to professional flutists &mdash; James Galway, Emmanuel Pahud, Jasmine Choi. Not as background music. <strong>Real focused listening</strong> &mdash; paying attention to their tone, their breathing, the way they shape every phrase.
+          </p>
+          <p>
+            Your ears need a target before your hands can aim for it. You can't produce a sound you've never really heard before. Ten minutes a day of intentional listening to great players is quietly one of the most powerful things on this list.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="summer-cta fade-el">
+        <p class="pullquote">"The plan that took me from 10th chair to First Chair and Europe is yours &mdash; starting right now, for free."</p>
+        <a href="#contact" class="btn-primary">Get the Full Plan &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="section-header fade-el">
+        <div class="section-tag">Join the Academy</div>
+        <h2>One Email. <span class="accent-text">Everything Changes.</span></h2>
+        <p class="section-intro">You've read the whole thing. You know what's possible. This is the part where you stop reading and actually do something about it.</p>
+      </div>
+
+      <div class="contact-content fade-el">
+        <div class="contact-story glass-card">
+          <h3>Here's Exactly What Happens Next</h3>
+          <p>
+            You send me a short email &mdash; five minutes, maximum. Your name, your grade, one thing you're struggling with or one question you have. That's the entire email.
+          </p>
+          <p>
+            I write back personally, usually within 24&ndash;48 hours. We figure out what helps you most right now. Want a 30-minute video session? We'll schedule it. Want a custom practice plan written for your specific weaknesses? I'll build it. Just have a question? I'll answer it directly.
+          </p>
+          <p>
+            I've been exactly where you're sitting &mdash; wanting to get better with no idea how to start. But I've also been on the other side: <strong>first chair, a stage in front of hundreds of people, an email inviting me to Europe.</strong> That other side is completely real, and it's closer than you think.
+          </p>
+          <p>
+            The five minutes it takes to send that email might be the most useful five minutes you spend this whole year. Don't skip them.
+          </p>
+          <p class="pullquote">"Stop practicing harder in the wrong direction. Send the email. Let's fix it."</p>
+        </div>
+
+        <div class="contact-methods">
+          <div class="contact-card glass-card">
+            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+            <h3>Sessions, Plans &amp; Everything Else</h3>
+            <p>Video sessions, custom practice plans, audition prep &mdash; email me right here:</p>
+            <a href="mailto:arnavchouksey@example.com" class="contact-email-link">
+              arnavchouksey@example.com
+            </a>
+            <p class="contact-note">I reply to every single email. Usually within 48 hours.</p>
+          </div>
+
+          <div class="contact-card glass-card">
+            <div class="contact-icon"><i class="fa-solid fa-circle-question"></i></div>
+            <h3>Random Questions? Also Welcome.</h3>
+            <p>Have a quick flute question, not sure if this is for you, or just want to ask something random? Hit this address:</p>
+            <a href="mailto:fluteacademy@example.com" class="contact-email-link">
+              fluteacademy@example.com
+            </a>
+            <p class="contact-note">No question is too small or too basic. I genuinely promise.</p>
+          </div>
+
+          <div class="contact-big-cta">
+            <p>Do it right now &mdash; before you close this tab, before you forget, before another week of confused practice goes by:</p>
+            <a href="mailto:arnavchouksey@example.com" class="btn-primary btn-xl confetti-trigger">
+              THE 5-MINUTE EMAIL THAT CHANGES EVERYTHING &rarr;
+            </a>
+            <p class="contact-small">100% Free. No catch. Just a kid who genuinely wants to help you get better.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <i class="fa-solid fa-music spinning-icon-slow"></i>
+        <span>Arnav Chouksey Flute Academy</span>
+      </div>
+      <p class="footer-tagline">From Apex, NC &middot; Free for all 6th, 7th &amp; 8th graders &middot; No catch. Ever.</p>
+      <p class="footer-copy">&copy; 2024 Arnav Chouksey Flute Academy &middot; Made with &#9834; and a lot of focused practice</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>      </a>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
