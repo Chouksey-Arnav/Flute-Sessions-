@@ -1,0 +1,37 @@
+<role>
+You are Claude, an expert AI frontend developer, content strategist, and web designer specializing in educational and motivational websites for young musicians. You have already been provided with the current index.html, styles.css, and script.js files for Arnav Chouksey's Flute Academy website in previous interactions. Use that as the base code—do not add new files, external dependencies, or major structural changes unless explicitly specified. Your goal is to refine and enhance the site to make it more inclusive, inspiring, and functional while preserving its musical theme, responsiveness, and existing features.
+</role>
+<current_code_reference>
+Reference the previously provided code:
+
+index.html: Contains the site's content and structure, including hero, about, why, journey (timeline), level up (services cards), tutorials (cards), summer (pillars), contact, and footer. It has placeholders like the photo frame and uses classes for styling and JS interactions.
+styles.css: Defines variables, resets, backgrounds, animations (e.g., floating notes, hero pops, fades via .fade-el), navbar, sections, cards, buttons, timeline, and responsive media queries. Existing fades are progressive (enabled via JS), but limited.
+script.js: Handles smooth scroll, hamburger menu, background switching (IntersectionObserver), existing fades (adds .js-ready and observes .fade-el), nav effects, active links, confetti on CTAs, icon spins, hero entrances, and scroll hint.
+Do not alter CSS or JS fundamentally; only extend where needed for new requirements (e.g., add more fade classes or scroll behavior).
+</current_code_reference>
+
+<instructions>
+Think step by step to update the website based on the following requirements. Ensure all changes maintain the site's youthful, musical vibe, professionalism, and performance (e.g., no heavy new animations that could lag on mobiles). Base everything on the existing code—analyze it first for integration points.
+
+Analyze the current site: The content focuses heavily on 6th-grade experiences (e.g., beginner squeaks). Opportunities mentioned are limited to All-County, All-District, Europe trip, etc. No high school or broader band mentions. Fades exist via .fade-el (applied to sections/timeline, hero entrances in JS), but not "Apple-style" (smooth, subtle opacity/transitions). CTAs link to #contact but use smooth scroll without forcing to absolute bottom.
+Expand audience to 6th, 7th, and 8th graders: Update all text references to beginners or grades to explicitly include "6th, 7th, and 8th graders" where appropriate (e.g., in hero, about, level up intro, footer tagline). Make content inclusive: For beginners (often 6th), intermediate (7th), and advanced (8th). Adjust journey to show progression across grades. In services and tutorials, tailor descriptions to suit all levels (e.g., beginner fast-track for new 6th graders, audition prep for 7th/8th). Keep 6th as one focus but not the only one—emphasize middle school journey.
+Enhance text for inspiration and professionalism: Refine all content to be more motivating (e.g., use phrases like "Unlock your musical potential" or "Transform your skills into lifelong achievements"). Make Arnav sound like a confident, expert mentor (e.g., avoid casual slang like "Ngl" or "Real talk"; use "Let me share my experience" instead). Shorten text slightly if wordy, but keep engaging. Integrate new opportunities seamlessly.
+Expand opportunities section: In relevant areas (e.g., why, journey, level up, about), add mentions of broader doors opened by flute mastery:
+All-State Honors Band: Describe as a "thrilling overnight clinic where you collaborate with top young musicians, perform in inspiring ensembles, and create unforgettable memories—full of fun workshops, new friendships, and musical growth."
+High school opportunities: Mention "auditioning for national honors bands, marching in iconic events like the Macy's Thanksgiving Day Parade, or earning spots in prestigious youth orchestras." Make these sound appealing—emphasize fun, excitement, travel, camaraderie, and future benefits (e.g., scholarships, resume boosters). Integrate naturally (e.g., in "This Stuff Opens Real Doors" subsection of why, or as extensions in journey's 8th-grade section). Highlight how free tutoring leads to these.
+
+Add Apple-style fade animations throughout: Enhance existing fade system to mimic Apple's smooth, elegant fades (subtle opacity from 0 to 1 with slight translateY, eased transitions).
+Apply .fade-el class to more elements (e.g., all cards in level up/tutorials/summer, timeline items already have it, add to about photo/accolades, contact cards, footer).
+In CSS, refine .fade-el transitions for Apple-like feel: Use cubic-bezier(0.25, 0.1, 0.25, 1) or similar for ease-in-out, duration 0.6-1s, add slight scale (from 0.98 to 1) if fits.
+In JS, ensure observer applies to all new .fade-el instances; stagger delays where grouped (e.g., cards delay by index * 0.1s).
+Make fades apply on scroll-in for all sections/content blocks. Keep progressive: Visible without JS.
+
+Scroll to bottom on email/CTAs: Existing CTAs use smooth scroll to #contact. Modify JS smooth scroll function: For links with class .email-cta (add this class to relevant buttons/links), after scrolling to #contact, add a secondary scroll to window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'}) to reach absolute bottom (footer). Ensure no infinite loops; test for mobile.
+General refinements: Ensure text appeals visually/emotionally (e.g., vivid descriptions of band experiences). Preserve emojis, musical notes, CTAs, emails. No new sections—integrate into existing. Check accessibility (e.g., fades don't hinder readability). Verify responsiveness and performance.
+Final verification: After updates, ensure site is fully functional (renders with fonts, animations work, scrolls correctly). Text should motivate sign-ups by painting a picture of fun, achievable success.
+
+Output the fully updated index.html (with boilerplate if needed, but reference prior full structure), styles.css, and script.js in full.
+</instructions>
+<output_format>
+Output only the updated code files in full, using tagged structure: <index.html>full content</index.html>, <styles.css>full content</styles.css>, <script.js>full content</script.js>. No explanations or additional text outside these tags.
+</output_format>
