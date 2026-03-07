@@ -184,50 +184,24 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
 .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
 
 /* ===== APPLE-STYLE FADE ANIMATIONS — BULLETPROOF SYSTEM =====
-   Philosophy: Mirror Apple's polished, fluid fade-in-with-rise.
-   Transitions use the classic Apple cubic-bezier(0.25,0.1,0.25,1).
-   Elements begin invisible (after JS marks them .will-fade),
-   with a subtle upward translateY and slight scale pull-back.
-   On scroll into view, .is-visible restores all to natural state.
-   
-   Key design decisions:
-   - scale(0.98) → scale(1): barely perceptible but adds "depth pop"
-   - translateY(30px) → 0: gentle rise feels premium vs aggressive 50px
-   - 0.6s duration: fast enough to feel snappy, slow enough to feel smooth
-   - cubic-bezier(0.25,0.1,0.25,1): Apple's standard ease curve
-   
-   Progressive enhancement guarantee:
-   CSS default = visible. JS adds .will-fade. JS adds .is-visible.
-   No JS = everything visible. Slow JS = viewport rAF pass catches it. ✓
+   Elements visible by default. JS adds .will-fade (hides) then
+   .is-visible (animates in with Apple's cubic-bezier ease).
+   scale(0.98)→scale(1) adds a subtle depth-pop. No JS = all visible. ✓
 ============================================================= */
 .fade-el {
-  /* Always visible by default — JS controls the hidden/shown states */
   transition:
     opacity    var(--fade-dur) var(--ease-apple),
     transform  var(--fade-dur) var(--ease-apple),
     scale      var(--fade-dur) var(--ease-apple);
   will-change: opacity, transform, scale;
 }
+.fade-el.will-fade              { opacity: 0; transform: translateY(30px); scale: 0.98; }
+.fade-el.will-fade.fade-left    { transform: translateX(-50px); scale: 0.98; }
+.fade-el.will-fade.fade-right   { transform: translateX(50px);  scale: 0.98; }
+.fade-el.will-fade.fade-zoom    { transform: scale(0.92); scale: 1; }
+.fade-el.is-visible             { opacity: 1 !important; transform: none !important; scale: 1 !important; }
 
-/* JS adds .will-fade to set the "before" state */
-.fade-el.will-fade {
-  opacity:   0;
-  transform: translateY(30px);
-  scale:     0.98;
-}
-/* Directional variants override the transform axis */
-.fade-el.will-fade.fade-left  { transform: translateX(-50px); scale: 0.98; }
-.fade-el.will-fade.fade-right { transform: translateX(50px);  scale: 0.98; }
-.fade-el.will-fade.fade-zoom  { transform: scale(0.92);       scale: 1; }
-
-/* JS adds .is-visible to animate to the natural "after" state */
-.fade-el.is-visible {
-  opacity:   1 !important;
-  transform: none !important;
-  scale:     1 !important;
-}
-
-/* Stagger delay utilities for card grids — applied by JS or HTML */
+/* Stagger delay utilities */
 .stagger-1 { transition-delay: 0.05s; }
 .stagger-2 { transition-delay: 0.17s; }
 .stagger-3 { transition-delay: 0.29s; }
@@ -400,11 +374,12 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
 }
 .glass-card:hover::before { opacity: 1; }
 
-/* Colored accent strip on left */
+/* Colored accent strips */
 .card-accent-teal   { border-left: 3px solid var(--teal) !important; }
 .card-accent-pink   { border-left: 3px solid var(--pink) !important; }
 .card-accent-yellow { border-left: 3px solid var(--yellow) !important; }
 .card-accent-purple { border-left: 3px solid var(--purple) !important; }
+.card-accent-green  { border-left: 3px solid var(--green) !important; }
 
 .cards-grid {
   display: grid;
@@ -440,7 +415,7 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
 .card-tag.pink   { color: var(--pink);   background: rgba(255,107,157,0.10); border-color: rgba(255,107,157,0.25); }
 .card-tag.yellow { color: var(--yellow); background: rgba(255,211,42,0.10);  border-color: rgba(255,211,42,0.25); }
 .card-tag.green  { color: var(--green);  background: rgba(46,213,115,0.10);  border-color: rgba(46,213,115,0.25); }
-.free-tag { color: var(--green)  !important; background: rgba(46,213,115,0.10) !important; border-color: rgba(46,213,115,0.28) !important; }
+.free-tag { color: var(--green) !important; background: rgba(46,213,115,0.10) !important; border-color: rgba(46,213,115,0.28) !important; }
 
 /* ===== PULLQUOTE ===== */
 .pullquote {
@@ -521,6 +496,7 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
   z-index: 2; box-shadow: 0 0 22px rgba(0,245,212,0.4), var(--glow-teal);
   top: 18px;
 }
+.timeline-badge:hover { transform: translateX(-50%) scale(1.15); }
 .timeline-content { width: 100%; max-width: 420px; }
 .timeline-content h3 {
   font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;
@@ -536,6 +512,164 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
 }
 .journey-list li i { color: var(--teal); margin-top: 3px; flex-shrink: 0; }
 .journey-list li strong { color: var(--text-primary); font-weight: 600; }
+
+/* ===== UNLOCK BOXES (journey) ===== */
+/*
+  Visual callout inside timeline items that communicates
+  what each grade's mastery "unlocks" in a concrete, motivating way.
+  Uses a lock-open icon + horizontal achievement chain.
+*/
+.unlock-box {
+  margin-top: 16px;
+  background: rgba(0,245,212,0.07);
+  border: 1px solid rgba(0,245,212,0.20);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 0.80rem;
+  color: var(--text-muted);
+  line-height: 1.60;
+}
+.unlock-box-blue {
+  background: rgba(0,207,255,0.07);
+  border-color: rgba(0,207,255,0.22);
+}
+.unlock-box-gold {
+  background: rgba(255,211,42,0.07);
+  border-color: rgba(255,211,42,0.22);
+}
+.unlock-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 6px;
+}
+.unlock-box-blue .unlock-label  { color: var(--cyan); }
+.unlock-box-gold .unlock-label  { color: var(--yellow); }
+
+/* ===== GRADE-SPECIFIC PLANS (services section) ===== */
+/*
+  Three-column grid of "grade plan" cards appearing below the
+  main service cards. Each card is styled for its grade:
+  6th = green accent, 7th = teal/cyan, 8th = yellow/gold.
+  Includes a checklist and an "Unlocks" callout at the bottom.
+*/
+.grade-plans-header {
+  text-align: center;
+  margin: 64px 0 32px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+.grade-plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 22px;
+}
+
+.grade-plan-card {
+  /* Inherits .glass-card structure; override p margin for tighter list layout */
+  padding: 28px 26px 24px;
+}
+
+.grade-plan-badge {
+  display: inline-flex; align-items: center;
+  font-family: var(--font-display); font-size: 0.72rem; font-weight: 800;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 30px; border: 2px solid;
+  margin-bottom: 8px;
+}
+/* Reuse existing grade color tokens */
+.grade-plan-badge.g6 { color: var(--green);  border-color: var(--green);  background: rgba(46,213,115,0.12); }
+.grade-plan-badge.g7 { color: var(--cyan);   border-color: var(--cyan);   background: rgba(0,207,255,0.12);  }
+.grade-plan-badge.g8 { color: var(--yellow); border-color: var(--yellow); background: rgba(255,211,42,0.12); }
+
+.plan-subtitle {
+  font-size: 0.76rem; color: var(--text-muted);
+  font-style: italic; margin-bottom: 18px; line-height: 1.4;
+}
+
+.plan-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 11px;
+  margin-bottom: 20px;
+}
+.plan-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.85rem; color: var(--text-muted); line-height: 1.60;
+}
+.plan-list li i {
+  color: var(--teal); font-size: 0.85rem; margin-top: 2px; flex-shrink: 0;
+}
+.plan-list li span strong { color: var(--text-primary); font-weight: 600; }
+
+/* Colour the check icons per-grade card */
+.card-accent-green .plan-list li i  { color: var(--green); }
+.card-accent-yellow .plan-list li i { color: var(--yellow); }
+
+.plan-unlock {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: rgba(0,245,212,0.06);
+  border: 1px solid rgba(0,245,212,0.18);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 0.79rem; color: var(--text-muted); line-height: 1.58;
+}
+.plan-unlock i {
+  color: var(--teal); font-size: 0.9rem; margin-top: 2px; flex-shrink: 0;
+}
+.card-accent-green  .plan-unlock { background: rgba(46,213,115,0.07);  border-color: rgba(46,213,115,0.20);  }
+.card-accent-green  .plan-unlock i { color: var(--green); }
+.card-accent-yellow .plan-unlock { background: rgba(255,211,42,0.07);  border-color: rgba(255,211,42,0.20);  }
+.card-accent-yellow .plan-unlock i { color: var(--yellow); }
+
+/* ===== GRADE RELEVANCE TAGS (tutorials) ===== */
+/*
+  Small inline pills inside tutorial cards showing
+  which grades benefit most from that guide.
+  Appear above the card h3 in a flex row.
+*/
+.grade-relevance-row {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 12px;
+}
+.grade-relevance {
+  display: inline-flex; align-items: center;
+  font-family: var(--font-display); font-size: 0.60rem; font-weight: 800;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 20px; border: 1px solid;
+}
+.grade-relevance.gr-6 { color: var(--green);  border-color: rgba(46,213,115,0.35);  background: rgba(46,213,115,0.08); }
+.grade-relevance.gr-7 { color: var(--cyan);   border-color: rgba(0,207,255,0.35);   background: rgba(0,207,255,0.08);  }
+.grade-relevance.gr-8 { color: var(--yellow); border-color: rgba(255,211,42,0.35);  background: rgba(255,211,42,0.08); }
+
+/* ===== SUMMER GRADE NOTE (inside pillars) ===== */
+/*
+  Visual sub-block inside the "Daily Practice" pillar
+  showing the exact grade-specific time splits.
+  Three rows, colour-coded green/blue/gold by grade.
+*/
+.summer-grade-note {
+  margin-top: 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.sgn-row {
+  padding: 9px 14px;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.sgn-row:last-child { border-bottom: none; }
+.sgn-row strong     { font-weight: 700; }
+.sgn-green { color: rgba(46,213,115,0.90); }
+.sgn-blue  { color: rgba(0,207,255,0.85); }
+.sgn-gold  { color: rgba(255,211,42,0.85); }
 
 /* ===== SUMMER SECTION ===== */
 .summer-intro { max-width: 780px; margin: 0 auto 44px; text-align: center; }
@@ -557,6 +691,7 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
 .pillar h3 { font-family: var(--font-display); font-size: 1.08rem; font-weight: 700; margin-bottom: 12px; color: var(--text-primary); letter-spacing: -0.01em; }
 .pillar p  { font-size: 0.88rem; color: var(--text-muted); line-height: 1.74; margin-bottom: 10px; }
 .pillar p strong { color: var(--text-primary); font-weight: 600; }
+.pillar p em     { color: var(--teal); font-style: normal; }
 .summer-cta { text-align: center; }
 .summer-cta .pullquote {
   border: none; padding: 0;
@@ -627,8 +762,6 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
 }
 
 /* ===== FUN EXTRAS ===== */
-.timeline-badge:hover { transform: translateX(-50%) scale(1.15); }
-
 /* Animated gradient on big CTA buttons */
 .btn-primary.btn-xl {
   background: linear-gradient(135deg, var(--teal), var(--cyan), var(--purple), var(--pink));
@@ -651,6 +784,7 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
   .timeline-right { padding-right: 0; padding-left: 76px; }
   .timeline-badge { left: 26px; top: 14px; width: 44px; height: 44px; font-size: 0.70rem; }
   .timeline-content { max-width: 100%; }
+  .grade-plans-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
   :root { --nav-h: 62px; }
@@ -680,7 +814,8 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
   .hnote-3, .hnote-4 { display: none; }
   .about-grid { gap: 28px; }
   .grade-badges { gap: 8px; }
-  /* On mobile, stagger delays are shorter to keep things snappy */
+  .grade-plans-grid { grid-template-columns: 1fr; }
+  .grade-plan-card { padding: 22px 20px 20px; }
   .stagger-1 { transition-delay: 0.04s; }
   .stagger-2 { transition-delay: 0.10s; }
   .stagger-3 { transition-delay: 0.16s; }
@@ -697,4 +832,7 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
   .grade-badge { font-size: 0.68rem; padding: 6px 12px; }
   .ticker-wrap { display: none; }
   #navbar { top: 0; }
+  .plan-list li { font-size: 0.80rem; }
+  .grade-plan-badge { font-size: 0.65rem; }
+  .unlock-box { font-size: 0.75rem; }
 }
