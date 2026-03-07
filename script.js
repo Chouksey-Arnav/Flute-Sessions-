@@ -1,23 +1,31 @@
 /* ============================================
    ARNAV CHOUKSEY FLUTE ACADEMY — script.js
+   Apple-smooth · Bulletproof · Grade-aware
    ============================================ */
 
 (function () {
   'use strict';
 
   /* ===================================================
-     1. SMOOTH SCROLL
+     1. SMOOTH SCROLL + EMAIL-CTA BOTTOM SCROLL
      ─────────────────────────────────────────────────
-     Standard anchors scroll to the target section.
-     .email-cta anchors do that FIRST, then after a
-     short delay scroll to the absolute page bottom so
-     the email buttons and contact info are fully in view.
-     A guard prevents the bottom-scroll from looping or
-     firing when the user is already near the bottom.
+     Regular anchors → scroll to section top (offset for
+     fixed navbar + ticker bar).
+
+     .email-cta anchors → do the section scroll first,
+     then after 520 ms (enough for the smooth scroll to
+     settle) continue all the way to the absolute bottom
+     of the page, so the email addresses and big CTA
+     button are always fully in view.
+
+     Guard: if the user is already within 80 px of the
+     bottom we skip the second scroll so it never loops
+     or double-fires.
   ==================================================== */
-  function getNavHeight() {
+  function getNavOffset() {
     var nav = document.getElementById('navbar');
-    return nav ? nav.offsetHeight + 36 : 108; // +36 for ticker height
+    /* nav sits below the 36-px ticker; add 8 px breathing room */
+    return nav ? nav.offsetHeight + 36 + 8 : 114;
   }
 
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
@@ -28,10 +36,11 @@
       if (!target) return;
       e.preventDefault();
 
-      var top = target.getBoundingClientRect().top + window.pageYOffset - getNavHeight() - 8;
+      /* ── Primary scroll: to the section ── */
+      var top = target.getBoundingClientRect().top + window.pageYOffset - getNavOffset();
       window.scrollTo({ top: top, behavior: 'smooth' });
 
-      // Close mobile menu
+      /* ── Close mobile nav if open ── */
       var nl = document.getElementById('nav-links');
       var hb = document.getElementById('hamburger');
       if (nl && nl.classList.contains('open')) {
@@ -39,8 +48,7 @@
         if (hb) hb.classList.remove('open');
       }
 
-      // Email CTAs: after the section scroll lands, continue to absolute bottom
-      // Guard: only fire if we are NOT already within 80px of the bottom
+      /* ── Secondary scroll: email CTAs continue to page bottom ── */
       if (anchor.classList.contains('email-cta')) {
         setTimeout(function () {
           var distanceFromBottom =
@@ -53,13 +61,13 @@
               behavior: 'smooth'
             });
           }
-        }, 520); // wait for initial scroll to settle
+        }, 520);
       }
     });
   });
 
   /* ===================================================
-     2. HAMBURGER MENU
+     2. HAMBURGER MENU TOGGLE
   ==================================================== */
   var hamburger = document.getElementById('hamburger');
   var navLinks  = document.getElementById('nav-links');
@@ -71,7 +79,14 @@
   }
 
   /* ===================================================
-     3. BACKGROUND SWITCHING
+     3. DYNAMIC BACKGROUND SWITCHING
+     ─────────────────────────────────────────────────
+     An IntersectionObserver tracks how much of each
+     named section is visible. The section with the
+     highest intersection ratio "wins" and its matching
+     body class drives the radial-gradient background.
+     This gives a seamless, smooth colour shift as the
+     user scrolls through the page.
   ==================================================== */
   var bgMap = {
     'home':      'bg-hero',
@@ -108,101 +123,133 @@
   });
 
   /* ===================================================
-     4. APPLE-STYLE FADE ANIMATIONS — BULLETPROOF SYSTEM
+     4. APPLE-STYLE FADE ANIMATION SYSTEM — BULLETPROOF
      ─────────────────────────────────────────────────
-     This implements the "invisible-by-default-via-JS"
-     pattern so progressive enhancement is guaranteed:
+     Design philosophy: Mirror Apple.com's polished
+     "fade up + scale" entrance. Elements enter with a
+     30 px upward rise and a subtle scale pull-back
+     (0.98 → 1.0), driven by Apple's standard easing
+     curve cubic-bezier(0.25, 0.1, 0.25, 1) at 0.6 s.
 
-     STEP 0  Pre-pass: assign JS-computed stagger delays
-             to grouped elements (cards, pillars, etc.)
-             so they cascade in gracefully as a group.
+     Architecture (4 steps):
 
-     STEP 1  Mark every .fade-el with .will-fade
-             (synchronously, before first paint).
-             CSS then applies: opacity:0, translateY(30px),
-             scale(0.98) — the Apple "before" state.
+     STEP 0  STAGGER PRE-PASS
+             Before any hiding happens, compute and set
+             transition-delay on every element inside a
+             "group" (cards-grid, grade-plans-grid, why
+             cards, summer pillars, timeline items, plan-
+             list items). Elements with a manual stagger-N
+             class are skipped — their delay is handled
+             by CSS. The pre-pass groups use increments
+             of 0.12 s, capped at 0.48 s so no element
+             ever waits more than half a second.
 
-     STEP 2  IntersectionObserver adds .is-visible when
-             each element enters the viewport.
-             CSS then applies: opacity:1, transform:none,
-             scale:1 — the Apple "after" state.
-             Observer stops watching once visible, so
-             the element stays visible on scroll-back.
+     STEP 1  HIDE (will-fade)
+             Synchronously add .will-fade to every
+             .fade-el. This triggers the CSS "before"
+             state: opacity:0, translateY(30px),
+             scale:0.98. Because this happens before the
+             browser's first paint the user never sees
+             elements pop in and then hide.
 
-     STEP 3  requestAnimationFrame immediately shows
-             anything already in the viewport on load,
-             preventing a blank screen flash.
+     STEP 2  OBSERVE (fadeObserver)
+             An IntersectionObserver watches every
+             .fade-el. When one enters the viewport it
+             gets .is-visible, which triggers the CSS
+             "after" state: opacity:1, transform:none,
+             scale:1. The observer then stops watching
+             that element so it stays visible permanently.
 
-     NO JS path: .fade-el has no opacity:0 in CSS.
-     Everything is fully visible without JavaScript. ✓
+     STEP 3  VIEWPORT PRE-REVEAL (rAF pass)
+             On the next animation frame, anything that
+             is already in the viewport is immediately
+             marked .is-visible, preventing a flash of
+             hidden content on page load (especially
+             important for above-the-fold sections).
+
+     PROGRESSIVE ENHANCEMENT GUARANTEE
+             .fade-el has NO opacity:0 in CSS — only JS
+             adds .will-fade to hide elements. If JS is
+             disabled or slow, every element is visible
+             by default. ✓
   ==================================================== */
 
-  /* ── STEP 0: Pre-pass stagger for grouped elements ── */
+  /* ── STEP 0: Compute stagger delays for groups ──────
+     Rules:
+     • Skip elements that already have a manual stagger
+       class (stagger-1…4) — their CSS delay takes over.
+     • Cap auto-stagger at 0.48 s (every 4th+ item).
+     • Use 0.12 s increments — feels snappy but distinct.
+  ─────────────────────────────────────────────────── */
+  function hasManualStagger(el) {
+    return el.classList.contains('stagger-1') ||
+           el.classList.contains('stagger-2') ||
+           el.classList.contains('stagger-3') ||
+           el.classList.contains('stagger-4');
+  }
 
-  // Cards inside .cards-grid — services and tutorials
-  document.querySelectorAll('.cards-grid .glass-card').forEach(function (el, i) {
-    // Only auto-stagger if no manual stagger class is present
-    if (!el.classList.contains('stagger-1') &&
-        !el.classList.contains('stagger-2') &&
-        !el.classList.contains('stagger-3') &&
-        !el.classList.contains('stagger-4')) {
-      el.style.transitionDelay = (i * 0.12) + 's';
-    }
+  function applyAutoStagger(selector, increment, max) {
+    increment = increment || 0.12;
+    max       = max       || 0.48;
+    document.querySelectorAll(selector).forEach(function (el, i) {
+      if (!hasManualStagger(el)) {
+        el.style.transitionDelay = Math.min(i * increment, max) + 's';
+      }
+    });
+  }
+
+  /* Main service cards (4-up grid) */
+  applyAutoStagger('.cards-grid .glass-card');
+
+  /* Grade-specific plan cards (3-up grid below services) */
+  applyAutoStagger('.grade-plans-grid .grade-plan-card');
+
+  /* Why-free cards */
+  applyAutoStagger('.why-content .why-card');
+
+  /* Summer pillars */
+  applyAutoStagger('.summer-pillars .pillar');
+
+  /* Timeline items — auto-stagger but cap earlier (0.36 s)
+     so the timeline doesn't feel sluggish on mobile      */
+  applyAutoStagger('.timeline-item', 0.12, 0.36);
+
+  /* Plan-list items inside grade plan cards — very tight
+     stagger (0.06 s) so they cascade but feel fast       */
+  document.querySelectorAll('.grade-plan-card').forEach(function (card) {
+    card.querySelectorAll('.plan-list li').forEach(function (li, i) {
+      li.style.transitionDelay = Math.min(i * 0.06, 0.30) + 's';
+    });
   });
 
-  // Summer pillars
-  document.querySelectorAll('.summer-pillars .pillar').forEach(function (el, i) {
-    if (!el.classList.contains('stagger-1') &&
-        !el.classList.contains('stagger-2') &&
-        !el.classList.contains('stagger-3') &&
-        !el.classList.contains('stagger-4')) {
-      el.style.transitionDelay = (i * 0.12) + 's';
-    }
-  });
+  /* Contact method cards */
+  applyAutoStagger('.contact-methods .contact-card');
 
-  // Why cards
-  document.querySelectorAll('.why-content .why-card').forEach(function (el, i) {
-    if (!el.classList.contains('stagger-1') &&
-        !el.classList.contains('stagger-2') &&
-        !el.classList.contains('stagger-3') &&
-        !el.classList.contains('stagger-4')) {
-      el.style.transitionDelay = (i * 0.12) + 's';
-    }
-  });
-
-  // Timeline items — staggered by their natural order
-  document.querySelectorAll('.timeline-item').forEach(function (item, i) {
-    if (!item.classList.contains('fade-el')) {
-      item.classList.add('fade-el');
-    }
-    // Stagger by position but cap so later items don't wait too long
-    item.style.transitionDelay = Math.min(i * 0.12, 0.36) + 's';
-  });
+  /* About accolades */
+  applyAutoStagger('.about-accolades .accolade');
 
   /* ── STEP 1: Mark all .fade-el elements as hidden ── */
   var allFadeEls = document.querySelectorAll('.fade-el');
-
   allFadeEls.forEach(function (el) {
     el.classList.add('will-fade');
   });
 
-  /* ── STEP 2: Observe and reveal on scroll ── */
+  /* ── STEP 2: Observe and reveal on scroll ────────── */
   var fadeObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        // Stop watching — element stays visible permanently
-        fadeObserver.unobserve(entry.target);
+        fadeObserver.unobserve(entry.target); /* permanent — no re-hide */
       }
     });
   }, {
-    threshold: 0.06,          // Trigger early — feels more natural
-    rootMargin: '0px 0px -24px 0px'  // Small bottom offset for polish
+    threshold:  0.06,
+    rootMargin: '0px 0px -20px 0px'
   });
 
   allFadeEls.forEach(function (el) { fadeObserver.observe(el); });
 
-  /* ── STEP 3: Immediately reveal anything in the viewport right now ── */
+  /* ── STEP 3: Immediately reveal in-viewport elements ─ */
   requestAnimationFrame(function () {
     document.querySelectorAll('.fade-el').forEach(function (el) {
       var rect = el.getBoundingClientRect();
@@ -214,13 +261,17 @@
   });
 
   /* ===================================================
-     5. NAVBAR SCROLL EFFECT
+     5. NAVBAR — SCROLL SOLIDIFICATION
+     ─────────────────────────────────────────────────
+     Below 80 px scroll the navbar is semi-transparent
+     glass. Past 80 px it solidifies slightly to stay
+     readable over section content.
   ==================================================== */
   var navbar = document.getElementById('navbar');
   window.addEventListener('scroll', function () {
     if (!navbar) return;
     if (window.scrollY > 80) {
-      navbar.style.background = 'rgba(6,6,20,0.93)';
+      navbar.style.background = 'rgba(6,6,20,0.95)';
       navbar.style.boxShadow  = '0 2px 40px rgba(0,0,0,0.55)';
     } else {
       navbar.style.background = '';
@@ -229,7 +280,11 @@
   }, { passive: true });
 
   /* ===================================================
-     6. ACTIVE NAV HIGHLIGHTING
+     6. ACTIVE NAV LINK HIGHLIGHTING
+     ─────────────────────────────────────────────────
+     Watches each section. When a section is ≥ 45 %
+     visible, its corresponding nav link is highlighted
+     in teal. Only one link is active at a time.
   ==================================================== */
   var navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
   var navObserver = new IntersectionObserver(function (entries) {
@@ -238,7 +293,9 @@
         var id = entry.target.id;
         navAnchors.forEach(function (a) {
           a.style.color = '';
-          if (a.getAttribute('href') === '#' + id) a.style.color = 'var(--teal)';
+          if (a.getAttribute('href') === '#' + id) {
+            a.style.color = 'var(--teal)';
+          }
         });
       }
     });
@@ -250,10 +307,15 @@
   });
 
   /* ===================================================
-     7. CONFETTI
+     7. CONFETTI — Musical Note Shower
+     ─────────────────────────────────────────────────
+     Any element with .confetti-trigger spawns 65 emoji
+     confetti pieces that fall with randomised position,
+     colour, size, delay, and duration. Each piece
+     removes itself when its CSS animation ends.
   ==================================================== */
   var confettiContainer = document.getElementById('confetti-container');
-  var confettiPieces = ['♪','♫','🎵','🎶','♬','♩','🎼','⭐','🏆','🎉','🥇'];
+  var confettiPieces = ['♪','♫','🎵','🎶','♬','♩','🎼','⭐','🏆','🎉','🥇','🎊','✨'];
   var confettiColors  = ['#00f5d4','#00cfff','#ff6b9d','#7c3aed','#2ed573','#ffffff','#ffd32a','#ff6348'];
 
   function spawnConfetti() {
@@ -262,7 +324,7 @@
     for (var i = 0; i < 65; i++) {
       var piece = document.createElement('span');
       piece.classList.add('confetti-piece');
-      piece.textContent = confettiPieces[Math.floor(Math.random() * confettiPieces.length)];
+      piece.textContent           = confettiPieces[Math.floor(Math.random() * confettiPieces.length)];
       piece.style.left            = (Math.random() * 96) + '%';
       piece.style.color           = confettiColors[Math.floor(Math.random() * confettiColors.length)];
       piece.style.fontSize        = (1.0 + Math.random() * 2.0) + 'rem';
@@ -279,42 +341,70 @@
 
   /* ===================================================
      8. CARD ICON HOVER SPIN
+     ─────────────────────────────────────────────────
+     On mouseenter, every glass card triggers a single
+     360° spin on its first found icon (.card-icon i,
+     .why-icon i, .pillar-icon i, .contact-icon i).
+     The animation is injected as a <style> tag once so
+     it lives in the CSS cascade, not as inline style.
   ==================================================== */
+  /* Inject the @keyframes once */
+  if (!document.getElementById('spin-style')) {
+    var spinStyle = document.createElement('style');
+    spinStyle.id = 'spin-style';
+    spinStyle.textContent =
+      '@keyframes spinOnce { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }';
+    document.head.appendChild(spinStyle);
+  }
+
   document.querySelectorAll('.glass-card').forEach(function (card) {
-    var icon = card.querySelector('.card-icon i, .why-icon i, .pillar-icon i, .contact-icon i');
+    var icon = card.querySelector(
+      '.card-icon i, .why-icon i, .pillar-icon i, .contact-icon i'
+    );
     if (!icon) return;
     card.addEventListener('mouseenter', function () {
       icon.style.animation = 'none';
-      void icon.offsetWidth; // force reflow
+      void icon.offsetWidth; /* force reflow so animation restarts */
       icon.style.animation = 'spinOnce 0.45s ease-out forwards';
     });
-    card.addEventListener('mouseleave', function () { icon.style.animation = ''; });
+    card.addEventListener('mouseleave', function () {
+      icon.style.animation = '';
+    });
   });
 
   /* ===================================================
-     9. HERO ENTRANCE — Apple-style staggered rise
+     9. HERO ENTRANCE — Apple staggered rise
      ─────────────────────────────────────────────────
-     Hero children are NOT .fade-el (they're above the
-     fold always) so we handle them separately with a
-     matching Apple-curve stagger on load.
+     Hero children are always above the fold so the
+     fade-el observer would reveal them instantly anyway.
+     Instead we handle them here with a precise, ordered
+     stagger matching Apple's product-page entrances:
+       • Start at 0.06 s, add 0.10 s per element.
+       • Use the same cubic-bezier(0.25,0.1,0.25,1).
+       • Use double rAF to guarantee the browser has
+         painted the hidden state before animating in.
   ==================================================== */
-  var heroEls = [
-    document.querySelector('.grade-badges'),
-    document.querySelector('.free-badge'),
-    document.querySelector('.hero-title'),
-    document.querySelector('.hero-sub'),
-    document.querySelector('.hero-sub-2'),
-    document.querySelector('.hero-cta-group'),
-    document.querySelector('.hero-stats'),
+  var heroSelectors = [
+    '.grade-badges',
+    '.free-badge',
+    '.hero-title',
+    '.hero-sub',
+    '.hero-sub-2',
+    '.hero-cta-group',
+    '.hero-stats',
   ];
 
+  var heroEls = heroSelectors.map(function (sel) {
+    return document.querySelector(sel);
+  });
+
+  /* Set initial hidden state for each hero element */
   heroEls.forEach(function (el, i) {
     if (!el) return;
-    el.style.opacity   = '0';
-    el.style.transform = 'translateY(24px)';
-    el.style.scale     = '0.98';
+    el.style.opacity    = '0';
+    el.style.transform  = 'translateY(24px)';
+    el.style.scale      = '0.98';
     el.style.willChange = 'opacity, transform, scale';
-    // Apple ease: cubic-bezier(0.25,0.1,0.25,1) at 0.7s per element
     var delay = (0.06 + i * 0.10) + 's';
     el.style.transition =
       'opacity 0.7s cubic-bezier(0.25,0.1,0.25,1) ' + delay + ',' +
@@ -322,7 +412,7 @@
       'scale 0.7s cubic-bezier(0.25,0.1,0.25,1) ' + delay;
   });
 
-  // Double rAF ensures the browser has painted the initial hidden state
+  /* Double rAF: first frame paints hidden, second triggers animation */
   requestAnimationFrame(function () {
     requestAnimationFrame(function () {
       heroEls.forEach(function (el) {
@@ -335,31 +425,86 @@
   });
 
   /* ===================================================
-     10. SCROLL HINT — fade out on first scroll
+     10. SCROLL HINT — Fade on first scroll
+     ─────────────────────────────────────────────────
+     The chevron + "Keep scrolling" hint at the bottom
+     of the hero fades out the moment the user scrolls
+     more than 60 px. The listener removes itself after
+     firing once so it doesn't run on every scroll event.
   ==================================================== */
   var scrollHint = document.querySelector('.scroll-hint');
   if (scrollHint) {
-    window.addEventListener('scroll', function onScroll() {
+    window.addEventListener('scroll', function fadeHint() {
       if (window.scrollY > 60) {
+        scrollHint.style.transition = 'opacity 0.5s ease';
         scrollHint.style.opacity    = '0';
-        scrollHint.style.transition = 'opacity 0.5s';
-        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('scroll', fadeHint);
       }
     }, { passive: true });
   }
 
   /* ===================================================
+     11. UNLOCK BOX HOVER GLOW
+     ─────────────────────────────────────────────────
+     The grade "Unlocks" boxes in the journey timeline
+     get a subtle teal glow on hover to draw attention
+     to the progression chain and make them feel
+     interactive/inspirational.
+  ==================================================== */
+  document.querySelectorAll('.unlock-box').forEach(function (box) {
+    box.addEventListener('mouseenter', function () {
+      this.style.transition  = 'box-shadow 0.3s ease, border-color 0.3s ease';
+      this.style.boxShadow   = '0 0 18px rgba(0,245,212,0.25)';
+      this.style.borderColor = 'rgba(0,245,212,0.45)';
+    });
+    box.addEventListener('mouseleave', function () {
+      this.style.boxShadow   = '';
+      this.style.borderColor = '';
+    });
+  });
+
+  document.querySelectorAll('.unlock-box-blue').forEach(function (box) {
+    box.addEventListener('mouseenter', function () {
+      this.style.transition  = 'box-shadow 0.3s ease, border-color 0.3s ease';
+      this.style.boxShadow   = '0 0 18px rgba(0,207,255,0.25)';
+      this.style.borderColor = 'rgba(0,207,255,0.45)';
+    });
+    box.addEventListener('mouseleave', function () {
+      this.style.boxShadow   = '';
+      this.style.borderColor = '';
+    });
+  });
+
+  document.querySelectorAll('.unlock-box-gold').forEach(function (box) {
+    box.addEventListener('mouseenter', function () {
+      this.style.transition  = 'box-shadow 0.3s ease, border-color 0.3s ease';
+      this.style.boxShadow   = '0 0 18px rgba(255,211,42,0.25)';
+      this.style.borderColor = 'rgba(255,211,42,0.45)';
+    });
+    box.addEventListener('mouseleave', function () {
+      this.style.boxShadow   = '';
+      this.style.borderColor = '';
+    });
+  });
+
+  /* ===================================================
+     12. GRADE PLAN CARD — Plan-list item fade-el setup
+     ─────────────────────────────────────────────────
+     The individual list items inside grade plan cards
+     are marked as fade-el so they cascade in beautifully
+     as the cards scroll into view. We add them to the
+     fadeObserver after the main allFadeEls pass.
+  ==================================================== */
+  document.querySelectorAll('.grade-plan-card .plan-list li').forEach(function (li) {
+    if (!li.classList.contains('fade-el')) {
+      li.classList.add('fade-el', 'will-fade');
+      fadeObserver.observe(li);
+    }
+  });
+
+  /* ===================================================
      INIT
   ==================================================== */
   setBodyBg('bg-hero');
-
-  /* Inject spinOnce keyframe once for card icon hovers */
-  if (!document.getElementById('spin-style')) {
-    var style = document.createElement('style');
-    style.id = 'spin-style';
-    style.textContent =
-      '@keyframes spinOnce { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }';
-    document.head.appendChild(style);
-  }
 
 })();
