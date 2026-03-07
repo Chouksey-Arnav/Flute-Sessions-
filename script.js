@@ -7,10 +7,17 @@
 
   /* ===================================================
      1. SMOOTH SCROLL
+     ─────────────────────────────────────────────────
+     Standard anchors scroll to the target section.
+     .email-cta anchors do that FIRST, then after a
+     short delay scroll to the absolute page bottom so
+     the email buttons and contact info are fully in view.
+     A guard prevents the bottom-scroll from looping or
+     firing when the user is already near the bottom.
   ==================================================== */
   function getNavHeight() {
     var nav = document.getElementById('navbar');
-    return nav ? nav.offsetHeight + 36 : 108; // +36 for ticker
+    return nav ? nav.offsetHeight + 36 : 108; // +36 for ticker height
   }
 
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
@@ -20,14 +27,33 @@
       var target = document.querySelector(href);
       if (!target) return;
       e.preventDefault();
+
       var top = target.getBoundingClientRect().top + window.pageYOffset - getNavHeight() - 8;
       window.scrollTo({ top: top, behavior: 'smooth' });
+
       // Close mobile menu
       var nl = document.getElementById('nav-links');
       var hb = document.getElementById('hamburger');
       if (nl && nl.classList.contains('open')) {
         nl.classList.remove('open');
-        hb.classList.remove('open');
+        if (hb) hb.classList.remove('open');
+      }
+
+      // Email CTAs: after the section scroll lands, continue to absolute bottom
+      // Guard: only fire if we are NOT already within 80px of the bottom
+      if (anchor.classList.contains('email-cta')) {
+        setTimeout(function () {
+          var distanceFromBottom =
+            document.documentElement.scrollHeight -
+            window.pageYOffset -
+            window.innerHeight;
+          if (distanceFromBottom > 80) {
+            window.scrollTo({
+              top: document.documentElement.scrollHeight,
+              behavior: 'smooth'
+            });
+          }
+        }, 520); // wait for initial scroll to settle
       }
     });
   });
@@ -82,54 +108,105 @@
   });
 
   /* ===================================================
-     4. BULLETPROOF FADE ANIMATIONS
+     4. APPLE-STYLE FADE ANIMATIONS — BULLETPROOF SYSTEM
      ─────────────────────────────────────────────────
-     Strategy: Elements are VISIBLE by default in CSS.
-     This script marks them .will-fade (hides them),
-     then immediately uses IntersectionObserver to add
-     .is-visible (shows them with animation).
-     
-     If JS never runs → everything stays visible. ✓
-     If JS runs → beautiful staggered animations. ✓
-     If observer is slow → rAF pass catches viewport. ✓
+     This implements the "invisible-by-default-via-JS"
+     pattern so progressive enhancement is guaranteed:
+
+     STEP 0  Pre-pass: assign JS-computed stagger delays
+             to grouped elements (cards, pillars, etc.)
+             so they cascade in gracefully as a group.
+
+     STEP 1  Mark every .fade-el with .will-fade
+             (synchronously, before first paint).
+             CSS then applies: opacity:0, translateY(30px),
+             scale(0.98) — the Apple "before" state.
+
+     STEP 2  IntersectionObserver adds .is-visible when
+             each element enters the viewport.
+             CSS then applies: opacity:1, transform:none,
+             scale:1 — the Apple "after" state.
+             Observer stops watching once visible, so
+             the element stays visible on scroll-back.
+
+     STEP 3  requestAnimationFrame immediately shows
+             anything already in the viewport on load,
+             preventing a blank screen flash.
+
+     NO JS path: .fade-el has no opacity:0 in CSS.
+     Everything is fully visible without JavaScript. ✓
   ==================================================== */
 
-  // Add fade-el to timeline items with stagger delay
+  /* ── STEP 0: Pre-pass stagger for grouped elements ── */
+
+  // Cards inside .cards-grid — services and tutorials
+  document.querySelectorAll('.cards-grid .glass-card').forEach(function (el, i) {
+    // Only auto-stagger if no manual stagger class is present
+    if (!el.classList.contains('stagger-1') &&
+        !el.classList.contains('stagger-2') &&
+        !el.classList.contains('stagger-3') &&
+        !el.classList.contains('stagger-4')) {
+      el.style.transitionDelay = (i * 0.12) + 's';
+    }
+  });
+
+  // Summer pillars
+  document.querySelectorAll('.summer-pillars .pillar').forEach(function (el, i) {
+    if (!el.classList.contains('stagger-1') &&
+        !el.classList.contains('stagger-2') &&
+        !el.classList.contains('stagger-3') &&
+        !el.classList.contains('stagger-4')) {
+      el.style.transitionDelay = (i * 0.12) + 's';
+    }
+  });
+
+  // Why cards
+  document.querySelectorAll('.why-content .why-card').forEach(function (el, i) {
+    if (!el.classList.contains('stagger-1') &&
+        !el.classList.contains('stagger-2') &&
+        !el.classList.contains('stagger-3') &&
+        !el.classList.contains('stagger-4')) {
+      el.style.transitionDelay = (i * 0.12) + 's';
+    }
+  });
+
+  // Timeline items — staggered by their natural order
   document.querySelectorAll('.timeline-item').forEach(function (item, i) {
     if (!item.classList.contains('fade-el')) {
       item.classList.add('fade-el');
     }
-    item.style.transitionDelay = (i * 0.12) + 's';
+    // Stagger by position but cap so later items don't wait too long
+    item.style.transitionDelay = Math.min(i * 0.12, 0.36) + 's';
   });
 
+  /* ── STEP 1: Mark all .fade-el elements as hidden ── */
   var allFadeEls = document.querySelectorAll('.fade-el');
 
-  // Step 1: Mark all fade elements as hidden (NOW, synchronously)
   allFadeEls.forEach(function (el) {
     el.classList.add('will-fade');
   });
 
-  // Step 2: Set up observer to animate them in
+  /* ── STEP 2: Observe and reveal on scroll ── */
   var fadeObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        // Once visible, stop observing it — keeps it visible on scroll back up
+        // Stop watching — element stays visible permanently
         fadeObserver.unobserve(entry.target);
       }
     });
   }, {
-    threshold: 0.08,
-    rootMargin: '0px 0px -30px 0px'
+    threshold: 0.06,          // Trigger early — feels more natural
+    rootMargin: '0px 0px -24px 0px'  // Small bottom offset for polish
   });
 
   allFadeEls.forEach(function (el) { fadeObserver.observe(el); });
 
-  // Step 3: Immediately show anything already in the viewport right now
+  /* ── STEP 3: Immediately reveal anything in the viewport right now ── */
   requestAnimationFrame(function () {
-    allFadeEls.forEach(function (el) {
+    document.querySelectorAll('.fade-el').forEach(function (el) {
       var rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 20) {
+      if (rect.top < window.innerHeight - 10) {
         el.classList.add('is-visible');
         fadeObserver.unobserve(el);
       }
@@ -192,7 +269,7 @@
       piece.style.animationDelay  = (Math.random() * 1.3) + 's';
       piece.style.animationDuration = (1.8 + Math.random() * 2.2) + 's';
       confettiContainer.appendChild(piece);
-      piece.addEventListener('animationend', function () { piece.remove(); });
+      piece.addEventListener('animationend', function () { this.remove(); });
     }
   }
 
@@ -208,14 +285,18 @@
     if (!icon) return;
     card.addEventListener('mouseenter', function () {
       icon.style.animation = 'none';
-      void icon.offsetWidth;
+      void icon.offsetWidth; // force reflow
       icon.style.animation = 'spinOnce 0.45s ease-out forwards';
     });
     card.addEventListener('mouseleave', function () { icon.style.animation = ''; });
   });
 
   /* ===================================================
-     9. HERO ENTRANCE (staggered, instant on load)
+     9. HERO ENTRANCE — Apple-style staggered rise
+     ─────────────────────────────────────────────────
+     Hero children are NOT .fade-el (they're above the
+     fold always) so we handle them separately with a
+     matching Apple-curve stagger on load.
   ==================================================== */
   var heroEls = [
     document.querySelector('.grade-badges'),
@@ -229,20 +310,26 @@
 
   heroEls.forEach(function (el, i) {
     if (!el) return;
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.willChange = 'opacity, transform';
+    el.style.opacity   = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.scale     = '0.98';
+    el.style.willChange = 'opacity, transform, scale';
+    // Apple ease: cubic-bezier(0.25,0.1,0.25,1) at 0.7s per element
+    var delay = (0.06 + i * 0.10) + 's';
     el.style.transition =
-      'opacity 0.8s cubic-bezier(0.16,1,0.3,1) ' + (0.08 + i * 0.11) + 's,' +
-      'transform 0.8s cubic-bezier(0.16,1,0.3,1) ' + (0.08 + i * 0.11) + 's';
+      'opacity 0.7s cubic-bezier(0.25,0.1,0.25,1) ' + delay + ',' +
+      'transform 0.7s cubic-bezier(0.25,0.1,0.25,1) ' + delay + ',' +
+      'scale 0.7s cubic-bezier(0.25,0.1,0.25,1) ' + delay;
   });
 
+  // Double rAF ensures the browser has painted the initial hidden state
   requestAnimationFrame(function () {
     requestAnimationFrame(function () {
       heroEls.forEach(function (el) {
         if (!el) return;
-        el.style.opacity = '1';
+        el.style.opacity   = '1';
         el.style.transform = 'translateY(0)';
+        el.style.scale     = '1';
       });
     });
   });
@@ -254,7 +341,7 @@
   if (scrollHint) {
     window.addEventListener('scroll', function onScroll() {
       if (window.scrollY > 60) {
-        scrollHint.style.opacity = '0';
+        scrollHint.style.opacity    = '0';
         scrollHint.style.transition = 'opacity 0.5s';
         window.removeEventListener('scroll', onScroll);
       }
@@ -266,11 +353,12 @@
   ==================================================== */
   setBodyBg('bg-hero');
 
-  /* CSS keyframe for card icon spin (injected once) */
+  /* Inject spinOnce keyframe once for card icon hovers */
   if (!document.getElementById('spin-style')) {
     var style = document.createElement('style');
     style.id = 'spin-style';
-    style.textContent = '@keyframes spinOnce { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }';
+    style.textContent =
+      '@keyframes spinOnce { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }';
     document.head.appendChild(style);
   }
 
