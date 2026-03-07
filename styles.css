@@ -23,6 +23,9 @@
   --glow-teal:   0 0 30px rgba(0,245,212,0.4);
   --glow-pink:   0 0 30px rgba(255,107,157,0.4);
   --glow-purple: 0 0 30px rgba(124,58,237,0.4);
+  /* Apple ease curve */
+  --ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --fade-dur: 0.6s;
 }
 
 /* ===== RESET ===== */
@@ -108,7 +111,6 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
 .gnote-7  { left: 74%; font-size: 1.6rem; animation-duration: 33s; animation-delay: -2s;  }
 .gnote-8  { left: 84%; font-size: 2.6rem; animation-duration: 38s; animation-delay: -12s; }
 .gnote-9  { left: 93%; font-size: 2rem;   animation-duration: 24s; animation-delay: -6s;  }
-
 @keyframes floatNote {
   0%   { transform: translateY(110vh) rotate(0deg);   opacity: 0; }
   5%   { opacity: 1; }
@@ -125,7 +127,7 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
 .hnote-4 { bottom: 20%; right: 6%; font-size: 4.5rem; animation-duration: 4.5s; animation-delay: -0.8s; }
 .hnote-5 { top: 10%; right: 25%;   font-size: 3.2rem; animation-duration: 3.8s; animation-delay: -1.7s; }
 @keyframes heroPop {
-  0%   { transform: translateY(0) scale(1) rotate(-5deg);      opacity: 0.4; }
+  0%   { transform: translateY(0) scale(1) rotate(-5deg);       opacity: 0.4; }
   100% { transform: translateY(-20px) scale(1.14) rotate(5deg); opacity: 0.75; }
 }
 
@@ -181,30 +183,55 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
 .section { position: relative; z-index: 1; padding: 110px 0; }
 .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
 
-/* ===== FADE ANIMATIONS — BULLETPROOF SYSTEM =====
-   Elements are ALWAYS VISIBLE in CSS.
-   JS adds .will-fade (hides) then .is-visible (shows).
-   If JS never runs → everything stays visible. ✓
-   If JS runs → beautiful scroll animations. ✓
-============================================= */
+/* ===== APPLE-STYLE FADE ANIMATIONS — BULLETPROOF SYSTEM =====
+   Philosophy: Mirror Apple's polished, fluid fade-in-with-rise.
+   Transitions use the classic Apple cubic-bezier(0.25,0.1,0.25,1).
+   Elements begin invisible (after JS marks them .will-fade),
+   with a subtle upward translateY and slight scale pull-back.
+   On scroll into view, .is-visible restores all to natural state.
+   
+   Key design decisions:
+   - scale(0.98) → scale(1): barely perceptible but adds "depth pop"
+   - translateY(30px) → 0: gentle rise feels premium vs aggressive 50px
+   - 0.6s duration: fast enough to feel snappy, slow enough to feel smooth
+   - cubic-bezier(0.25,0.1,0.25,1): Apple's standard ease curve
+   
+   Progressive enhancement guarantee:
+   CSS default = visible. JS adds .will-fade. JS adds .is-visible.
+   No JS = everything visible. Slow JS = viewport rAF pass catches it. ✓
+============================================================= */
 .fade-el {
-  /* visible by default — no opacity:0 here */
-  transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
-              transform 0.75s cubic-bezier(0.16,1,0.3,1);
+  /* Always visible by default — JS controls the hidden/shown states */
+  transition:
+    opacity    var(--fade-dur) var(--ease-apple),
+    transform  var(--fade-dur) var(--ease-apple),
+    scale      var(--fade-dur) var(--ease-apple);
+  will-change: opacity, transform, scale;
 }
-/* JS adds .will-fade to prepare the hidden state */
-.fade-el.will-fade              { opacity: 0; transform: translateY(50px); }
-.fade-el.will-fade.fade-left    { transform: translateX(-60px); }
-.fade-el.will-fade.fade-right   { transform: translateX(60px); }
-.fade-el.will-fade.fade-zoom    { transform: scale(0.85) translateY(20px); }
-/* JS adds .is-visible to animate in */
-.fade-el.is-visible             { opacity: 1 !important; transform: none !important; }
 
-/* Stagger delays for card grids */
+/* JS adds .will-fade to set the "before" state */
+.fade-el.will-fade {
+  opacity:   0;
+  transform: translateY(30px);
+  scale:     0.98;
+}
+/* Directional variants override the transform axis */
+.fade-el.will-fade.fade-left  { transform: translateX(-50px); scale: 0.98; }
+.fade-el.will-fade.fade-right { transform: translateX(50px);  scale: 0.98; }
+.fade-el.will-fade.fade-zoom  { transform: scale(0.92);       scale: 1; }
+
+/* JS adds .is-visible to animate to the natural "after" state */
+.fade-el.is-visible {
+  opacity:   1 !important;
+  transform: none !important;
+  scale:     1 !important;
+}
+
+/* Stagger delay utilities for card grids — applied by JS or HTML */
 .stagger-1 { transition-delay: 0.05s; }
-.stagger-2 { transition-delay: 0.15s; }
-.stagger-3 { transition-delay: 0.25s; }
-.stagger-4 { transition-delay: 0.35s; }
+.stagger-2 { transition-delay: 0.17s; }
+.stagger-3 { transition-delay: 0.29s; }
+.stagger-4 { transition-delay: 0.41s; }
 
 /* ===== SECTION HEADER ===== */
 .section-header { text-align: center; margin-bottom: 60px; }
@@ -260,6 +287,7 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
 .grade-badge.g6 { color: var(--green);  border-color: var(--green);  background: rgba(46,213,115,0.10); }
 .grade-badge.g7 { color: var(--cyan);   border-color: var(--cyan);   background: rgba(0,207,255,0.10); }
 .grade-badge.g8 { color: var(--yellow); border-color: var(--yellow); background: rgba(255,211,42,0.10); }
+
 .free-badge {
   display: inline-flex; align-items: center; gap: 6px;
   font-family: var(--font-display); font-size: 0.72rem; font-weight: 700;
@@ -326,7 +354,7 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
   font-family: var(--font-display); font-size: 0.83rem; font-weight: 800;
   letter-spacing: 0.06em; padding: 16px 32px; border-radius: 50px;
   text-decoration: none; border: none; cursor: pointer;
-  transition: transform 0.22s, box-shadow 0.22s;
+  transition: transform 0.22s var(--ease-apple), box-shadow 0.22s var(--ease-apple);
   box-shadow: 0 4px 30px rgba(0,245,212,0.38), var(--glow-teal);
   text-align: center;
 }
@@ -356,7 +384,7 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
   border-radius: 20px; padding: 32px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  transition: transform 0.3s var(--ease-apple), box-shadow 0.3s var(--ease-apple), border-color 0.3s;
   position: relative; overflow: hidden;
 }
 .glass-card::before {
@@ -412,7 +440,7 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
 .card-tag.pink   { color: var(--pink);   background: rgba(255,107,157,0.10); border-color: rgba(255,107,157,0.25); }
 .card-tag.yellow { color: var(--yellow); background: rgba(255,211,42,0.10);  border-color: rgba(255,211,42,0.25); }
 .card-tag.green  { color: var(--green);  background: rgba(46,213,115,0.10);  border-color: rgba(46,213,115,0.25); }
-.free-tag        { color: var(--green)  !important; background: rgba(46,213,115,0.10) !important; border-color: rgba(46,213,115,0.28) !important; }
+.free-tag { color: var(--green)  !important; background: rgba(46,213,115,0.10) !important; border-color: rgba(46,213,115,0.28) !important; }
 
 /* ===== PULLQUOTE ===== */
 .pullquote {
@@ -509,9 +537,6 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
 .journey-list li i { color: var(--teal); margin-top: 3px; flex-shrink: 0; }
 .journey-list li strong { color: var(--text-primary); font-weight: 600; }
 
-/* ===== SERVICES ===== */
-/* Cards handled by .cards-grid + .glass-card */
-
 /* ===== SUMMER SECTION ===== */
 .summer-intro { max-width: 780px; margin: 0 auto 44px; text-align: center; }
 .summer-intro p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.78; }
@@ -573,6 +598,17 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
 .contact-big-cta .btn-primary { word-break: break-word; white-space: normal; line-height: 1.35; max-width: 100%; }
 .contact-small { margin-top: 14px !important; font-size: 0.76rem !important; color: rgba(240,240,255,0.38) !important; margin-bottom: 0 !important; }
 
+/* ===== GRADE BANNER ===== */
+.grade-banner {
+  background: linear-gradient(135deg, rgba(0,245,212,0.08), rgba(124,58,237,0.08));
+  border: 1px solid rgba(0,245,212,0.18); border-radius: 16px;
+  padding: 20px 28px; margin-bottom: 56px;
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 16px;
+  text-align: center;
+}
+.grade-banner p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
+.grade-banner strong { color: var(--text-primary); }
+
 /* ===== FOOTER ===== */
 .site-footer { padding: 48px 32px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; position: relative; z-index: 2; }
 .footer-inner { max-width: 600px; margin: 0 auto; }
@@ -591,10 +627,9 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
 }
 
 /* ===== FUN EXTRAS ===== */
-/* Neon glow on hover for timeline badges */
 .timeline-badge:hover { transform: translateX(-50%) scale(1.15); }
 
-/* Animated gradient border on big CTA button */
+/* Animated gradient on big CTA buttons */
 .btn-primary.btn-xl {
   background: linear-gradient(135deg, var(--teal), var(--cyan), var(--purple), var(--pink));
   background-size: 300% 300%;
@@ -604,23 +639,6 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
   0%,100% { background-position: 0% 50%; }
   50%      { background-position: 100% 50%; }
 }
-
-/* "You're in the right place" section banner */
-.grade-banner {
-  background: linear-gradient(135deg, rgba(0,245,212,0.08), rgba(124,58,237,0.08));
-  border: 1px solid rgba(0,245,212,0.18); border-radius: 16px;
-  padding: 20px 28px; margin-bottom: 56px;
-  display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 16px;
-  text-align: center;
-}
-.grade-banner p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
-.grade-banner strong { color: var(--text-primary); }
-
-/* Emoji list style */
-.emoji-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 12px 0; }
-.emoji-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; }
-.emoji-list li span.em { flex-shrink: 0; font-size: 1.1rem; margin-top: 1px; }
-.emoji-list li strong  { color: var(--text-primary); font-weight: 600; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
@@ -662,6 +680,11 @@ body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba
   .hnote-3, .hnote-4 { display: none; }
   .about-grid { gap: 28px; }
   .grade-badges { gap: 8px; }
+  /* On mobile, stagger delays are shorter to keep things snappy */
+  .stagger-1 { transition-delay: 0.04s; }
+  .stagger-2 { transition-delay: 0.10s; }
+  .stagger-3 { transition-delay: 0.16s; }
+  .stagger-4 { transition-delay: 0.22s; }
 }
 @media (max-width: 480px) {
   .hero-title { font-size: 2.4rem; }
