@@ -1,838 +1,510 @@
 /* ============================================
-   ARNAV CHOUKSEY FLUTE ACADEMY — styles.css
-   Neon · Energetic · Built for Middle Schoolers
+   ARNAV CHOUKSEY FLUTE ACADEMY — script.js
+   Apple-smooth · Bulletproof · Grade-aware
    ============================================ */
 
-/* ===== CSS VARIABLES ===== */
-:root {
-  --teal:     #00f5d4;
-  --cyan:     #00cfff;
-  --purple:   #7c3aed;
-  --pink:     #ff6b9d;
-  --yellow:   #ffd32a;
-  --green:    #2ed573;
-  --orange:   #ff6348;
-  --deep:     #07071a;
-  --card-bg:  rgba(255,255,255,0.05);
-  --card-border: rgba(255,255,255,0.10);
-  --text-primary: #f0f0ff;
-  --text-muted: rgba(240,240,255,0.65);
-  --font-display: 'Bricolage Grotesque', sans-serif;
-  --font-body:    'Figtree', sans-serif;
-  --nav-h: 70px;
-  --glow-teal:   0 0 30px rgba(0,245,212,0.4);
-  --glow-pink:   0 0 30px rgba(255,107,157,0.4);
-  --glow-purple: 0 0 30px rgba(124,58,237,0.4);
-  /* Apple ease curve */
-  --ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
-  --fade-dur: 0.6s;
-}
+(function () {
+  'use strict';
 
-/* ===== RESET ===== */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  /* ===================================================
+     1. SMOOTH SCROLL + EMAIL-CTA BOTTOM SCROLL
+     ─────────────────────────────────────────────────
+     Regular anchors → scroll to section top (offset for
+     fixed navbar + ticker bar).
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: var(--nav-h);
-  font-size: 16px;
-  text-rendering: optimizeLegibility;
-  -webkit-text-size-adjust: 100%;
-}
+     .email-cta anchors → do the section scroll first,
+     then after 520 ms (enough for the smooth scroll to
+     settle) continue all the way to the absolute bottom
+     of the page, so the email addresses and big CTA
+     button are always fully in view.
 
-body {
-  font-family: var(--font-body);
-  color: var(--text-primary);
-  background: var(--deep);
-  overflow-x: hidden;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: background 1s ease;
-}
-
-/* ===== BACKGROUND STATES ===== */
-body.bg-hero     { background: radial-gradient(ellipse 90% 70% at 50% 0%,   rgba(0,245,212,0.22) 0%, transparent 65%), radial-gradient(ellipse 60% 40% at 85% 50%, rgba(0,207,255,0.12) 0%, transparent 60%), linear-gradient(170deg,#060618 0%,#0a1024 55%,#060e1a 100%); }
-body.bg-about    { background: radial-gradient(ellipse 80% 60% at 15% 40%,  rgba(124,58,237,0.22) 0%, transparent 65%), radial-gradient(ellipse 50% 40% at 85% 70%, rgba(0,245,212,0.10) 0%, transparent 55%), linear-gradient(160deg,#080618 0%,#0d0824 60%,#08091a 100%); }
-body.bg-why      { background: radial-gradient(ellipse 75% 55% at 75% 25%,  rgba(255,107,157,0.18) 0%, transparent 65%), radial-gradient(ellipse 55% 40% at 15% 65%, rgba(79,70,229,0.16) 0%, transparent 55%), linear-gradient(155deg,#090616 0%,#10081f 60%,#080612 100%); }
-body.bg-journey  { background: radial-gradient(ellipse 70% 55% at 50% 45%,  rgba(0,207,255,0.16) 0%, transparent 65%), radial-gradient(ellipse 45% 35% at 85% 15%, rgba(124,58,237,0.14) 0%, transparent 55%), linear-gradient(165deg,#05101a 0%,#080f1e 55%,#060a10 100%); }
-body.bg-services { background: radial-gradient(ellipse 70% 55% at 25% 50%,  rgba(0,245,212,0.18) 0%, transparent 65%), radial-gradient(ellipse 50% 40% at 80% 25%, rgba(0,207,255,0.14) 0%, transparent 55%), linear-gradient(170deg,#041218 0%,#06141f 55%,#030f12 100%); }
-body.bg-tutorials{ background: radial-gradient(ellipse 70% 50% at 65% 40%,  rgba(79,70,229,0.20) 0%, transparent 65%), radial-gradient(ellipse 50% 35% at 10% 65%, rgba(255,107,157,0.12) 0%, transparent 55%), linear-gradient(160deg,#080618 0%,#0b091f 55%,#07060f 100%); }
-body.bg-summer   { background: radial-gradient(ellipse 75% 55% at 50% 30%,  rgba(255,211,42,0.12) 0%, transparent 65%),  radial-gradient(ellipse 55% 40% at 15% 70%, rgba(0,245,212,0.14) 0%, transparent 60%), linear-gradient(168deg,#060f14 0%,#0a1118 55%,#040c10 100%); }
-body.bg-contact  { background: radial-gradient(ellipse 80% 65% at 50% 20%,  rgba(124,58,237,0.22) 0%, transparent 65%), radial-gradient(ellipse 55% 45% at 80% 75%, rgba(255,107,157,0.14) 0%, transparent 60%), linear-gradient(162deg,#090618 0%,#0f0a24 55%,#080614 100%); }
-
-/* ===== ACHIEVEMENT TICKER ===== */
-.ticker-wrap {
-  width: 100%;
-  background: linear-gradient(90deg, rgba(0,245,212,0.15), rgba(124,58,237,0.15));
-  border-bottom: 1px solid rgba(0,245,212,0.2);
-  overflow: hidden;
-  padding: 10px 0;
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1001;
-}
-.ticker-inner {
-  display: flex;
-  white-space: nowrap;
-  animation: tickerScroll 28s linear infinite;
-}
-.ticker-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--teal);
-  padding: 0 40px;
-}
-.ticker-item .dot { color: var(--pink); font-size: 1rem; }
-@keyframes tickerScroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* ===== GLOBAL FLOATING NOTES ===== */
-.global-notes { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-.gnote {
-  position: absolute;
-  color: rgba(0,245,212,0.06);
-  animation: floatNote linear infinite;
-  user-select: none;
-}
-.gnote-1  { left: 5%;  font-size: 1.8rem; animation-duration: 28s; animation-delay: 0s;   }
-.gnote-2  { left: 12%; font-size: 2.4rem; animation-duration: 35s; animation-delay: -5s;  }
-.gnote-3  { left: 22%; font-size: 1.5rem; animation-duration: 22s; animation-delay: -10s; }
-.gnote-4  { left: 35%; font-size: 3rem;   animation-duration: 40s; animation-delay: -3s;  }
-.gnote-5  { left: 50%; font-size: 1.8rem; animation-duration: 30s; animation-delay: -15s; }
-.gnote-6  { left: 62%; font-size: 2.2rem; animation-duration: 26s; animation-delay: -8s;  }
-.gnote-7  { left: 74%; font-size: 1.6rem; animation-duration: 33s; animation-delay: -2s;  }
-.gnote-8  { left: 84%; font-size: 2.6rem; animation-duration: 38s; animation-delay: -12s; }
-.gnote-9  { left: 93%; font-size: 2rem;   animation-duration: 24s; animation-delay: -6s;  }
-@keyframes floatNote {
-  0%   { transform: translateY(110vh) rotate(0deg);   opacity: 0; }
-  5%   { opacity: 1; }
-  95%  { opacity: 1; }
-  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-}
-
-/* ===== HERO NOTES ===== */
-.hero-notes { position: absolute; inset: 0; pointer-events: none; z-index: 3; overflow: hidden; }
-.hnote { position: absolute; color: rgba(255,255,255,0.5); animation: heroPop ease-in-out infinite alternate; user-select: none; }
-.hnote-1 { top: 15%; left: 8%;     font-size: 3.5rem; animation-duration: 3.2s; animation-delay: 0s;    }
-.hnote-2 { top: 30%; right: 9%;    font-size: 4rem;   animation-duration: 4.0s; animation-delay: -1.2s; }
-.hnote-3 { top: 55%; left: 4%;     font-size: 3rem;   animation-duration: 3.5s; animation-delay: -2.1s; }
-.hnote-4 { bottom: 20%; right: 6%; font-size: 4.5rem; animation-duration: 4.5s; animation-delay: -0.8s; }
-.hnote-5 { top: 10%; right: 25%;   font-size: 3.2rem; animation-duration: 3.8s; animation-delay: -1.7s; }
-@keyframes heroPop {
-  0%   { transform: translateY(0) scale(1) rotate(-5deg);       opacity: 0.4; }
-  100% { transform: translateY(-20px) scale(1.14) rotate(5deg); opacity: 0.75; }
-}
-
-/* ===== NAVBAR ===== */
-#navbar {
-  position: fixed;
-  top: 36px; left: 0; right: 0;
-  height: var(--nav-h);
-  z-index: 1000;
-  background: rgba(7,7,26,0.75);
-  backdrop-filter: blur(22px) saturate(200%);
-  -webkit-backdrop-filter: blur(22px) saturate(200%);
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-  transition: background 0.4s, top 0.3s;
-}
-.nav-inner {
-  max-width: 1280px; margin: 0 auto; height: 100%;
-  padding: 0 24px;
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-}
-.nav-logo {
-  display: flex; align-items: center; gap: 10px;
-  text-decoration: none; color: var(--text-primary);
-  font-family: var(--font-display); font-weight: 700; font-size: 0.9rem;
-  flex-shrink: 0; white-space: nowrap; letter-spacing: -0.01em;
-}
-.nav-logo-icon { color: var(--teal); font-size: 1.1rem; }
-.spinning-icon      { animation: spinIcon 8s  linear infinite; }
-.spinning-icon-slow { animation: spinIcon 14s linear infinite; }
-@keyframes spinIcon { to { transform: rotate(360deg); } }
-
-.nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
-.nav-links a {
-  color: var(--text-muted); text-decoration: none;
-  font-size: 0.79rem; font-weight: 500; padding: 7px 10px;
-  border-radius: 8px; transition: color 0.2s, background 0.2s; white-space: nowrap;
-}
-.nav-links a:hover { color: var(--teal); background: rgba(0,245,212,0.08); }
-.nav-cta-btn {
-  background: linear-gradient(135deg, var(--teal), var(--cyan)) !important;
-  color: #021014 !important; font-weight: 700 !important;
-  border-radius: 22px !important; padding: 8px 16px !important; font-size: 0.8rem !important;
-}
-.nav-cta-btn:hover { opacity: 0.85 !important; }
-
-.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-.hamburger span { display: block; width: 26px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-/* ===== LAYOUT ===== */
-.section { position: relative; z-index: 1; padding: 110px 0; }
-.container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
-
-/* ===== APPLE-STYLE FADE ANIMATIONS — BULLETPROOF SYSTEM =====
-   Elements visible by default. JS adds .will-fade (hides) then
-   .is-visible (animates in with Apple's cubic-bezier ease).
-   scale(0.98)→scale(1) adds a subtle depth-pop. No JS = all visible. ✓
-============================================================= */
-.fade-el {
-  transition:
-    opacity    var(--fade-dur) var(--ease-apple),
-    transform  var(--fade-dur) var(--ease-apple),
-    scale      var(--fade-dur) var(--ease-apple);
-  will-change: opacity, transform, scale;
-}
-.fade-el.will-fade              { opacity: 0; transform: translateY(30px); scale: 0.98; }
-.fade-el.will-fade.fade-left    { transform: translateX(-50px); scale: 0.98; }
-.fade-el.will-fade.fade-right   { transform: translateX(50px);  scale: 0.98; }
-.fade-el.will-fade.fade-zoom    { transform: scale(0.92); scale: 1; }
-.fade-el.is-visible             { opacity: 1 !important; transform: none !important; scale: 1 !important; }
-
-/* Stagger delay utilities */
-.stagger-1 { transition-delay: 0.05s; }
-.stagger-2 { transition-delay: 0.17s; }
-.stagger-3 { transition-delay: 0.29s; }
-.stagger-4 { transition-delay: 0.41s; }
-
-/* ===== SECTION HEADER ===== */
-.section-header { text-align: center; margin-bottom: 60px; }
-.section-tag {
-  display: inline-block;
-  font-family: var(--font-display); font-size: 0.68rem; font-weight: 700;
-  letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--teal); background: rgba(0,245,212,0.10);
-  border: 1px solid rgba(0,245,212,0.22);
-  padding: 6px 16px; border-radius: 20px; margin-bottom: 20px;
-}
-.section-header h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  font-weight: 800; line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 18px;
-}
-.section-intro {
-  font-size: 1.0rem; color: var(--text-muted);
-  max-width: 620px; margin: 0 auto; line-height: 1.72;
-}
-
-/* ===== ACCENT TEXT ===== */
-.accent-text {
-  background: linear-gradient(135deg, var(--teal) 0%, var(--cyan) 40%, var(--pink) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.accent-yellow {
-  background: linear-gradient(135deg, var(--yellow), var(--orange));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-
-/* ===== HERO ===== */
-.hero-section {
-  min-height: 100vh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center;
-  padding: calc(var(--nav-h) + 80px) 32px 80px;
-  position: relative; overflow: hidden;
-}
-.hero-content { position: relative; z-index: 4; max-width: 880px; }
-
-/* Grade badges row */
-.grade-badges {
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  margin-bottom: 24px; flex-wrap: wrap;
-}
-.grade-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-family: var(--font-display); font-size: 0.76rem; font-weight: 800;
-  letter-spacing: 0.05em; text-transform: uppercase;
-  padding: 7px 16px; border-radius: 30px; border: 2px solid;
-}
-.grade-badge.g6 { color: var(--green);  border-color: var(--green);  background: rgba(46,213,115,0.10); }
-.grade-badge.g7 { color: var(--cyan);   border-color: var(--cyan);   background: rgba(0,207,255,0.10); }
-.grade-badge.g8 { color: var(--yellow); border-color: var(--yellow); background: rgba(255,211,42,0.10); }
-
-.free-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-family: var(--font-display); font-size: 0.72rem; font-weight: 700;
-  letter-spacing: 0.10em; text-transform: uppercase;
-  color: var(--teal); background: rgba(0,245,212,0.10);
-  border: 1px solid rgba(0,245,212,0.25);
-  padding: 9px 22px; border-radius: 30px; margin-bottom: 28px;
-  animation: pulseBadge 3s ease-in-out infinite;
-}
-@keyframes pulseBadge {
-  0%,100% { box-shadow: 0 0 0 0 rgba(0,245,212,0.3); }
-  50%      { box-shadow: 0 0 0 12px rgba(0,245,212,0); }
-}
-
-.hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.8rem, 9vw, 6.5rem);
-  font-weight: 800; line-height: 1.0; letter-spacing: -0.03em;
-  margin-bottom: 28px;
-}
-.hero-sub {
-  font-size: clamp(0.95rem, 1.8vw, 1.08rem);
-  color: var(--text-muted); line-height: 1.75;
-  max-width: 700px; margin: 0 auto 14px;
-}
-.hero-sub strong { color: var(--text-primary); font-weight: 600; }
-.hero-sub em     { color: var(--teal); font-style: normal; font-weight: 600; }
-.hero-sub-2      { margin-bottom: 38px; }
-
-.hero-cta-group { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-bottom: 52px; }
-
-/* Stats */
-.hero-stats {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.09);
-  border-radius: 18px; padding: 20px 32px;
-  backdrop-filter: blur(14px);
-}
-.stat { display: flex; flex-direction: column; align-items: center; padding: 8px 28px; }
-.stat-num {
-  font-family: var(--font-display); font-size: 1.8rem; font-weight: 800;
-  color: var(--teal); line-height: 1; margin-bottom: 5px; letter-spacing: -0.02em;
-}
-.stat-label { font-size: 0.74rem; color: var(--text-muted); font-weight: 500; white-space: nowrap; }
-.stat-divider { width: 1px; height: 42px; background: rgba(255,255,255,0.10); }
-
-.scroll-hint {
-  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  color: var(--text-muted); font-size: 0.70rem; letter-spacing: 0.12em; text-transform: uppercase;
-}
-.bounce { animation: bounceDown 2s ease-in-out infinite; }
-@keyframes bounceDown {
-  0%,100% { transform: translateY(0); }
-  50%      { transform: translateY(7px); }
-}
-
-/* ===== BUTTONS ===== */
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: linear-gradient(135deg, var(--teal) 0%, var(--cyan) 100%);
-  color: #021014;
-  font-family: var(--font-display); font-size: 0.83rem; font-weight: 800;
-  letter-spacing: 0.06em; padding: 16px 32px; border-radius: 50px;
-  text-decoration: none; border: none; cursor: pointer;
-  transition: transform 0.22s var(--ease-apple), box-shadow 0.22s var(--ease-apple);
-  box-shadow: 0 4px 30px rgba(0,245,212,0.38), var(--glow-teal);
-  text-align: center;
-}
-.btn-primary:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 10px 50px rgba(0,245,212,0.55), var(--glow-teal);
-}
-.btn-primary:active { transform: scale(0.97); }
-.btn-xl { font-size: 0.96rem; padding: 20px 42px; }
-
-.btn-ghost {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.16);
-  color: var(--text-primary);
-  font-family: var(--font-display); font-size: 0.83rem; font-weight: 600;
-  letter-spacing: 0.04em; padding: 15px 28px; border-radius: 50px;
-  text-decoration: none; cursor: pointer;
-  transition: background 0.22s, transform 0.22s;
-  backdrop-filter: blur(8px);
-}
-.btn-ghost:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
-
-/* ===== GLASS CARDS ===== */
-.glass-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 20px; padding: 32px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: transform 0.3s var(--ease-apple), box-shadow 0.3s var(--ease-apple), border-color 0.3s;
-  position: relative; overflow: hidden;
-}
-.glass-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0,245,212,0.4), transparent);
-  opacity: 0; transition: opacity 0.3s;
-}
-.glass-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 60px rgba(0,0,0,0.45), 0 0 40px rgba(0,245,212,0.08);
-  border-color: rgba(0,245,212,0.25);
-}
-.glass-card:hover::before { opacity: 1; }
-
-/* Colored accent strips */
-.card-accent-teal   { border-left: 3px solid var(--teal) !important; }
-.card-accent-pink   { border-left: 3px solid var(--pink) !important; }
-.card-accent-yellow { border-left: 3px solid var(--yellow) !important; }
-.card-accent-purple { border-left: 3px solid var(--purple) !important; }
-.card-accent-green  { border-left: 3px solid var(--green) !important; }
-
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 22px;
-}
-
-/* Card icon */
-.card-icon {
-  width: 54px; height: 54px; border-radius: 14px;
-  background: linear-gradient(135deg, rgba(0,245,212,0.15), rgba(0,207,255,0.10));
-  border: 1px solid rgba(0,245,212,0.22);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 18px; font-size: 1.5rem; color: var(--teal);
-}
-.glass-card h3 {
-  font-family: var(--font-display); font-size: 1.05rem; font-weight: 700;
-  margin-bottom: 10px; color: var(--text-primary); line-height: 1.25; letter-spacing: -0.01em;
-}
-.glass-card p {
-  font-size: 0.9rem; color: var(--text-muted); line-height: 1.72; margin-bottom: 10px;
-}
-.glass-card p:last-of-type { margin-bottom: 0; }
-
-/* Tags */
-.card-tag {
-  display: inline-block; margin-top: 16px;
-  font-family: var(--font-display); font-size: 0.64rem; font-weight: 800;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--teal); background: rgba(0,245,212,0.10);
-  border: 1px solid rgba(0,245,212,0.22); padding: 4px 12px; border-radius: 12px;
-}
-.card-tag.pink   { color: var(--pink);   background: rgba(255,107,157,0.10); border-color: rgba(255,107,157,0.25); }
-.card-tag.yellow { color: var(--yellow); background: rgba(255,211,42,0.10);  border-color: rgba(255,211,42,0.25); }
-.card-tag.green  { color: var(--green);  background: rgba(46,213,115,0.10);  border-color: rgba(46,213,115,0.25); }
-.free-tag { color: var(--green) !important; background: rgba(46,213,115,0.10) !important; border-color: rgba(46,213,115,0.28) !important; }
-
-/* ===== PULLQUOTE ===== */
-.pullquote {
-  font-family: var(--font-display) !important;
-  font-size: 1.08rem !important; font-style: italic; font-weight: 700;
-  color: var(--teal) !important;
-  border-left: 3px solid var(--teal);
-  padding: 6px 0 6px 20px; margin: 24px 0 !important; line-height: 1.55 !important;
-}
-
-/* ===== ABOUT SECTION ===== */
-.about-grid { display: grid; grid-template-columns: 320px 1fr; gap: 56px; align-items: start; }
-.photo-frame {
-  position: relative; border-radius: 22px; overflow: hidden;
-  border: 2px solid rgba(0,245,212,0.28);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5), var(--glow-teal);
-  aspect-ratio: 3/4; max-height: 370px;
-}
-.photo-placeholder {
-  width: 100%; height: 100%;
-  background: linear-gradient(135deg, rgba(0,245,212,0.12), rgba(124,58,237,0.20));
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 14px; min-height: 300px;
-}
-.photo-icon { font-size: 4rem; color: rgba(0,245,212,0.5); }
-.photo-placeholder span { font-family: var(--font-display); font-size: 0.88rem; color: var(--text-muted); }
-.photo-badge {
-  position: absolute; bottom: 14px; right: 14px;
-  background: linear-gradient(135deg, var(--teal), var(--cyan));
-  color: #021014; font-family: var(--font-display); font-size: 0.70rem; font-weight: 800;
-  padding: 6px 14px; border-radius: 20px;
-}
-.about-accolades { margin-top: 18px; display: flex; flex-direction: column; gap: 9px; }
-.accolade {
-  display: flex; align-items: center; gap: 11px;
-  font-size: 0.87rem; font-weight: 500; color: var(--text-muted);
-  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 10px; padding: 10px 14px;
-}
-.accolade i { color: var(--teal); font-size: 0.88rem; width: 16px; flex-shrink: 0; }
-.about-text-col h2 {
-  font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.8rem);
-  font-weight: 800; margin: 14px 0 20px; line-height: 1.1; letter-spacing: -0.025em;
-}
-.about-text-col p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.76; margin-bottom: 14px; }
-.about-text-col p strong { color: var(--text-primary); font-weight: 600; }
-.about-text-col p em     { color: var(--teal); font-style: normal; font-weight: 600; }
-
-/* ===== WHY FREE ===== */
-.why-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
-.why-icon {
-  width: 50px; height: 50px; border-radius: 14px;
-  background: linear-gradient(135deg, rgba(255,107,157,0.15), rgba(124,58,237,0.12));
-  border: 1px solid rgba(255,107,157,0.22);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem; color: var(--pink); margin-bottom: 18px;
-}
-
-/* ===== TIMELINE ===== */
-.timeline {
-  position: relative; max-width: 920px; margin: 0 auto;
-  display: flex; flex-direction: column; gap: 38px;
-}
-.timeline::before {
-  content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--teal), var(--purple), var(--pink), transparent);
-  transform: translateX(-50%);
-}
-.timeline-item { display: flex; justify-content: flex-start; position: relative; padding-left: calc(50% + 46px); }
-.timeline-right { justify-content: flex-end; padding-left: 0; padding-right: calc(50% + 46px); }
-.timeline-badge {
-  position: absolute; left: 50%; transform: translateX(-50%);
-  width: 50px; height: 50px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--teal), var(--cyan));
-  color: #021014; font-family: var(--font-display); font-size: 0.8rem; font-weight: 800;
-  display: flex; align-items: center; justify-content: center;
-  z-index: 2; box-shadow: 0 0 22px rgba(0,245,212,0.4), var(--glow-teal);
-  top: 18px;
-}
-.timeline-badge:hover { transform: translateX(-50%) scale(1.15); }
-.timeline-content { width: 100%; max-width: 420px; }
-.timeline-content h3 {
-  font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;
-  margin-bottom: 12px; color: var(--text-primary); letter-spacing: -0.01em; line-height: 1.28;
-}
-.timeline-content p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.74; margin-bottom: 11px; }
-.timeline-content p strong { color: var(--text-primary); font-weight: 600; }
-.timeline-content p em     { color: var(--teal); font-style: normal; font-weight: 600; }
-.journey-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 12px 0; }
-.journey-list li {
-  display: flex; align-items: flex-start; gap: 12px;
-  font-size: 0.88rem; color: var(--text-muted); line-height: 1.68;
-}
-.journey-list li i { color: var(--teal); margin-top: 3px; flex-shrink: 0; }
-.journey-list li strong { color: var(--text-primary); font-weight: 600; }
-
-/* ===== UNLOCK BOXES (journey) ===== */
-/*
-  Visual callout inside timeline items that communicates
-  what each grade's mastery "unlocks" in a concrete, motivating way.
-  Uses a lock-open icon + horizontal achievement chain.
-*/
-.unlock-box {
-  margin-top: 16px;
-  background: rgba(0,245,212,0.07);
-  border: 1px solid rgba(0,245,212,0.20);
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-size: 0.80rem;
-  color: var(--text-muted);
-  line-height: 1.60;
-}
-.unlock-box-blue {
-  background: rgba(0,207,255,0.07);
-  border-color: rgba(0,207,255,0.22);
-}
-.unlock-box-gold {
-  background: rgba(255,211,42,0.07);
-  border-color: rgba(255,211,42,0.22);
-}
-.unlock-label {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 0.66rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--teal);
-  margin-bottom: 6px;
-}
-.unlock-box-blue .unlock-label  { color: var(--cyan); }
-.unlock-box-gold .unlock-label  { color: var(--yellow); }
-
-/* ===== GRADE-SPECIFIC PLANS (services section) ===== */
-/*
-  Three-column grid of "grade plan" cards appearing below the
-  main service cards. Each card is styled for its grade:
-  6th = green accent, 7th = teal/cyan, 8th = yellow/gold.
-  Includes a checklist and an "Unlocks" callout at the bottom.
-*/
-.grade-plans-header {
-  text-align: center;
-  margin: 64px 0 32px;
-  padding-top: 48px;
-  border-top: 1px solid rgba(255,255,255,0.07);
-}
-
-.grade-plans-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 22px;
-}
-
-.grade-plan-card {
-  /* Inherits .glass-card structure; override p margin for tighter list layout */
-  padding: 28px 26px 24px;
-}
-
-.grade-plan-badge {
-  display: inline-flex; align-items: center;
-  font-family: var(--font-display); font-size: 0.72rem; font-weight: 800;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  padding: 6px 14px; border-radius: 30px; border: 2px solid;
-  margin-bottom: 8px;
-}
-/* Reuse existing grade color tokens */
-.grade-plan-badge.g6 { color: var(--green);  border-color: var(--green);  background: rgba(46,213,115,0.12); }
-.grade-plan-badge.g7 { color: var(--cyan);   border-color: var(--cyan);   background: rgba(0,207,255,0.12);  }
-.grade-plan-badge.g8 { color: var(--yellow); border-color: var(--yellow); background: rgba(255,211,42,0.12); }
-
-.plan-subtitle {
-  font-size: 0.76rem; color: var(--text-muted);
-  font-style: italic; margin-bottom: 18px; line-height: 1.4;
-}
-
-.plan-list {
-  list-style: none;
-  display: flex; flex-direction: column; gap: 11px;
-  margin-bottom: 20px;
-}
-.plan-list li {
-  display: flex; align-items: flex-start; gap: 10px;
-  font-size: 0.85rem; color: var(--text-muted); line-height: 1.60;
-}
-.plan-list li i {
-  color: var(--teal); font-size: 0.85rem; margin-top: 2px; flex-shrink: 0;
-}
-.plan-list li span strong { color: var(--text-primary); font-weight: 600; }
-
-/* Colour the check icons per-grade card */
-.card-accent-green .plan-list li i  { color: var(--green); }
-.card-accent-yellow .plan-list li i { color: var(--yellow); }
-
-.plan-unlock {
-  display: flex; align-items: flex-start; gap: 10px;
-  background: rgba(0,245,212,0.06);
-  border: 1px solid rgba(0,245,212,0.18);
-  border-radius: 10px;
-  padding: 11px 14px;
-  font-size: 0.79rem; color: var(--text-muted); line-height: 1.58;
-}
-.plan-unlock i {
-  color: var(--teal); font-size: 0.9rem; margin-top: 2px; flex-shrink: 0;
-}
-.card-accent-green  .plan-unlock { background: rgba(46,213,115,0.07);  border-color: rgba(46,213,115,0.20);  }
-.card-accent-green  .plan-unlock i { color: var(--green); }
-.card-accent-yellow .plan-unlock { background: rgba(255,211,42,0.07);  border-color: rgba(255,211,42,0.20);  }
-.card-accent-yellow .plan-unlock i { color: var(--yellow); }
-
-/* ===== GRADE RELEVANCE TAGS (tutorials) ===== */
-/*
-  Small inline pills inside tutorial cards showing
-  which grades benefit most from that guide.
-  Appear above the card h3 in a flex row.
-*/
-.grade-relevance-row {
-  display: flex; flex-wrap: wrap; gap: 6px;
-  margin-bottom: 12px;
-}
-.grade-relevance {
-  display: inline-flex; align-items: center;
-  font-family: var(--font-display); font-size: 0.60rem; font-weight: 800;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  padding: 3px 10px; border-radius: 20px; border: 1px solid;
-}
-.grade-relevance.gr-6 { color: var(--green);  border-color: rgba(46,213,115,0.35);  background: rgba(46,213,115,0.08); }
-.grade-relevance.gr-7 { color: var(--cyan);   border-color: rgba(0,207,255,0.35);   background: rgba(0,207,255,0.08);  }
-.grade-relevance.gr-8 { color: var(--yellow); border-color: rgba(255,211,42,0.35);  background: rgba(255,211,42,0.08); }
-
-/* ===== SUMMER GRADE NOTE (inside pillars) ===== */
-/*
-  Visual sub-block inside the "Daily Practice" pillar
-  showing the exact grade-specific time splits.
-  Three rows, colour-coded green/blue/gold by grade.
-*/
-.summer-grade-note {
-  margin-top: 16px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 12px;
-  overflow: hidden;
-}
-.sgn-row {
-  padding: 9px 14px;
-  font-size: 0.78rem;
-  line-height: 1.5;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-.sgn-row:last-child { border-bottom: none; }
-.sgn-row strong     { font-weight: 700; }
-.sgn-green { color: rgba(46,213,115,0.90); }
-.sgn-blue  { color: rgba(0,207,255,0.85); }
-.sgn-gold  { color: rgba(255,211,42,0.85); }
-
-/* ===== SUMMER SECTION ===== */
-.summer-intro { max-width: 780px; margin: 0 auto 44px; text-align: center; }
-.summer-intro p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.78; }
-.summer-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 22px; margin-bottom: 52px; }
-.pillar { position: relative; }
-.pillar-number {
-  font-family: var(--font-display); font-size: 3.8rem; font-weight: 800;
-  color: rgba(0,245,212,0.08); position: absolute; top: 10px; right: 18px;
-  line-height: 1; user-select: none;
-}
-.pillar-icon {
-  width: 50px; height: 50px; border-radius: 14px;
-  background: linear-gradient(135deg, rgba(0,245,212,0.15), rgba(0,207,255,0.10));
-  border: 1px solid rgba(0,245,212,0.22);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem; color: var(--teal); margin-bottom: 18px;
-}
-.pillar h3 { font-family: var(--font-display); font-size: 1.08rem; font-weight: 700; margin-bottom: 12px; color: var(--text-primary); letter-spacing: -0.01em; }
-.pillar p  { font-size: 0.88rem; color: var(--text-muted); line-height: 1.74; margin-bottom: 10px; }
-.pillar p strong { color: var(--text-primary); font-weight: 600; }
-.pillar p em     { color: var(--teal); font-style: normal; }
-.summer-cta { text-align: center; }
-.summer-cta .pullquote {
-  border: none; padding: 0;
-  font-size: 1.32rem !important; margin-bottom: 32px !important;
-  text-align: center; max-width: 660px;
-  margin-left: auto !important; margin-right: auto !important;
-}
-
-/* ===== CONTACT ===== */
-.contact-content { display: grid; grid-template-columns: 1fr 1fr; gap: 38px; align-items: start; }
-.contact-story h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 18px; letter-spacing: -0.015em; }
-.contact-story p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.78; margin-bottom: 14px; }
-.contact-story p strong { color: var(--text-primary); font-weight: 600; }
-.contact-methods { display: flex; flex-direction: column; gap: 22px; }
-.contact-card    { display: flex; flex-direction: column; gap: 11px; }
-.contact-icon {
-  width: 46px; height: 46px; border-radius: 12px;
-  background: linear-gradient(135deg, rgba(124,58,237,0.18), rgba(255,107,157,0.12));
-  border: 1px solid rgba(124,58,237,0.25);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.15rem; color: var(--pink);
-}
-.contact-card h3 { font-family: var(--font-display); font-size: 1.02rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; }
-.contact-card p  { font-size: 0.9rem; color: var(--text-muted); line-height: 1.68; }
-.contact-email-link {
-  display: inline-block; font-family: var(--font-display); font-size: 0.90rem; font-weight: 600;
-  color: var(--teal); text-decoration: none;
-  background: rgba(0,245,212,0.07); border: 1px solid rgba(0,245,212,0.18);
-  padding: 11px 18px; border-radius: 10px;
-  transition: background 0.2s, transform 0.2s; word-break: break-all;
-}
-.contact-email-link:hover { background: rgba(0,245,212,0.14); transform: translateX(4px); }
-.contact-note { font-size: 0.76rem !important; color: rgba(240,240,255,0.45) !important; font-style: italic; }
-.contact-big-cta {
-  text-align: center; padding: 34px;
-  background: rgba(255,255,255,0.03); border: 1px solid rgba(0,245,212,0.15); border-radius: 20px;
-}
-.contact-big-cta p { font-size: 0.93rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 22px; }
-.contact-big-cta .btn-primary { word-break: break-word; white-space: normal; line-height: 1.35; max-width: 100%; }
-.contact-small { margin-top: 14px !important; font-size: 0.76rem !important; color: rgba(240,240,255,0.38) !important; margin-bottom: 0 !important; }
-
-/* ===== GRADE BANNER ===== */
-.grade-banner {
-  background: linear-gradient(135deg, rgba(0,245,212,0.08), rgba(124,58,237,0.08));
-  border: 1px solid rgba(0,245,212,0.18); border-radius: 16px;
-  padding: 20px 28px; margin-bottom: 56px;
-  display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 16px;
-  text-align: center;
-}
-.grade-banner p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
-.grade-banner strong { color: var(--text-primary); }
-
-/* ===== FOOTER ===== */
-.site-footer { padding: 48px 32px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; position: relative; z-index: 2; }
-.footer-inner { max-width: 600px; margin: 0 auto; }
-.footer-logo { display: flex; align-items: center; justify-content: center; gap: 10px; font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; }
-.footer-logo i { color: var(--teal); }
-.footer-tagline { font-size: 0.86rem; color: var(--text-muted); margin-bottom: 8px; }
-.footer-copy    { font-size: 0.74rem; color: rgba(240,240,255,0.32); }
-
-/* ===== CONFETTI ===== */
-#confetti-container { position: fixed; inset: 0; pointer-events: none; z-index: 9999; overflow: hidden; }
-.confetti-piece { position: absolute; top: -30px; font-size: 1.4rem; animation: confettiFall linear forwards; user-select: none; pointer-events: none; }
-@keyframes confettiFall {
-  0%   { transform: translateY(0) rotate(0deg) scale(0.6); opacity: 1; }
-  80%  { opacity: 1; }
-  100% { transform: translateY(110vh) rotate(720deg) scale(1); opacity: 0; }
-}
-
-/* ===== FUN EXTRAS ===== */
-/* Animated gradient on big CTA buttons */
-.btn-primary.btn-xl {
-  background: linear-gradient(135deg, var(--teal), var(--cyan), var(--purple), var(--pink));
-  background-size: 300% 300%;
-  animation: shiftGradient 4s ease infinite;
-}
-@keyframes shiftGradient {
-  0%,100% { background-position: 0% 50%; }
-  50%      { background-position: 100% 50%; }
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 1024px) {
-  .about-grid { grid-template-columns: 1fr; }
-  .photo-frame { max-width: 300px; margin: 0 auto; }
-  .about-accolades { max-width: 300px; margin: 14px auto 0; }
-  .contact-content { grid-template-columns: 1fr; }
-  .timeline::before { left: 26px; }
-  .timeline-item { padding-left: 76px; }
-  .timeline-right { padding-right: 0; padding-left: 76px; }
-  .timeline-badge { left: 26px; top: 14px; width: 44px; height: 44px; font-size: 0.70rem; }
-  .timeline-content { max-width: 100%; }
-  .grade-plans-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 768px) {
-  :root { --nav-h: 62px; }
-  .ticker-wrap { padding: 8px 0; }
-  .ticker-item { font-size: 0.65rem; padding: 0 28px; }
-  #navbar { top: 33px; }
-  .hamburger { display: flex; }
-  .nav-links {
-    display: none; position: fixed; top: calc(33px + var(--nav-h));
-    left: 0; right: 0; background: rgba(6,6,20,0.98);
-    backdrop-filter: blur(24px); flex-direction: column;
-    padding: 14px 22px 26px; gap: 2px;
-    border-bottom: 1px solid rgba(255,255,255,0.08); z-index: 999;
+     Guard: if the user is already within 80 px of the
+     bottom we skip the second scroll so it never loops
+     or double-fires.
+  ==================================================== */
+  function getNavOffset() {
+    var nav = document.getElementById('navbar');
+    /* nav sits below the 36-px ticker; add 8 px breathing room */
+    return nav ? nav.offsetHeight + 36 + 8 : 114;
   }
-  .nav-links.open { display: flex; }
-  .nav-links a { font-size: 0.92rem; padding: 11px 8px; }
-  .hero-section { padding: calc(var(--nav-h) + 70px) 20px 60px; }
-  .section { padding: 80px 0; }
-  .container { padding: 0 18px; }
-  .hero-cta-group { flex-direction: column; align-items: center; }
-  .hero-stats { flex-direction: column; gap: 10px; padding: 18px; }
-  .stat-divider { width: 60px; height: 1px; }
-  .cards-grid { grid-template-columns: 1fr; }
-  .why-content { grid-template-columns: 1fr; }
-  .summer-pillars { grid-template-columns: 1fr; }
-  .glass-card { padding: 24px; }
-  .hnote-3, .hnote-4 { display: none; }
-  .about-grid { gap: 28px; }
-  .grade-badges { gap: 8px; }
-  .grade-plans-grid { grid-template-columns: 1fr; }
-  .grade-plan-card { padding: 22px 20px 20px; }
-  .stagger-1 { transition-delay: 0.04s; }
-  .stagger-2 { transition-delay: 0.10s; }
-  .stagger-3 { transition-delay: 0.16s; }
-  .stagger-4 { transition-delay: 0.22s; }
-}
-@media (max-width: 480px) {
-  .hero-title { font-size: 2.4rem; }
-  .section-header h2 { font-size: 2.0rem; }
-  .btn-primary { font-size: 0.75rem; padding: 14px 20px; }
-  .btn-xl { font-size: 0.82rem; padding: 16px 22px; }
-  .stat-num { font-size: 1.5rem; }
-  .glass-card { padding: 20px; border-radius: 16px; }
-  .pullquote { font-size: 0.96rem !important; }
-  .grade-badge { font-size: 0.68rem; padding: 6px 12px; }
-  .ticker-wrap { display: none; }
-  #navbar { top: 0; }
-  .plan-list li { font-size: 0.80rem; }
-  .grade-plan-badge { font-size: 0.65rem; }
-  .unlock-box { font-size: 0.75rem; }
-}
+
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener('click', function (e) {
+      var href = this.getAttribute('href');
+      if (href === '#') return;
+      var target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+
+      /* ── Primary scroll: to the section ── */
+      var top = target.getBoundingClientRect().top + window.pageYOffset - getNavOffset();
+      window.scrollTo({ top: top, behavior: 'smooth' });
+
+      /* ── Close mobile nav if open ── */
+      var nl = document.getElementById('nav-links');
+      var hb = document.getElementById('hamburger');
+      if (nl && nl.classList.contains('open')) {
+        nl.classList.remove('open');
+        if (hb) hb.classList.remove('open');
+      }
+
+      /* ── Secondary scroll: email CTAs continue to page bottom ── */
+      if (anchor.classList.contains('email-cta')) {
+        setTimeout(function () {
+          var distanceFromBottom =
+            document.documentElement.scrollHeight -
+            window.pageYOffset -
+            window.innerHeight;
+          if (distanceFromBottom > 80) {
+            window.scrollTo({
+              top: document.documentElement.scrollHeight,
+              behavior: 'smooth'
+            });
+          }
+        }, 520);
+      }
+    });
+  });
+
+  /* ===================================================
+     2. HAMBURGER MENU TOGGLE
+  ==================================================== */
+  var hamburger = document.getElementById('hamburger');
+  var navLinks  = document.getElementById('nav-links');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', function () {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+  }
+
+  /* ===================================================
+     3. DYNAMIC BACKGROUND SWITCHING
+     ─────────────────────────────────────────────────
+     An IntersectionObserver tracks how much of each
+     named section is visible. The section with the
+     highest intersection ratio "wins" and its matching
+     body class drives the radial-gradient background.
+     This gives a seamless, smooth colour shift as the
+     user scrolls through the page.
+  ==================================================== */
+  var bgMap = {
+    'home':      'bg-hero',
+    'about':     'bg-about',
+    'why':       'bg-why',
+    'journey':   'bg-journey',
+    'services':  'bg-services',
+    'tutorials': 'bg-tutorials',
+    'summer':    'bg-summer',
+    'contact':   'bg-contact',
+  };
+  var allBgClasses = Object.values(bgMap);
+
+  function setBodyBg(cls) {
+    allBgClasses.forEach(function (c) { document.body.classList.remove(c); });
+    if (cls) document.body.classList.add(cls);
+  }
+
+  var sectionVis = {};
+  var bgObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      sectionVis[entry.target.id] = entry.intersectionRatio;
+    });
+    var topId = null, topRatio = 0;
+    Object.keys(sectionVis).forEach(function (id) {
+      if (sectionVis[id] > topRatio) { topRatio = sectionVis[id]; topId = id; }
+    });
+    if (topId && bgMap[topId]) setBodyBg(bgMap[topId]);
+  }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0] });
+
+  Object.keys(bgMap).forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) bgObserver.observe(el);
+  });
+
+  /* ===================================================
+     4. APPLE-STYLE FADE ANIMATION SYSTEM — BULLETPROOF
+     ─────────────────────────────────────────────────
+     Design philosophy: Mirror Apple.com's polished
+     "fade up + scale" entrance. Elements enter with a
+     30 px upward rise and a subtle scale pull-back
+     (0.98 → 1.0), driven by Apple's standard easing
+     curve cubic-bezier(0.25, 0.1, 0.25, 1) at 0.6 s.
+
+     Architecture (4 steps):
+
+     STEP 0  STAGGER PRE-PASS
+             Before any hiding happens, compute and set
+             transition-delay on every element inside a
+             "group" (cards-grid, grade-plans-grid, why
+             cards, summer pillars, timeline items, plan-
+             list items). Elements with a manual stagger-N
+             class are skipped — their delay is handled
+             by CSS. The pre-pass groups use increments
+             of 0.12 s, capped at 0.48 s so no element
+             ever waits more than half a second.
+
+     STEP 1  HIDE (will-fade)
+             Synchronously add .will-fade to every
+             .fade-el. This triggers the CSS "before"
+             state: opacity:0, translateY(30px),
+             scale:0.98. Because this happens before the
+             browser's first paint the user never sees
+             elements pop in and then hide.
+
+     STEP 2  OBSERVE (fadeObserver)
+             An IntersectionObserver watches every
+             .fade-el. When one enters the viewport it
+             gets .is-visible, which triggers the CSS
+             "after" state: opacity:1, transform:none,
+             scale:1. The observer then stops watching
+             that element so it stays visible permanently.
+
+     STEP 3  VIEWPORT PRE-REVEAL (rAF pass)
+             On the next animation frame, anything that
+             is already in the viewport is immediately
+             marked .is-visible, preventing a flash of
+             hidden content on page load (especially
+             important for above-the-fold sections).
+
+     PROGRESSIVE ENHANCEMENT GUARANTEE
+             .fade-el has NO opacity:0 in CSS — only JS
+             adds .will-fade to hide elements. If JS is
+             disabled or slow, every element is visible
+             by default. ✓
+  ==================================================== */
+
+  /* ── STEP 0: Compute stagger delays for groups ──────
+     Rules:
+     • Skip elements that already have a manual stagger
+       class (stagger-1…4) — their CSS delay takes over.
+     • Cap auto-stagger at 0.48 s (every 4th+ item).
+     • Use 0.12 s increments — feels snappy but distinct.
+  ─────────────────────────────────────────────────── */
+  function hasManualStagger(el) {
+    return el.classList.contains('stagger-1') ||
+           el.classList.contains('stagger-2') ||
+           el.classList.contains('stagger-3') ||
+           el.classList.contains('stagger-4');
+  }
+
+  function applyAutoStagger(selector, increment, max) {
+    increment = increment || 0.12;
+    max       = max       || 0.48;
+    document.querySelectorAll(selector).forEach(function (el, i) {
+      if (!hasManualStagger(el)) {
+        el.style.transitionDelay = Math.min(i * increment, max) + 's';
+      }
+    });
+  }
+
+  /* Main service cards (4-up grid) */
+  applyAutoStagger('.cards-grid .glass-card');
+
+  /* Grade-specific plan cards (3-up grid below services) */
+  applyAutoStagger('.grade-plans-grid .grade-plan-card');
+
+  /* Why-free cards */
+  applyAutoStagger('.why-content .why-card');
+
+  /* Summer pillars */
+  applyAutoStagger('.summer-pillars .pillar');
+
+  /* Timeline items — auto-stagger but cap earlier (0.36 s)
+     so the timeline doesn't feel sluggish on mobile      */
+  applyAutoStagger('.timeline-item', 0.12, 0.36);
+
+  /* Plan-list items inside grade plan cards — very tight
+     stagger (0.06 s) so they cascade but feel fast       */
+  document.querySelectorAll('.grade-plan-card').forEach(function (card) {
+    card.querySelectorAll('.plan-list li').forEach(function (li, i) {
+      li.style.transitionDelay = Math.min(i * 0.06, 0.30) + 's';
+    });
+  });
+
+  /* Contact method cards */
+  applyAutoStagger('.contact-methods .contact-card');
+
+  /* About accolades */
+  applyAutoStagger('.about-accolades .accolade');
+
+  /* ── STEP 1: Mark all .fade-el elements as hidden ── */
+  var allFadeEls = document.querySelectorAll('.fade-el');
+  allFadeEls.forEach(function (el) {
+    el.classList.add('will-fade');
+  });
+
+  /* ── STEP 2: Observe and reveal on scroll ────────── */
+  var fadeObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        fadeObserver.unobserve(entry.target); /* permanent — no re-hide */
+      }
+    });
+  }, {
+    threshold:  0.06,
+    rootMargin: '0px 0px -20px 0px'
+  });
+
+  allFadeEls.forEach(function (el) { fadeObserver.observe(el); });
+
+  /* ── STEP 3: Immediately reveal in-viewport elements ─ */
+  requestAnimationFrame(function () {
+    document.querySelectorAll('.fade-el').forEach(function (el) {
+      var rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 10) {
+        el.classList.add('is-visible');
+        fadeObserver.unobserve(el);
+      }
+    });
+  });
+
+  /* ===================================================
+     5. NAVBAR — SCROLL SOLIDIFICATION
+     ─────────────────────────────────────────────────
+     Below 80 px scroll the navbar is semi-transparent
+     glass. Past 80 px it solidifies slightly to stay
+     readable over section content.
+  ==================================================== */
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function () {
+    if (!navbar) return;
+    if (window.scrollY > 80) {
+      navbar.style.background = 'rgba(6,6,20,0.95)';
+      navbar.style.boxShadow  = '0 2px 40px rgba(0,0,0,0.55)';
+    } else {
+      navbar.style.background = '';
+      navbar.style.boxShadow  = '';
+    }
+  }, { passive: true });
+
+  /* ===================================================
+     6. ACTIVE NAV LINK HIGHLIGHTING
+     ─────────────────────────────────────────────────
+     Watches each section. When a section is ≥ 45 %
+     visible, its corresponding nav link is highlighted
+     in teal. Only one link is active at a time.
+  ==================================================== */
+  var navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+  var navObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        var id = entry.target.id;
+        navAnchors.forEach(function (a) {
+          a.style.color = '';
+          if (a.getAttribute('href') === '#' + id) {
+            a.style.color = 'var(--teal)';
+          }
+        });
+      }
+    });
+  }, { threshold: 0.45 });
+
+  Object.keys(bgMap).forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) navObserver.observe(el);
+  });
+
+  /* ===================================================
+     7. CONFETTI — Musical Note Shower
+     ─────────────────────────────────────────────────
+     Any element with .confetti-trigger spawns 65 emoji
+     confetti pieces that fall with randomised position,
+     colour, size, delay, and duration. Each piece
+     removes itself when its CSS animation ends.
+  ==================================================== */
+  var confettiContainer = document.getElementById('confetti-container');
+  var confettiPieces = ['♪','♫','🎵','🎶','♬','♩','🎼','⭐','🏆','🎉','🥇','🎊','✨'];
+  var confettiColors  = ['#00f5d4','#00cfff','#ff6b9d','#7c3aed','#2ed573','#ffffff','#ffd32a','#ff6348'];
+
+  function spawnConfetti() {
+    if (!confettiContainer) return;
+    confettiContainer.innerHTML = '';
+    for (var i = 0; i < 65; i++) {
+      var piece = document.createElement('span');
+      piece.classList.add('confetti-piece');
+      piece.textContent           = confettiPieces[Math.floor(Math.random() * confettiPieces.length)];
+      piece.style.left            = (Math.random() * 96) + '%';
+      piece.style.color           = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+      piece.style.fontSize        = (1.0 + Math.random() * 2.0) + 'rem';
+      piece.style.animationDelay  = (Math.random() * 1.3) + 's';
+      piece.style.animationDuration = (1.8 + Math.random() * 2.2) + 's';
+      confettiContainer.appendChild(piece);
+      piece.addEventListener('animationend', function () { this.remove(); });
+    }
+  }
+
+  document.querySelectorAll('.confetti-trigger').forEach(function (btn) {
+    btn.addEventListener('click', spawnConfetti);
+  });
+
+  /* ===================================================
+     8. CARD ICON HOVER SPIN
+     ─────────────────────────────────────────────────
+     On mouseenter, every glass card triggers a single
+     360° spin on its first found icon (.card-icon i,
+     .why-icon i, .pillar-icon i, .contact-icon i).
+     The animation is injected as a <style> tag once so
+     it lives in the CSS cascade, not as inline style.
+  ==================================================== */
+  /* Inject the @keyframes once */
+  if (!document.getElementById('spin-style')) {
+    var spinStyle = document.createElement('style');
+    spinStyle.id = 'spin-style';
+    spinStyle.textContent =
+      '@keyframes spinOnce { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }';
+    document.head.appendChild(spinStyle);
+  }
+
+  document.querySelectorAll('.glass-card').forEach(function (card) {
+    var icon = card.querySelector(
+      '.card-icon i, .why-icon i, .pillar-icon i, .contact-icon i'
+    );
+    if (!icon) return;
+    card.addEventListener('mouseenter', function () {
+      icon.style.animation = 'none';
+      void icon.offsetWidth; /* force reflow so animation restarts */
+      icon.style.animation = 'spinOnce 0.45s ease-out forwards';
+    });
+    card.addEventListener('mouseleave', function () {
+      icon.style.animation = '';
+    });
+  });
+
+  /* ===================================================
+     9. HERO ENTRANCE — Apple staggered rise
+     ─────────────────────────────────────────────────
+     Hero children are always above the fold so the
+     fade-el observer would reveal them instantly anyway.
+     Instead we handle them here with a precise, ordered
+     stagger matching Apple's product-page entrances:
+       • Start at 0.06 s, add 0.10 s per element.
+       • Use the same cubic-bezier(0.25,0.1,0.25,1).
+       • Use double rAF to guarantee the browser has
+         painted the hidden state before animating in.
+  ==================================================== */
+  var heroSelectors = [
+    '.grade-badges',
+    '.free-badge',
+    '.hero-title',
+    '.hero-sub',
+    '.hero-sub-2',
+    '.hero-cta-group',
+    '.hero-stats',
+  ];
+
+  var heroEls = heroSelectors.map(function (sel) {
+    return document.querySelector(sel);
+  });
+
+  /* Set initial hidden state for each hero element */
+  heroEls.forEach(function (el, i) {
+    if (!el) return;
+    el.style.opacity    = '0';
+    el.style.transform  = 'translateY(24px)';
+    el.style.scale      = '0.98';
+    el.style.willChange = 'opacity, transform, scale';
+    var delay = (0.06 + i * 0.10) + 's';
+    el.style.transition =
+      'opacity 0.7s cubic-bezier(0.25,0.1,0.25,1) ' + delay + ',' +
+      'transform 0.7s cubic-bezier(0.25,0.1,0.25,1) ' + delay + ',' +
+      'scale 0.7s cubic-bezier(0.25,0.1,0.25,1) ' + delay;
+  });
+
+  /* Double rAF: first frame paints hidden, second triggers animation */
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      heroEls.forEach(function (el) {
+        if (!el) return;
+        el.style.opacity   = '1';
+        el.style.transform = 'translateY(0)';
+        el.style.scale     = '1';
+      });
+    });
+  });
+
+  /* ===================================================
+     10. SCROLL HINT — Fade on first scroll
+     ─────────────────────────────────────────────────
+     The chevron + "Keep scrolling" hint at the bottom
+     of the hero fades out the moment the user scrolls
+     more than 60 px. The listener removes itself after
+     firing once so it doesn't run on every scroll event.
+  ==================================================== */
+  var scrollHint = document.querySelector('.scroll-hint');
+  if (scrollHint) {
+    window.addEventListener('scroll', function fadeHint() {
+      if (window.scrollY > 60) {
+        scrollHint.style.transition = 'opacity 0.5s ease';
+        scrollHint.style.opacity    = '0';
+        window.removeEventListener('scroll', fadeHint);
+      }
+    }, { passive: true });
+  }
+
+  /* ===================================================
+     11. UNLOCK BOX HOVER GLOW
+     ─────────────────────────────────────────────────
+     The grade "Unlocks" boxes in the journey timeline
+     get a subtle teal glow on hover to draw attention
+     to the progression chain and make them feel
+     interactive/inspirational.
+  ==================================================== */
+  document.querySelectorAll('.unlock-box').forEach(function (box) {
+    box.addEventListener('mouseenter', function () {
+      this.style.transition  = 'box-shadow 0.3s ease, border-color 0.3s ease';
+      this.style.boxShadow   = '0 0 18px rgba(0,245,212,0.25)';
+      this.style.borderColor = 'rgba(0,245,212,0.45)';
+    });
+    box.addEventListener('mouseleave', function () {
+      this.style.boxShadow   = '';
+      this.style.borderColor = '';
+    });
+  });
+
+  document.querySelectorAll('.unlock-box-blue').forEach(function (box) {
+    box.addEventListener('mouseenter', function () {
+      this.style.transition  = 'box-shadow 0.3s ease, border-color 0.3s ease';
+      this.style.boxShadow   = '0 0 18px rgba(0,207,255,0.25)';
+      this.style.borderColor = 'rgba(0,207,255,0.45)';
+    });
+    box.addEventListener('mouseleave', function () {
+      this.style.boxShadow   = '';
+      this.style.borderColor = '';
+    });
+  });
+
+  document.querySelectorAll('.unlock-box-gold').forEach(function (box) {
+    box.addEventListener('mouseenter', function () {
+      this.style.transition  = 'box-shadow 0.3s ease, border-color 0.3s ease';
+      this.style.boxShadow   = '0 0 18px rgba(255,211,42,0.25)';
+      this.style.borderColor = 'rgba(255,211,42,0.45)';
+    });
+    box.addEventListener('mouseleave', function () {
+      this.style.boxShadow   = '';
+      this.style.borderColor = '';
+    });
+  });
+
+  /* ===================================================
+     12. GRADE PLAN CARD — Plan-list item fade-el setup
+     ─────────────────────────────────────────────────
+     The individual list items inside grade plan cards
+     are marked as fade-el so they cascade in beautifully
+     as the cards scroll into view. We add them to the
+     fadeObserver after the main allFadeEls pass.
+  ==================================================== */
+  document.querySelectorAll('.grade-plan-card .plan-list li').forEach(function (li) {
+    if (!li.classList.contains('fade-el')) {
+      li.classList.add('fade-el', 'will-fade');
+      fadeObserver.observe(li);
+    }
+  });
+
+  /* ===================================================
+     INIT
+  ==================================================== */
+  setBodyBg('bg-hero');
+
+})();
