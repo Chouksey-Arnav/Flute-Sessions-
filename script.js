@@ -676,20 +676,25 @@
 
       var data = new FormData(form);
 
-      fetch(form.action, {
+      fetch('https://api.web3forms.com/submit', {
         method:  'POST',
-        body:    data,
-        headers: { 'Accept': 'application/json' }
-      }).then(function (res) {
-        if (res.ok) {
+        headers: { 'Accept': 'application/json' },
+        body:    data
+      })
+      .then(function (res) { return res.json(); })
+      .then(function (json) {
+        if (json.success) {
           form.reset();
           if (formSuccess) { formSuccess.removeAttribute('hidden'); }
           if (formError)   { formError.setAttribute('hidden', ''); }
+          if (submitBtn)   { submitBtn.innerHTML = origText; }
           spawnConfetti();
         } else {
-          throw new Error('Server error');
+          throw new Error(json.message || 'Submission failed');
         }
-      }).catch(function () {
+      })
+      .catch(function (err) {
+        console.error('Form error:', err);
         if (formError)   { formError.removeAttribute('hidden'); }
         if (formSuccess) { formSuccess.setAttribute('hidden', ''); }
         if (submitBtn)   { submitBtn.innerHTML = origText; }
