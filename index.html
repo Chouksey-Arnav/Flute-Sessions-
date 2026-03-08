@@ -754,7 +754,10 @@
           <div class="contact-form-card glass-card card-accent-teal fade-el">
             <h3><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send Me a Message</h3>
             <p class="contact-form-intro">Fill this out and I'll reply personally within 48 hours.</p>
-            <form class="contact-form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+            <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+              <input type="hidden" name="access_key" value="1318ba71-3ec3-4981-aa06-012090ac3b9e" />
+              <input type="hidden" name="subject" value="New Flute Academy Message! 🎵" />
+              <input type="hidden" name="from_name" value="Arnav Chouksey Flute Academy" />
               <div class="form-group">
                 <label for="cf-name">Your Name <span class="req" aria-hidden="true">*</span></label>
                 <input type="text" id="cf-name" name="name" placeholder="e.g. Alex Chen" required autocomplete="name" aria-required="true" />
@@ -778,7 +781,6 @@
                 <label for="cf-message">What do you want to work on? <span class="req" aria-hidden="true">*</span></label>
                 <textarea id="cf-message" name="message" placeholder="Tell me what you're struggling with or want to improve..." rows="4" required aria-required="true"></textarea>
               </div>
-              <input type="hidden" name="_subject" value="New Flute Academy Inquiry!" />
               <button type="submit" class="btn-primary form-submit" aria-label="Submit message">
                 <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send Message &rarr;
               </button>
