@@ -619,92 +619,74 @@
   });
 
   /* ─────────────────────────────────────────
-     15. CONTACT FORM HANDLING (Formspree)
+     15. CONTACT FORM — Web3Forms submission
      ─────────────────────────────────────────
-     Submits via fetch so the page doesn't
-     redirect. Shows success or error message.
-     Validates client-side before sending.
+     Key: 1318ba71-3ec3-4981-aa06-012090ac3b9e
+     POST to https://api.web3forms.com/submit
+     Uses FormData (multipart) — no Content-Type
+     header so browser sets the boundary itself.
+     Checks json.success (Web3Forms always 200).
   ───────────────────────────────────────── */
-  var form        = document.getElementById('contact-form');
+  var contactForm = document.getElementById('contact-form');
   var formSuccess = document.getElementById('form-success');
   var formError   = document.getElementById('form-error');
 
-  if (form) {
-    form.addEventListener('submit', function (e) {
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
+      e.stopPropagation();
 
-      // Simple client-side validation
-      var name    = form.querySelector('#cf-name');
-      var grade   = form.querySelector('#cf-grade');
-      var email   = form.querySelector('#cf-email');
-      var message = form.querySelector('#cf-message');
-      var invalid = false;
+      var submitBtn = contactForm.querySelector('.form-submit');
+      var origHTML  = submitBtn ? submitBtn.innerHTML : '';
 
-      [name, grade, email, message].forEach(function (field) {
-        if (field && !field.value.trim()) {
-          field.style.borderColor = 'rgba(255,107,157,0.65)';
-          invalid = true;
-        } else if (field) {
-          field.style.borderColor = '';
-        }
-      });
-
-      if (invalid) {
-        // Shake the form submit button
-        var btn = form.querySelector('.form-submit');
-        if (btn) {
-          btn.style.animation = 'none';
-          void btn.offsetWidth;
-          btn.style.animation = 'formShake 0.4s ease';
-          setTimeout(function () { btn.style.animation = ''; }, 500);
-        }
-        return;
+      // Show spinner
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>&nbsp;Sending…';
       }
 
-      // Inject formShake keyframe if not already present
-      if (!document.getElementById('form-shake-style')) {
-        var fs = document.createElement('style');
-        fs.id  = 'form-shake-style';
-        fs.textContent =
-          '@keyframes formShake{0%,100%{transform:none}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}';
-        document.head.appendChild(fs);
-      }
+      // Hide any previous messages
+      if (formSuccess) formSuccess.setAttribute('hidden', '');
+      if (formError)   formError.setAttribute('hidden', '');
 
-      var submitBtn = form.querySelector('.form-submit');
-      var origText  = submitBtn ? submitBtn.innerHTML : '';
-      if (submitBtn) submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Sending…';
+      // Build FormData — picks up ALL inputs including hidden access_key
+      var payload = new FormData(contactForm);
 
-      var data = new FormData(form);
-
+      // POST to Web3Forms
       fetch('https://api.web3forms.com/submit', {
         method:  'POST',
         headers: { 'Accept': 'application/json' },
-        body:    data
+        body:    payload
       })
-      .then(function (res) { return res.json(); })
-      .then(function (json) {
-        if (json.success) {
-          form.reset();
-          if (formSuccess) { formSuccess.removeAttribute('hidden'); }
-          if (formError)   { formError.setAttribute('hidden', ''); }
-          if (submitBtn)   { submitBtn.innerHTML = origText; }
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        if (data.success === true) {
+          // ✅ SUCCESS
+          contactForm.reset();
+          if (formSuccess) formSuccess.removeAttribute('hidden');
+          if (formError)   formError.setAttribute('hidden', '');
           spawnConfetti();
         } else {
-          throw new Error(json.message || 'Submission failed');
+          // Web3Forms returned success:false — show error + log reason
+          console.warn('Web3Forms rejected:', data.message);
+          if (formError)   formError.removeAttribute('hidden');
+          if (formSuccess) formSuccess.setAttribute('hidden', '');
         }
       })
       .catch(function (err) {
-        console.error('Form error:', err);
-        if (formError)   { formError.removeAttribute('hidden'); }
-        if (formSuccess) { formSuccess.setAttribute('hidden', ''); }
-        if (submitBtn)   { submitBtn.innerHTML = origText; }
-      });
-    });
-
-    // Remove red border on input
-    form.querySelectorAll('input, select, textarea').forEach(function (field) {
-      field.addEventListener('input', function () {
-        field.style.borderColor = '';
+        // Network error or JSON parse failure
+        console.error('Form submission error:', err);
+        if (formError)   formError.removeAttribute('hidden');
+        if (formSuccess) formSuccess.setAttribute('hidden', '');
+      })
+      .finally(function () {
+        // Re-enable button no matter what
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = origHTML;
+        }
       });
     });
   }
