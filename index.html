@@ -1,605 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Arnav Chouksey Flute Academy — free 1-on-1 flute mentoring for 5th–8th graders. First Chair · All-County · All-District · Europe. 100% free." />
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Arnav Chouksey Flute Academy — free flute mentoring for 5th–8th graders. First Chair · All-County · All-District · Europe."/>
   <title>Arnav Chouksey Flute Academy</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body class="bg-hero">
-
   <a class="skip-link" href="#main-content">Skip to main content</a>
   <canvas id="particle-canvas" aria-hidden="true"></canvas>
-  <div class="bg-orbs" aria-hidden="true">
-    <div class="bg-orb bg-orb-1"></div><div class="bg-orb bg-orb-2"></div>
-    <div class="bg-orb bg-orb-3"></div><div class="bg-orb bg-orb-4"></div>
-  </div>
-
-  <!-- TICKER -->
-  <div class="ticker-wrap" aria-hidden="true">
-    <div class="ticker-inner">
-      <span class="ticker-item">🏆 First Chair · Mills Park <span class="dot">✦</span></span>
-      <span class="ticker-item">🎵 All-County Honors <span class="dot">✦</span></span>
-      <span class="ticker-item">🥇 All-District Honors <span class="dot">✦</span></span>
-      <span class="ticker-item">✈️ NC Bandmasters Europe <span class="dot">✦</span></span>
-      <span class="ticker-item">🎤 Pre-MPA Soloist <span class="dot">✦</span></span>
-      <span class="ticker-item">🌟 100% Free · 5th–8th Grade <span class="dot">✦</span></span>
-      <span class="ticker-item">🏆 First Chair · Mills Park <span class="dot">✦</span></span>
-      <span class="ticker-item">🎵 All-County Honors <span class="dot">✦</span></span>
-      <span class="ticker-item">🥇 All-District Honors <span class="dot">✦</span></span>
-      <span class="ticker-item">✈️ NC Bandmasters Europe <span class="dot">✦</span></span>
-      <span class="ticker-item">🎤 Pre-MPA Soloist <span class="dot">✦</span></span>
-      <span class="ticker-item">🌟 100% Free · 5th–8th Grade <span class="dot">✦</span></span>
-    </div>
-  </div>
-
-  <!-- FLOATING NOTES -->
-  <div class="global-notes" aria-hidden="true">
-    <span class="gnote gnote-1">&#9834;</span><span class="gnote gnote-2">&#9835;</span>
-    <span class="gnote gnote-3">&#9833;</span><span class="gnote gnote-4">&#9836;</span>
-    <span class="gnote gnote-5">&#9834;</span><span class="gnote gnote-6">&#9835;</span>
-    <span class="gnote gnote-7">&#9833;</span><span class="gnote gnote-8">&#9836;</span>
-    <span class="gnote gnote-9">&#9834;</span><span class="gnote gnote-10">&#9837;</span>
-    <span class="gnote gnote-11">&#9839;</span><span class="gnote gnote-12">&#9837;</span>
-    <span class="gnote gnote-13">&#9839;</span><span class="gnote gnote-14">&#9838;</span>
-    <span class="gnote gnote-15">&#9838;</span><span class="gnote gnote-16">&#119070;</span>
-    <span class="gnote gnote-17">&#119070;</span><span class="gnote gnote-18">&#9835;</span>
-    <span class="gnote gnote-19">&#9836;</span><span class="gnote gnote-20">&#9837;</span>
-    <span class="gnote gnote-21">&#9834;</span><span class="gnote gnote-22">&#9839;</span>
-  </div>
-
+  <div class="bg-orbs" aria-hidden="true"><div class="bg-orb bg-orb-1"></div><div class="bg-orb bg-orb-2"></div><div class="bg-orb bg-orb-3"></div><div class="bg-orb bg-orb-4"></div></div>
+  <div class="ticker-wrap" aria-hidden="true"><div class="ticker-inner">
+    <span class="ticker-item">🏆 First Chair · Mills Park <span class="dot">✦</span></span><span class="ticker-item">🎵 All-County Honors <span class="dot">✦</span></span><span class="ticker-item">🥇 All-District Honors <span class="dot">✦</span></span><span class="ticker-item">✈️ NC Bandmasters Europe <span class="dot">✦</span></span><span class="ticker-item">🎤 Pre-MPA Soloist <span class="dot">✦</span></span><span class="ticker-item">🌟 100% Free · 5th–8th Grade <span class="dot">✦</span></span>
+    <span class="ticker-item">🏆 First Chair · Mills Park <span class="dot">✦</span></span><span class="ticker-item">🎵 All-County Honors <span class="dot">✦</span></span><span class="ticker-item">🥇 All-District Honors <span class="dot">✦</span></span><span class="ticker-item">✈️ NC Bandmasters Europe <span class="dot">✦</span></span><span class="ticker-item">🎤 Pre-MPA Soloist <span class="dot">✦</span></span><span class="ticker-item">🌟 100% Free · 5th–8th Grade <span class="dot">✦</span></span>
+  </div></div>
+  <div class="global-notes" aria-hidden="true"><span class="gnote gnote-1">&#9834;</span><span class="gnote gnote-2">&#9835;</span><span class="gnote gnote-3">&#9833;</span><span class="gnote gnote-4">&#9836;</span><span class="gnote gnote-5">&#9834;</span><span class="gnote gnote-6">&#9835;</span><span class="gnote gnote-7">&#9833;</span><span class="gnote gnote-8">&#9836;</span><span class="gnote gnote-9">&#9834;</span><span class="gnote gnote-10">&#9837;</span><span class="gnote gnote-11">&#9839;</span><span class="gnote gnote-12">&#9837;</span><span class="gnote gnote-13">&#9839;</span><span class="gnote gnote-14">&#9838;</span><span class="gnote gnote-15">&#9838;</span><span class="gnote gnote-16">&#119070;</span><span class="gnote gnote-17">&#119070;</span><span class="gnote gnote-18">&#9835;</span><span class="gnote gnote-19">&#9836;</span><span class="gnote gnote-20">&#9837;</span><span class="gnote gnote-21">&#9834;</span><span class="gnote gnote-22">&#9839;</span></div>
   <div id="confetti-container" aria-hidden="true"></div>
 
-  <!-- NAV -->
   <nav id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
-      <a href="#home" class="nav-logo">
-        <i class="fa-solid fa-music nav-logo-icon spinning-icon" aria-hidden="true"></i>
-        <span>Arnav Chouksey Flute Academy</span>
-      </a>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
-        <span></span><span></span><span></span>
-      </button>
+      <a href="#home" class="nav-logo"><i class="fa-solid fa-music nav-logo-icon spinning-icon" aria-hidden="true"></i><span>Arnav Chouksey Flute Academy</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">My Story</a></li>
-        <li><a href="#why">Why Free?</a></li>
-        <li><a href="#journey">The Journey</a></li>
-        <li><a href="#services">Level Up</a></li>
-        <li><a href="#tutorials">Free Guides</a></li>
-        <li><a href="#summer">Summer Plan</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#home">Home</a></li><li><a href="#about">My Story</a></li><li><a href="#why">Why Free?</a></li><li><a href="#journey">Journey</a></li><li><a href="#services">Level Up</a></li><li><a href="#tutorials">Guides</a></li><li><a href="#summer">Summer</a></li><li><a href="#faq">FAQ</a></li>
         <li><a href="#contact" class="nav-cta-btn email-cta">Join Now &rarr;</a></li>
       </ul>
     </div>
   </nav>
-
   <a id="main-content" tabindex="-1" aria-hidden="true" style="position:absolute;top:0;"></a>
 
-  <!-- ===== HERO ===== -->
+  <!-- HERO -->
   <section id="home" class="section hero-section" aria-labelledby="hero-title" tabindex="-1">
-    <div class="hero-notes" aria-hidden="true">
-      <span class="hnote hnote-1">&#9834;</span><span class="hnote hnote-2">&#9835;</span>
-      <span class="hnote hnote-3">&#127925;</span><span class="hnote hnote-4">&#127926;</span>
-      <span class="hnote hnote-5">&#9836;</span><span class="hnote hnote-6">&#9837;</span>
-      <span class="hnote hnote-7">&#9839;</span>
-    </div>
+    <div class="hero-notes" aria-hidden="true"><span class="hnote hnote-1">&#9834;</span><span class="hnote hnote-2">&#9835;</span><span class="hnote hnote-3">&#127925;</span><span class="hnote hnote-4">&#127926;</span><span class="hnote hnote-5">&#9836;</span><span class="hnote hnote-6">&#9837;</span><span class="hnote hnote-7">&#9839;</span></div>
     <div class="hero-watermark" aria-hidden="true"><span class="hero-watermark-text">FLUTE</span></div>
     <div class="hero-content">
-      <div class="grade-badges">
-        <span class="grade-badge g5">🌟 5th</span>
-        <span class="grade-badge g6">💚 6th</span>
-        <span class="grade-badge g7">💙 7th</span>
-        <span class="grade-badge g8">⭐ 8th</span>
-      </div>
+      <div class="grade-badges"><span class="grade-badge g5">🌟 5th</span><span class="grade-badge g6">💚 6th</span><span class="grade-badge g7">💙 7th</span><span class="grade-badge g8">⭐ 8th</span></div>
       <div class="free-badge">🎶 100% FREE &middot; No Catch &middot; No Credit Card &middot; Just Real Help</div>
       <h1 class="hero-title" id="hero-title">IGNITE YOUR<br><span class="accent-text">FLUTE JOURNEY.</span></h1>
-      <p class="hero-sub hero-sub-2">
-        Hey — I'm Arnav, an 8th grader from Apex, NC. I went from <em>10th chair out of 16</em> to <strong>First Chair, All-County, All-District,</strong> and a stage in <strong>Europe</strong> — in one year. I know exactly what works, and I'm giving the whole playbook to you, <em>completely free,</em> whether you're just starting in 5th grade or chasing All-State in 8th. &#9834;
-      </p>
+      <p class="hero-sub hero-sub-2">Hey — I'm Arnav, an 8th grader from Apex, NC. I went from <em>10th chair out of 16</em> to <strong>First Chair, All-County, All-District,</strong> and performing in <strong>Europe</strong> — in one year. I know exactly what works, and I'm giving you the whole playbook <em>completely free.</em> &#9834;</p>
       <div class="hero-cta-group">
         <a href="#contact" class="btn-primary confetti-trigger email-cta" id="main-cta">EMAIL ME — 5 MIN, TOTALLY FREE &rarr;</a>
         <a href="#journey" class="btn-ghost">👀 See How I Did It</a>
       </div>
       <div class="hero-stats">
-        <div class="stat"><span class="stat-num">1st</span><span class="stat-label">Chair · Mills Park</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">2&times;</span><span class="stat-label">All-County &amp; All-District</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">&#9992;&#65039;</span><span class="stat-label">NC Bandmasters Europe</span></div>
-        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">1st</span><span class="stat-label">Chair · Mills Park</span></div><div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">2&times;</span><span class="stat-label">All-County &amp; All-District</span></div><div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">&#9992;&#65039;</span><span class="stat-label">NC Bandmasters Europe</span></div><div class="stat-divider"></div>
         <div class="stat"><span class="stat-num">5–8</span><span class="stat-label">Grades Served</span></div>
       </div>
     </div>
-    <div class="scroll-hint" aria-hidden="true">
-      <span>Keep scrolling</span><i class="fa-solid fa-chevron-down bounce"></i>
-    </div>
+    <div class="scroll-hint" aria-hidden="true"><span>Keep scrolling</span><i class="fa-solid fa-chevron-down bounce"></i></div>
   </section>
 
-  <!-- ===== ABOUT ===== -->
+  <!-- ABOUT -->
   <section id="about" class="section about-section" aria-labelledby="about-title">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-photo-col fade-el fade-left">
-          <div class="photo-frame">
-            <div class="photo-placeholder" role="img" aria-label="Arnav Chouksey">
-              <i class="fa-solid fa-user photo-icon" aria-hidden="true"></i>
-              <span>Arnav Chouksey</span>
-            </div>
-            <div class="photo-badge"><i class="fa-solid fa-star"></i> First Chair ✓</div>
-          </div>
-          <div class="about-accolades">
-            <div class="accolade fade-el stagger-1"><i class="fa-solid fa-trophy"></i> All-County Honors</div>
-            <div class="accolade fade-el stagger-2"><i class="fa-solid fa-medal"></i> All-District Honors</div>
-            <div class="accolade fade-el stagger-3"><i class="fa-solid fa-plane"></i> NC Bandmasters Europe</div>
-            <div class="accolade fade-el stagger-4"><i class="fa-solid fa-microphone"></i> Pre-MPA Soloist</div>
-          </div>
-        </div>
-        <div class="about-text-col fade-el fade-right">
-          <div class="section-tag">About Me</div>
-          <h2 id="about-title">The Glow-Up Is <span class="accent-text">100% Real.</span></h2>
-          <p>I started exactly where you are — squeaky notes, no idea what to fix, 10th chair out of 16 in 7th grade. I turned that into a map. One focused summer later: <strong>First Chair. All-County. All-District. Pre-MPA soloist. Europe.</strong></p>
-          <p>I know the exact steps because I just lived them. And I want to give all of it to you — <strong>completely free, no strings attached.</strong> Whatever grade you're in, I'm in your corner.</p>
-          <p class="pullquote fade-el">"Every student deserves someone who believes in them. Let me be that person."</p>
-          <a href="#contact" class="btn-primary email-cta">Let's Work Together &rarr;</a>
+    <div class="container"><div class="about-grid">
+      <div class="about-photo-col fade-el fade-left">
+        <div class="photo-frame"><div class="photo-placeholder" role="img" aria-label="Arnav Chouksey"><i class="fa-solid fa-user photo-icon"></i><span>Arnav Chouksey</span></div><div class="photo-badge"><i class="fa-solid fa-star"></i> First Chair ✓</div></div>
+        <div class="about-accolades">
+          <div class="accolade fade-el stagger-1"><i class="fa-solid fa-trophy"></i> All-County Honors</div>
+          <div class="accolade fade-el stagger-2"><i class="fa-solid fa-medal"></i> All-District Honors</div>
+          <div class="accolade fade-el stagger-3"><i class="fa-solid fa-plane"></i> NC Bandmasters Europe</div>
+          <div class="accolade fade-el stagger-4"><i class="fa-solid fa-microphone"></i> Pre-MPA Soloist</div>
         </div>
       </div>
-    </div>
+      <div class="about-text-col fade-el fade-right">
+        <div class="section-tag">About Me</div>
+        <h2 id="about-title">The Glow-Up Is <span class="accent-text">100% Real.</span></h2>
+        <p>I started as <strong>10th chair out of 16</strong> in 7th grade. One focused summer later: <strong>First Chair. All-County. All-District. Pre-MPA soloist. Europe.</strong> I know the exact steps because I just lived them — and I'm handing all of it to you, <strong>completely free.</strong></p>
+        <p class="pullquote fade-el">"Every student deserves someone who believes in them. Let me be that for you."</p>
+        <a href="#contact" class="btn-primary email-cta">Let's Work Together &rarr;</a>
+      </div>
+    </div></div>
   </section>
 
-  <!-- ===== WHY FREE ===== -->
+  <!-- WHY FREE -->
   <section id="why" class="section why-section" aria-labelledby="why-title">
     <div class="container">
-      <div class="section-header fade-el">
-        <div class="section-tag">Why I'm Doing This</div>
-        <h2 id="why-title">Okay But… <span class="accent-text">Why Free?</span></h2>
-        <p class="section-intro">Fair question. Honest answer — no spin.</p>
-      </div>
+      <div class="section-header fade-el"><div class="section-tag">Why I'm Doing This</div><h2 id="why-title">Okay But… <span class="accent-text">Why Free?</span></h2></div>
       <div class="why-content">
-        <div class="why-card glass-card card-accent-pink fade-el stagger-1">
-          <div class="why-icon"><i class="fa-solid fa-heart"></i></div>
-          <h3>Because I Needed This and Nobody Offered It</h3>
-          <p>In 6th grade I practiced hard — in the wrong direction — for months. My director had 60 students. I didn't know which videos to trust. What I needed was one person who'd just been through it and could say <em>here's exactly what to fix.</em> That person didn't exist for me. <strong>So I'm choosing to be that for you.</strong></p>
-        </div>
-        <div class="why-card glass-card card-accent-teal fade-el stagger-2">
-          <div class="why-icon"><i class="fa-solid fa-door-open"></i></div>
-          <h3>This Opens Doors You Can't See Yet</h3>
-          <p>All-County. All-District. All-State Honors Band. Wind ensemble. In high school — <strong>the Macy's Thanksgiving Day Parade.</strong> One focused year changes everything. <strong>One email starts that year.</strong></p>
-          <p class="pullquote fade-el">"One email can change your whole band year. Not someday — this year."</p>
-        </div>
-        <div class="why-card glass-card card-accent-yellow fade-el stagger-3">
-          <div class="why-icon"><i class="fa-solid fa-gift"></i></div>
-          <h3>Honest Answer: I Just Love This Stuff</h3>
-          <p>I'm in 8th grade. I don't want your money. What genuinely makes me happy is watching other students unlock their potential. Musical excellence is contagious — <strong>it lifts everyone around you.</strong> That's the whole reason.</p>
-        </div>
+        <div class="why-card glass-card card-accent-pink fade-el stagger-1"><div class="why-icon"><i class="fa-solid fa-heart"></i></div><h3>Because I Needed This and Nobody Offered It</h3><p>In 6th grade I practiced hard — in the wrong direction — for months. My director had 60 students. What I needed was someone who'd just been through it to say <em>here's what to fix.</em> That person didn't exist for me. <strong>So I'm choosing to be that for you.</strong></p></div>
+        <div class="why-card glass-card card-accent-teal fade-el stagger-2"><div class="why-icon"><i class="fa-solid fa-door-open"></i></div><h3>This Opens Doors You Can't See Yet</h3><p>All-County. All-District. All-State. Wind ensemble. The <strong>Macy's Thanksgiving Day Parade.</strong> One focused year changes your whole trajectory. <strong>One email starts that year.</strong></p><p class="pullquote fade-el">"One email can change your whole band year. Not someday — this year."</p></div>
+        <div class="why-card glass-card card-accent-yellow fade-el stagger-3"><div class="why-icon"><i class="fa-solid fa-gift"></i></div><h3>Honest Answer: I Just Love This</h3><p>I'm in 8th grade — I don't want your money. Watching students unlock their potential is genuinely what makes me happy. <strong>It lifts everyone around you.</strong></p></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== JOURNEY ===== -->
+  <!-- JOURNEY -->
   <section id="journey" class="section journey-section" aria-labelledby="journey-title">
     <div class="container">
-      <div class="section-header fade-el">
-        <div class="section-tag">The Real Story</div>
-        <h2 id="journey-title">From Mid-Section Struggle <span class="accent-text">to Europe.</span></h2>
-        <p class="section-intro">Every squeaky note. Every setback. Every breakthrough — shared so you don't repeat the lessons I had to learn the hard way.</p>
-      </div>
+      <div class="section-header fade-el"><div class="section-tag">The Real Story</div><h2 id="journey-title">From Mid-Section Struggle <span class="accent-text">to Europe.</span></h2></div>
       <div class="timeline">
-
-        <div class="timeline-item fade-el fade-left">
-          <div class="timeline-badge">7th</div>
-          <div class="timeline-content glass-card">
-            <h3>7th Grade: 10th Out of 16. My Wake-Up Call. 😤</h3>
-            <p><strong>10th chair out of 16.</strong> That stung. But the moment I stopped feeling sorry for myself, I saw it wasn't a sentence — it was a map. Every weak spot became a target. If you're staring at a placement that disappointed you right now: <em>that's your starting point, not your ceiling.</em></p>
-            <div class="unlock-box unlock-box-blue fade-el stagger-4">
-              <span class="unlock-label">🔓 7th Grade Unlocks</span>
-              Chair improvements &rarr; All-County &rarr; All-District &rarr; All-State pathway
-            </div>
-          </div>
+        <div class="timeline-item fade-el fade-left"><div class="timeline-badge">7th</div>
+          <div class="timeline-content glass-card"><h3>7th Grade: 10th Out of 16. 😤</h3><p><strong>10th chair out of 16.</strong> That stung — but it wasn't a sentence, it was a map. Every weak spot became a target. <em>Your current placement is your starting point, not your ceiling.</em></p><div class="unlock-box unlock-box-blue fade-el stagger-4"><span class="unlock-label">🔓 Unlocks</span>Chair improvements &rarr; All-County &rarr; All-District &rarr; All-State</div></div>
         </div>
-
-        <div class="timeline-item timeline-right fade-el fade-right">
-          <div class="timeline-badge">&#9728;&#65039;</div>
-          <div class="timeline-content glass-card">
-            <h3>The Summer I Decided to Actually Be Great 🔒</h3>
-            <p>Between 7th and 8th grade: one promise, four rules, every single day.</p>
+        <div class="timeline-item timeline-right fade-el fade-right"><div class="timeline-badge">☀️</div>
+          <div class="timeline-content glass-card"><h3>The Summer I Decided to Be Great 🔒</h3><p>One promise. Four rules. Every single day:</p>
             <ul class="journey-list">
-              <li><i class="fa-solid fa-check-circle"></i> <strong>20 focused minutes daily</strong> — phone away, no skips.</li>
+              <li><i class="fa-solid fa-check-circle"></i> <strong>20 focused minutes</strong> — phone away, no skips.</li>
               <li><i class="fa-solid fa-check-circle"></i> <strong>Recorded every session</strong> — your brain lies about how you sound.</li>
-              <li><i class="fa-solid fa-check-circle"></i> <strong>Drilled my worst spot first</strong> — slowly, until it stopped being scary.</li>
-              <li><i class="fa-solid fa-check-circle"></i> <strong>Listened to world-class flutists daily</strong> — you can't play what you've never heard.</li>
+              <li><i class="fa-solid fa-check-circle"></i> <strong>Drilled worst spot first</strong> — until it stopped being scary.</li>
+              <li><i class="fa-solid fa-check-circle"></i> <strong>Listened to world-class players daily</strong> — you can't play what you've never heard.</li>
             </ul>
           </div>
         </div>
-
-        <div class="timeline-item fade-el fade-left">
-          <div class="timeline-badge">8th</div>
-          <div class="timeline-content glass-card">
-            <h3>8th Grade: First Chair. All-County. Europe. 🏆✈️</h3>
-            <p>Chair auditions, 8th grade: <strong>First. Chair.</strong> Then All-County. All-District. Pre-MPA soloist in front of the entire Green Level Band. Then — chosen for the <strong>NC Bandmasters Europe trip.</strong></p>
-            <p class="pullquote fade-el">"10th out of 16 to Europe in 12 months. Every step is right here — for you."</p>
-            <div class="unlock-box unlock-box-gold fade-el stagger-4">
-              <span class="unlock-label">🔓 8th Grade Unlocks</span>
-              Top chairs &rarr; Pre-MPA &rarr; Europe &rarr; Wind ensemble &rarr; Macy's Parade pathway
-            </div>
-            <a href="#contact" class="btn-primary email-cta" style="margin-top:20px;display:inline-flex;">I Want Those Steps &rarr;</a>
-          </div>
+        <div class="timeline-item fade-el fade-left"><div class="timeline-badge">8th</div>
+          <div class="timeline-content glass-card"><h3>8th Grade: First Chair. All-County. Europe. 🏆✈️</h3><p><strong>First Chair.</strong> All-County. All-District. Pre-MPA soloist. Then — <strong>NC Bandmasters Europe.</strong> Same flutist. 12 months apart.</p><p class="pullquote fade-el">"10th out of 16 to Europe in 12 months. Every step is right here — for you."</p><div class="unlock-box unlock-box-gold fade-el stagger-4"><span class="unlock-label">🔓 Unlocks</span>Top chairs &rarr; Pre-MPA &rarr; Europe &rarr; Macy's Parade pathway</div><a href="#contact" class="btn-primary email-cta" style="margin-top:20px;display:inline-flex;">I Want Those Steps &rarr;</a></div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ===== SERVICES + GRADE PLANS ===== -->
+  <!-- SERVICES + GRADE PLANS -->
   <section id="services" class="section services-section" aria-labelledby="services-title">
     <div class="container">
-      <div class="section-header fade-el">
-        <div class="section-tag">Pick Your Power-Up</div>
-        <h2 id="services-title">Four Ways to Level Up. <span class="accent-text">All Free.</span></h2>
-        <p class="section-intro">No cost, no fine print — ever.</p>
-      </div>
+      <div class="section-header fade-el"><div class="section-tag">Pick Your Power-Up</div><h2 id="services-title">Four Ways to Level Up. <span class="accent-text">All Free.</span></h2></div>
       <div class="cards-grid">
-        <div class="glass-card service-card card-accent-teal fade-el stagger-1">
-          <div class="card-icon"><i class="fa-solid fa-video"></i></div>
-          <h3>🎯 30-Min 1-on-1 Video Sessions</h3>
-          <p>I listen to <em>you</em> play and pinpoint exactly what to fix — real feedback on your actual challenges, with a clear plan at the end.</p>
-          <div class="card-tag">Most Popular</div>
-        </div>
-        <div class="glass-card service-card card-accent-yellow fade-el stagger-2">
-          <div class="card-icon"><i class="fa-solid fa-trophy"></i></div>
-          <h3>🏆 Audition &amp; Competition Prep</h3>
-          <p>All-County. All-District. Solo &amp; Ensemble. Pre-MPA. All-State. I've been through every one. I know exactly what judges listen for — and what makes you stand out.</p>
-          <div class="card-tag yellow">High Impact</div>
-        </div>
-        <div class="glass-card service-card card-accent-pink fade-el stagger-3">
-          <div class="card-icon"><i class="fa-solid fa-seedling"></i></div>
-          <h3>🌱 Beginner Fast-Track</h3>
-          <p>5th or 6th grader just starting out? I'll take you from "I can barely make a sound" to genuinely confident. Embouchure, breath, posture, first real notes. <strong>You've got this.</strong></p>
-          <div class="card-tag green">5th &amp; 6th Friendly</div>
-        </div>
-        <div class="glass-card service-card card-accent-purple fade-el stagger-4">
-          <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
-          <h3>📋 Custom Practice Plans</h3>
-          <p>A daily plan built around <em>your</em> weak spots — targeted, realistic, 20 minutes max. Unfocused practice keeps you stuck. A smart plan moves you forward.</p>
-          <div class="card-tag pink">Game Changer</div>
-        </div>
+        <div class="glass-card service-card card-accent-teal fade-el stagger-1"><div class="card-icon"><i class="fa-solid fa-video"></i></div><h3>🎯 1-on-1 Video Sessions</h3><p>I listen to <em>you</em> play, find exactly what to fix, and give you a clear plan.</p><div class="card-tag">Most Popular</div></div>
+        <div class="glass-card service-card card-accent-yellow fade-el stagger-2"><div class="card-icon"><i class="fa-solid fa-trophy"></i></div><h3>🏆 Audition Prep</h3><p>All-County, All-District, Pre-MPA, All-State — I've done them all. I know what judges hear.</p><div class="card-tag yellow">High Impact</div></div>
+        <div class="glass-card service-card card-accent-pink fade-el stagger-3"><div class="card-icon"><i class="fa-solid fa-seedling"></i></div><h3>🌱 Beginner Fast-Track</h3><p>5th or 6th grader just starting? I'll take you from zero sound to real confidence. <strong>You've got this.</strong></p><div class="card-tag green">5th &amp; 6th Friendly</div></div>
+        <div class="glass-card service-card card-accent-purple fade-el stagger-4"><div class="card-icon"><i class="fa-solid fa-book-open"></i></div><h3>📋 Custom Practice Plans</h3><p>A daily plan targeting <em>your</em> weak spots — focused, 20 minutes max. Smart practice beats long practice.</p><div class="card-tag pink">Game Changer</div></div>
       </div>
-
-      <div class="grade-plans-header fade-el">
-        <div class="section-tag">Your Grade. Your Plan.</div>
-        <p class="section-intro" style="margin-top:12px;">Every plan is free and built for your exact stage. Use the arrows or dots to browse.</p>
-      </div>
+      <div class="grade-plans-header fade-el"><div class="section-tag">Your Grade. Your Plan.</div><p class="section-intro" style="margin-top:12px;">Free plans for every stage — use arrows or dots to browse.</p></div>
       <div class="cf-wrapper fade-el" id="cf-wrapper" aria-label="Grade plan carousel">
         <div class="cf-row">
           <button class="cf-arrow cf-prev" id="cf-prev" aria-label="Previous grade plan"><i class="fa-solid fa-chevron-left"></i></button>
-          <div class="cf-viewport" role="region" aria-live="polite">
-            <div class="cf-track" id="cf-track">
-
-              <div class="grade-plan-card glass-card card-accent-orange cf-slide" data-grade="5">
-                <div class="grade-plan-badge g5">🌟 5th Grade — Pre-Band Prep</div>
-                <div class="plan-subtitle">10–15 min/day · Get a head start before day one</div>
-                <ul class="plan-list">
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Breathing &amp; lung capacity</strong> — the foundation everything is built on</span></li>
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Headjoint tone games</strong> — make your first real sound fun</span></li>
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Instrument assembly &amp; care</strong> — know your flute before band starts</span></li>
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Posture &amp; hand readiness</strong> — build good habits early</span></li>
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Daily split:</strong> 5 min breath · 5 min headjoint tone</span></li>
-                </ul>
-                <div class="plan-unlock"><i class="fa-solid fa-lock-open"></i><span>Unlocks: Head-start advantage · First clean tone · Zero intimidation on day 1</span></div>
-              </div>
-
-              <div class="grade-plan-card glass-card card-accent-green cf-slide" data-grade="6">
-                <div class="grade-plan-badge g6">💚 6th Grade — Beginner Basics</div>
-                <div class="plan-subtitle">15–20 min/day · Build confidence from zero</div>
-                <ul class="plan-list">
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Embouchure fundamentals</strong> — clean tone, no more squeaks</span></li>
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Hand position &amp; posture</strong> — prevent bad habits before they form</span></li>
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>First 12 essential notes</strong> — correctly fingered from day one</span></li>
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Breath support basics</strong> — the foundation everything rests on</span></li>
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Daily split:</strong> 5 tone · 5 notes · 5 toughest spot</span></li>
-                </ul>
-                <div class="plan-unlock"><i class="fa-solid fa-lock-open"></i><span>Unlocks: Chair audition readiness · Competition eligibility · Tone you're proud of</span></div>
-              </div>
-
-              <div class="grade-plan-card glass-card card-accent-teal cf-slide" data-grade="7">
-                <div class="grade-plan-badge g7">💙 7th Grade — Audition Foundations</div>
-                <div class="plan-subtitle">20 min/day · Scale up &amp; start competing</div>
-                <ul class="plan-list">
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>All major scales &amp; arpeggios</strong> — the backbone of every audition rubric</span></li>
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Sight-reading drills</strong> — the skill most 7th graders skip and regret</span></li>
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Dynamic shaping &amp; tone consistency</strong> — what separates good from memorable</span></li>
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Chair audition strategy</strong> — turn your placement into an improvement map</span></li>
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Daily split:</strong> 5 scales · 5 sight-read · 5 piece · 5 weakness</span></li>
-                </ul>
-                <div class="plan-unlock"><i class="fa-solid fa-lock-open"></i><span>Unlocks: All-County · All-District · All-State pathway · Honor band placement</span></div>
-              </div>
-
-              <div class="grade-plan-card glass-card card-accent-yellow cf-slide" data-grade="8">
-                <div class="grade-plan-badge g8">⭐ 8th Grade — Advanced Mastery</div>
-                <div class="plan-subtitle">20–25 min/day · Achieve &amp; unlock your future</div>
-                <ul class="plan-list">
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Advanced phrasing &amp; expression</strong> — the artistry that makes judges remember you</span></li>
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Solo performance prep</strong> — Pre-MPA polish with real stage confidence</span></li>
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Repeated honors strategy</strong> — All-County, All-District, All-State back-to-back</span></li>
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>High school audition readiness</strong> — concert band, symphonic, wind ensemble</span></li>
-                  <li><i class="fa-solid fa-circle-check"></i><span><strong>Daily split:</strong> 5 long tones · 5 scales · 5 piece · 5 solo artistry</span></li>
-                </ul>
-                <div class="plan-unlock"><i class="fa-solid fa-lock-open"></i><span>Unlocks: Top chairs · Macy's Parade pathway · National honors bands · Scholarships</span></div>
-              </div>
-
+          <div class="cf-viewport" role="region" aria-live="polite"><div class="cf-track" id="cf-track">
+            <div class="grade-plan-card glass-card card-accent-orange cf-slide" data-grade="5">
+              <div class="grade-plan-badge g5">🌟 5th Grade — Pre-Band Prep</div><div class="plan-subtitle">10–15 min/day · Head-start before day one</div>
+              <ul class="plan-list">
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Breathing &amp; lung capacity</strong> — the base everything is built on</span></li>
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Headjoint tone games</strong> — make your first real sound fun</span></li>
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Assembly, posture &amp; hand readiness</strong> — good habits from day one</span></li>
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Daily split:</strong> 5 breath · 5 headjoint tone</span></li>
+              </ul>
+              <div class="plan-unlock"><i class="fa-solid fa-lock-open"></i><span>Unlocks: Head-start · First clean tone · Zero day-one intimidation</span></div>
             </div>
-          </div>
+            <div class="grade-plan-card glass-card card-accent-green cf-slide" data-grade="6">
+              <div class="grade-plan-badge g6">💚 6th Grade — Beginner Basics</div><div class="plan-subtitle">15–20 min/day · Build confidence from zero</div>
+              <ul class="plan-list">
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Embouchure fundamentals</strong> — clean tone, no more squeaks</span></li>
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>First 12 essential notes</strong> — correctly fingered from day one</span></li>
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Breath support basics</strong> — the base every other skill rests on</span></li>
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Daily split:</strong> 5 tone · 5 notes · 5 toughest spot</span></li>
+              </ul>
+              <div class="plan-unlock"><i class="fa-solid fa-lock-open"></i><span>Unlocks: Chair readiness · Competition eligibility · Tone you're proud of</span></div>
+            </div>
+            <div class="grade-plan-card glass-card card-accent-teal cf-slide" data-grade="7">
+              <div class="grade-plan-badge g7">💙 7th Grade — Audition Foundations</div><div class="plan-subtitle">20 min/day · Scale up &amp; start competing</div>
+              <ul class="plan-list">
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>All major scales &amp; arpeggios</strong> — backbone of every audition</span></li>
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Sight-reading drills</strong> — the skill most 7th graders skip and regret</span></li>
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Chair audition strategy</strong> — turn your placement into a roadmap</span></li>
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Daily split:</strong> 5 scales · 5 sight-read · 5 piece · 5 weakness</span></li>
+              </ul>
+              <div class="plan-unlock"><i class="fa-solid fa-lock-open"></i><span>Unlocks: All-County · All-District · All-State pathway · Honor band</span></div>
+            </div>
+            <div class="grade-plan-card glass-card card-accent-yellow cf-slide" data-grade="8">
+              <div class="grade-plan-badge g8">⭐ 8th Grade — Advanced Mastery</div><div class="plan-subtitle">20–25 min/day · Achieve &amp; unlock your future</div>
+              <ul class="plan-list">
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Advanced phrasing &amp; expression</strong> — what makes judges remember you</span></li>
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Solo performance prep</strong> — Pre-MPA polish &amp; real stage confidence</span></li>
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>High school audition readiness</strong> — concert band, symphonic, wind ensemble</span></li>
+                <li><i class="fa-solid fa-circle-check"></i><span><strong>Daily split:</strong> 5 long tones · 5 scales · 5 piece · 5 artistry</span></li>
+              </ul>
+              <div class="plan-unlock"><i class="fa-solid fa-lock-open"></i><span>Unlocks: Top chairs · Macy's Parade pathway · Honors bands · Scholarships</span></div>
+            </div>
+          </div></div>
           <button class="cf-arrow cf-next" id="cf-next" aria-label="Next grade plan"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
         <div class="cf-dots" role="tablist" aria-label="Grade plan selector">
-          <button class="cf-dot active" data-slide="0" role="tab" aria-selected="true">5th</button>
-          <button class="cf-dot" data-slide="1" role="tab" aria-selected="false">6th</button>
-          <button class="cf-dot" data-slide="2" role="tab" aria-selected="false">7th</button>
-          <button class="cf-dot" data-slide="3" role="tab" aria-selected="false">8th</button>
+          <button class="cf-dot active" data-slide="0" role="tab" aria-selected="true">5th</button><button class="cf-dot" data-slide="1" role="tab" aria-selected="false">6th</button><button class="cf-dot" data-slide="2" role="tab" aria-selected="false">7th</button><button class="cf-dot" data-slide="3" role="tab" aria-selected="false">8th</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== FREE GUIDES ===== -->
+  <!-- FREE GUIDES -->
   <section id="tutorials" class="section tutorials-section" aria-labelledby="tutorials-title">
     <div class="container">
-      <div class="section-header fade-el">
-        <div class="section-tag">Free Guides</div>
-        <h2 id="tutorials-title">Learn On Your Own <span class="accent-text">Schedule.</span></h2>
-        <p class="section-intro">The exact techniques that took me from squeaking in 6th grade to First Chair — all free, start wherever you are.</p>
-      </div>
+      <div class="section-header fade-el"><div class="section-tag">Free Guides</div><h2 id="tutorials-title">Learn On Your Own <span class="accent-text">Schedule.</span></h2><p class="section-intro">The exact techniques from squeaking in 6th grade to First Chair — free, start anywhere.</p></div>
       <div class="director-quote-block fade-el">
         <div class="dq-deco" aria-hidden="true">&#9834;</div>
         <blockquote class="dq-text">"Nothing is more important than tone…"</blockquote>
         <p class="dq-attribution">&mdash; Mr. Erik Riggs, Band Director</p>
-        <p class="dq-context">Five words that became my compass. Tone is the foundation — get that right and everything else builds on something solid.</p>
+        <p class="dq-context">Five words that became my compass. Get tone right and everything else follows.</p>
         <div class="dq-deco dq-deco-right" aria-hidden="true">&#9835;</div>
       </div>
       <div class="cards-grid">
-        <div class="glass-card tutorial-card card-accent-teal fade-el stagger-1">
-          <div class="card-icon"><i class="fa-solid fa-circle-play"></i></div>
-          <div class="grade-relevance-row">
-            <span class="grade-relevance gr-5">🌟 5th</span><span class="grade-relevance gr-6">💚 6th</span><span class="grade-relevance gr-7">💙 7th</span>
-          </div>
-          <h3>🎵 Tone Bootcamp: Build a Real Sound</h3>
-          <p>Exact lip adjustments, airspeed fixes, and the daily warm-up that turned my squeaks into a clean, full sound. Start here first.</p>
-          <div class="card-tag free-tag">🆓 Free</div>
-        </div>
-        <div class="glass-card tutorial-card card-accent-yellow fade-el stagger-2">
-          <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
-          <div class="grade-relevance-row">
-            <span class="grade-relevance gr-7">💙 7th</span><span class="grade-relevance gr-8">⭐ 8th</span>
-          </div>
-          <h3>📈 Scale Mastery: Shortcut to Everything</h3>
-          <p>Every piece you'll perform is built on scales. Lock them in and everything clicks. Includes my exact All-County audition sequence.</p>
-          <div class="card-tag free-tag">🆓 Free</div>
-        </div>
-        <div class="glass-card tutorial-card card-accent-pink fade-el stagger-3">
-          <div class="card-icon"><i class="fa-solid fa-eye"></i></div>
-          <div class="grade-relevance-row">
-            <span class="grade-relevance gr-6">💚 6th</span><span class="grade-relevance gr-7">💙 7th</span><span class="grade-relevance gr-8">⭐ 8th</span>
-          </div>
-          <h3>👁️ Sight-Reading Without Freezing Up</h3>
-          <p>A 30-second pre-play system that makes any new piece feel approachable. Almost nobody drills this — the ones who do have a huge edge.</p>
-          <div class="card-tag free-tag">🆓 Free</div>
-        </div>
-        <div class="glass-card tutorial-card card-accent-purple fade-el stagger-4">
-          <div class="card-icon"><i class="fa-solid fa-music"></i></div>
-          <div class="grade-relevance-row">
-            <span class="grade-relevance gr-7">💙 7th</span><span class="grade-relevance gr-8">⭐ 8th</span>
-          </div>
-          <h3>🎶 Dynamics &amp; Phrasing: How to Stand Out</h3>
-          <p>Two flutists, same notes, completely different impact. The gap is expression. This is what I used as a pre-MPA soloist. Correct notes get you in — expression gets you remembered.</p>
-          <div class="card-tag free-tag">🆓 Free</div>
-        </div>
+        <div class="glass-card tutorial-card card-accent-teal fade-el stagger-1"><div class="card-icon"><i class="fa-solid fa-circle-play"></i></div><h3>🎵 Tone Bootcamp</h3><p>Lip adjustments, airspeed fixes, and the warm-up that turned my squeaks into a clean sound. Start here.</p><div class="card-tag free-tag">🆓 Free</div></div>
+        <div class="glass-card tutorial-card card-accent-yellow fade-el stagger-2"><div class="card-icon"><i class="fa-solid fa-chart-line"></i></div><h3>📈 Scale Mastery</h3><p>Every piece you'll ever play is built on scales. Lock them in and everything clicks — includes my All-County sequence.</p><div class="card-tag free-tag">🆓 Free</div></div>
+        <div class="glass-card tutorial-card card-accent-pink fade-el stagger-3"><div class="card-icon"><i class="fa-solid fa-eye"></i></div><h3>👁️ Sight-Reading Without Freezing</h3><p>A 30-second pre-play system that makes any new piece feel approachable. Almost nobody drills this — huge edge.</p><div class="card-tag free-tag">🆓 Free</div></div>
+        <div class="glass-card tutorial-card card-accent-purple fade-el stagger-4"><div class="card-icon"><i class="fa-solid fa-music"></i></div><h3>🎶 Dynamics &amp; Phrasing</h3><p>Correct notes get you in the room. Expression gets you remembered. This is what I used as a Pre-MPA soloist.</p><div class="card-tag free-tag">🆓 Free</div></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== SUMMER LOCK-IN ===== -->
+  <!-- SUMMER -->
   <section id="summer" class="section summer-section" aria-labelledby="summer-title">
     <div class="container">
-      <div class="section-header fade-el">
-        <div class="section-tag">Summer Lock-In</div>
-        <h2 id="summer-title">The Plan That <span class="accent-yellow">Changed Everything.</span></h2>
-        <p class="section-intro">10th of 16 &rarr; First Chair &rarr; All-County &rarr; All-District &rarr; Europe. One summer. Four rules. Here they are.</p>
-      </div>
+      <div class="section-header fade-el"><div class="section-tag">Summer Lock-In</div><h2 id="summer-title">The Plan That <span class="accent-yellow">Changed Everything.</span></h2><p class="section-intro">10th of 16 &rarr; First Chair &rarr; All-County &rarr; Europe. One summer. Four rules.</p></div>
       <div class="summer-pillars">
-        <div class="pillar glass-card card-accent-teal fade-el stagger-1">
-          <div class="pillar-number" aria-hidden="true">01</div>
-          <div class="pillar-icon"><i class="fa-solid fa-clock"></i></div>
-          <h3>Daily Practice — Every. Single. Day. ⏰</h3>
-          <p>No exceptions. Weekends. Vacation days. Days you don't feel like it. <strong>Phone in another room. Full presence.</strong> Consistent beats long every time.</p>
+        <div class="pillar glass-card card-accent-teal fade-el stagger-1"><div class="pillar-number" aria-hidden="true">01</div><div class="pillar-icon"><i class="fa-solid fa-clock"></i></div><h3>Daily Practice — No Exceptions. ⏰</h3><p><strong>Phone away. Full presence.</strong> Consistent beats long every single time.</p>
           <div class="summer-grade-note">
-            <div class="sgn-row sgn-orange"><strong>🌟 5th:</strong> 10 min — 5 breath · 5 headjoint tone</div>
+            <div class="sgn-row sgn-orange"><strong>🌟 5th:</strong> 10 min — 5 breath · 5 tone</div>
             <div class="sgn-row sgn-green"><strong>💚 6th:</strong> 15 min — 5 tone · 5 notes · 5 worst spot</div>
             <div class="sgn-row sgn-blue"><strong>💙 7th:</strong> 20 min — 5 scales · 5 sight-read · 5 piece · 5 weakness</div>
             <div class="sgn-row sgn-gold"><strong>⭐ 8th:</strong> 20 min — 5 long tones · 5 scales · 5 piece · 5 artistry</div>
           </div>
         </div>
-        <div class="pillar glass-card card-accent-pink fade-el stagger-2">
-          <div class="pillar-number" aria-hidden="true">02</div>
-          <div class="pillar-icon"><i class="fa-solid fa-crosshairs"></i></div>
-          <h3>Attack Your Worst Spot First. 🎯</h3>
-          <p>Most students practice what feels comfortable. <strong>Real growth lives in the uncomfortable places.</strong> One worst spot per week. Drill it first, every session. Stack the wins.</p>
-        </div>
-        <div class="pillar glass-card card-accent-yellow fade-el stagger-3">
-          <div class="pillar-number" aria-hidden="true">03</div>
-          <div class="pillar-icon"><i class="fa-solid fa-circle-dot"></i></div>
-          <h3>Record Yourself Every Session. 📱</h3>
-          <p><em>Your brain lies to you while you play.</em> It fills in the sound you expect, not what's actually coming out. Record. Listen back like a judge. Fix it. Repeat. This alone changed everything for me.</p>
-        </div>
-        <div class="pillar glass-card card-accent-purple fade-el stagger-4">
-          <div class="pillar-number" aria-hidden="true">04</div>
-          <div class="pillar-icon"><i class="fa-solid fa-headphones"></i></div>
-          <h3>Listen to the Best Players Daily. 🎧</h3>
-          <p>Every day that summer — Galway, Pahud, Jasmine Choi. <strong>Not background music. Intentional listening.</strong> Your ears need a clear target before your hands can aim at one.</p>
-        </div>
+        <div class="pillar glass-card card-accent-pink fade-el stagger-2"><div class="pillar-number" aria-hidden="true">02</div><div class="pillar-icon"><i class="fa-solid fa-crosshairs"></i></div><h3>Drill Your Worst Spot First. 🎯</h3><p>Practice what's comfortable and you'll stay comfortable. <strong>One worst spot per week — every session, until it stops being scary.</strong></p></div>
+        <div class="pillar glass-card card-accent-yellow fade-el stagger-3"><div class="pillar-number" aria-hidden="true">03</div><div class="pillar-icon"><i class="fa-solid fa-circle-dot"></i></div><h3>Record Every Session. 📱</h3><p><em>Your brain fills in the sound you expect, not what's coming out.</em> Record. Listen like a judge. Fix it. Repeat.</p></div>
+        <div class="pillar glass-card card-accent-purple fade-el stagger-4"><div class="pillar-number" aria-hidden="true">04</div><div class="pillar-icon"><i class="fa-solid fa-headphones"></i></div><h3>Listen to the Best Daily. 🎧</h3><p>Galway. Pahud. Jasmine Choi. <strong>Intentional listening, every day.</strong> Your ears need a target before your hands can aim.</p></div>
       </div>
-      <div class="summer-cta fade-el">
-        <p class="pullquote">"The plan that took me from 10th out of 16 to a stage in Europe — it's yours, free, right now."</p>
-        <a href="#contact" class="btn-primary btn-xl confetti-trigger email-cta">Get the Full Summer Plan &rarr;</a>
-      </div>
+      <div class="summer-cta fade-el"><p class="pullquote">"From 10th out of 16 to a stage in Europe — this plan is yours, free, right now."</p><a href="#contact" class="btn-primary btn-xl confetti-trigger email-cta">Get the Full Summer Plan &rarr;</a></div>
     </div>
   </section>
 
-  <!-- ===== FAQ ===== -->
+  <!-- FAQ -->
   <section id="faq" class="section faq-section" aria-labelledby="faq-title">
     <div class="container">
-      <div class="section-header fade-el">
-        <div class="section-tag">Got Questions?</div>
-        <h2 id="faq-title">Everything You <span class="accent-text">Want to Know.</span></h2>
-        <p class="section-intro">Straight-up honest answers. If yours isn't here, email me — I'll reply directly.</p>
-      </div>
+      <div class="section-header fade-el"><div class="section-tag">Got Questions?</div><h2 id="faq-title">Everything You <span class="accent-text">Want to Know.</span></h2><p class="section-intro">Straight answers. Yours not here? Email me.</p></div>
       <div class="faq-list fade-el">
-
-        <details class="faq-item glass-card">
-          <summary class="faq-question"><span>Is this actually 100% free? No hidden costs?</span><i class="fa-solid fa-plus faq-icon"></i></summary>
-          <div class="faq-answer"><p>Yes. Video sessions, practice plans, the summer guide, email Q&amp;A, all guides — everything. I'm an 8th grader. I don't want your money. I want students around me to get better. That's it.</p></div>
-        </details>
-
-        <details class="faq-item glass-card">
-          <summary class="faq-question"><span>I'm in 5th grade and haven't started band yet. Is this for me?</span><i class="fa-solid fa-plus faq-icon"></i></summary>
-          <div class="faq-answer"><p>100% — and the Pre-Band plan might be the most valuable one. Knowing breathing basics, how to assemble your flute, and making real sounds before school band starts gives you a massive head-start. Day one feels completely different.</p></div>
-        </details>
-
-        <details class="faq-item glass-card">
-          <summary class="faq-question"><span>I'm in 8th grade and already pretty advanced. Can you still help?</span><i class="fa-solid fa-plus faq-icon"></i></summary>
-          <div class="faq-answer"><p>Absolutely — 8th grade is where it gets most interesting. This year shapes your high school experience directly. I can help with phrasing, All-State prep, and the fine-tuning that separates good from genuinely exceptional.</p></div>
-        </details>
-
-        <details class="faq-item glass-card">
-          <summary class="faq-question"><span>How do I book a video session?</span><i class="fa-solid fa-plus faq-icon"></i></summary>
-          <div class="faq-answer"><p>Email me at <a href="mailto:arnav.chouksey@gmail.com" class="faq-link">arnav.chouksey@gmail.com</a> or use the form below. I'm free most weekends and some weekday evenings. I reply within 24–48 hours and we'll lock in a time.</p></div>
-        </details>
-
-        <details class="faq-item glass-card">
-          <summary class="faq-question"><span>Are you actually qualified? You're still a student yourself.</span><i class="fa-solid fa-plus faq-icon"></i></summary>
-          <div class="faq-answer"><p>Fair. I don't have a degree — I have a documented path from squeaky beginner to First Chair, All-County, All-District, and Europe, and I know exactly why every step worked. I speak your language because I've literally just been there. And it's free, so the only risk is one email.</p></div>
-        </details>
-
+        <details class="faq-item glass-card"><summary class="faq-question"><span>Is this actually 100% free?</span><i class="fa-solid fa-plus faq-icon"></i></summary><div class="faq-answer"><p>Yes — everything. Video sessions, practice plans, summer guide, guides. I'm an 8th grader. I don't want your money. I want you to improve.</p></div></details>
+        <details class="faq-item glass-card"><summary class="faq-question"><span>I haven't started band yet (5th grade). Is this for me?</span><i class="fa-solid fa-plus faq-icon"></i></summary><div class="faq-answer"><p>100% yes — learning breathing and tone basics before school starts gives you a massive head-start. Day one feels completely different.</p></div></details>
+        <details class="faq-item glass-card"><summary class="faq-question"><span>How do I book a session?</span><i class="fa-solid fa-plus faq-icon"></i></summary><div class="faq-answer"><p>Email <a href="mailto:arnav.chouksey@gmail.com" class="faq-link">arnav.chouksey@gmail.com</a> or use the form below. I'm free most weekends and some weekday evenings — I reply within 48 hours.</p></div></details>
+        <details class="faq-item glass-card"><summary class="faq-question"><span>Are you actually qualified? You're still in school.</span><i class="fa-solid fa-plus faq-icon"></i></summary><div class="faq-answer"><p>No degree — but I have a documented path from squeaky beginner to First Chair, All-County, All-District, and Europe. I know exactly why it worked. It's free, so the only risk is one email.</p></div></details>
       </div>
     </div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
+  <!-- CONTACT -->
   <section id="contact" class="section contact-section" aria-labelledby="contact-title">
     <div class="container">
-      <div class="section-header fade-el">
-        <div class="section-tag">Join the Academy</div>
-        <h2 id="contact-title">One Email. <span class="accent-text">Your Whole Year Changes.</span></h2>
-        <p class="section-intro">You've read the story. You know it's free. All that's left is one short message.</p>
-      </div>
+      <div class="section-header fade-el"><div class="section-tag">Join the Academy</div><h2 id="contact-title">One Email. <span class="accent-text">Your Whole Year Changes.</span></h2><p class="section-intro">Send me your name, grade, and one thing to work on. I reply personally within 48 hours.</p></div>
       <div class="contact-content">
-
-        <div class="contact-story glass-card fade-el">
-          <h3>Here's What Happens When You Reach Out</h3>
-          <p>Send me your name, your grade, and one thing you want to work on — five minutes max. I write back personally within 24–48 hours and we figure out the right next step together. Video session, custom plan, or just a straight answer to something you've been wondering about. <strong>5th grader curious about the flute or 8th grader chasing something big — you're welcome here.</strong></p>
-          <p class="pullquote fade-el">"You don't have to figure this out alone. I've got you."</p>
-          <div class="booking-callout fade-el">
-            <div class="booking-icon"><i class="fa-solid fa-calendar-check"></i></div>
-            <div>
-              <h4>Ready to Book a Session?</h4>
-              <p>Email me and we'll lock in a time. Most weekends and some weekday evenings.</p>
-              <a href="mailto:arnav.chouksey@gmail.com?subject=Book%20a%20Session&body=Hi%20Arnav!%20I%27d%20love%20to%20book%20a%20session.%20I%27m%20in%20grade%20__%20and%20want%20to%20work%20on%20__." class="btn-ghost btn-sm">
-                <i class="fa-solid fa-envelope"></i> Book a Session &rarr;
-              </a>
-            </div>
-          </div>
-        </div>
-
         <div class="contact-methods">
           <div class="contact-form-card glass-card card-accent-teal fade-el">
             <h3><i class="fa-solid fa-paper-plane"></i> Send Me a Message</h3>
-            <p class="contact-form-intro">I'll reply personally within 48 hours.</p>
             <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
-              <input type="hidden" name="access_key" value="1318ba71-3ec3-4981-aa06-012090ac3b9e" />
-              <input type="hidden" name="subject" value="New Flute Academy Message! 🎵" />
-              <input type="hidden" name="from_name" value="Arnav Chouksey Flute Academy" />
-              <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
-              <div class="form-group">
-                <label for="cf-name">Your Name <span class="req">*</span></label>
-                <input type="text" id="cf-name" name="name" placeholder="e.g. Alex Chen" required autocomplete="name" aria-required="true" />
+              <input type="hidden" name="access_key" value="1318ba71-3ec3-4981-aa06-012090ac3b9e"/>
+              <input type="hidden" name="subject" value="New Flute Academy Message! 🎵"/>
+              <input type="hidden" name="from_name" value="Arnav Chouksey Flute Academy"/>
+              <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off"/>
+              <div class="form-group"><label for="cf-name">Name <span class="req">*</span></label><input type="text" id="cf-name" name="name" placeholder="e.g. Alex Chen" required autocomplete="name" aria-required="true"/></div>
+              <div class="form-group"><label for="cf-grade">Grade <span class="req">*</span></label>
+                <select id="cf-grade" name="grade" required aria-required="true"><option value="" disabled selected>Select your grade</option><option value="5th">🌟 5th</option><option value="6th">💚 6th</option><option value="7th">💙 7th</option><option value="8th">⭐ 8th</option><option value="parent">Parent / Guardian</option></select>
               </div>
-              <div class="form-group">
-                <label for="cf-grade">Your Grade <span class="req">*</span></label>
-                <select id="cf-grade" name="grade" required aria-required="true">
-                  <option value="" disabled selected>Select your grade</option>
-                  <option value="5th">🌟 5th Grade</option>
-                  <option value="6th">💚 6th Grade</option>
-                  <option value="7th">💙 7th Grade</option>
-                  <option value="8th">⭐ 8th Grade</option>
-                  <option value="parent">Parent / Guardian</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="cf-email">Your Email <span class="req">*</span></label>
-                <input type="email" id="cf-email" name="email" placeholder="your@email.com" required autocomplete="email" aria-required="true" />
-              </div>
-              <div class="form-group">
-                <label for="cf-message">What do you want to work on? <span class="req">*</span></label>
-                <textarea id="cf-message" name="message" placeholder="Tell me what you're struggling with or want to improve..." rows="4" required aria-required="true"></textarea>
-              </div>
-              <button type="submit" class="btn-primary form-submit">
-                <i class="fa-solid fa-paper-plane"></i> Send Message &rarr;
-              </button>
-              <div class="form-success" id="form-success" role="status" aria-live="polite" hidden>
-                <i class="fa-solid fa-circle-check"></i> Sent! I'll reply personally within 48 hours. &#9834;
-              </div>
-              <div class="form-error" id="form-error" role="alert" aria-live="assertive" hidden>
-                <i class="fa-solid fa-triangle-exclamation"></i> Something went wrong — please email me directly below.
-              </div>
+              <div class="form-group"><label for="cf-email">Email <span class="req">*</span></label><input type="email" id="cf-email" name="email" placeholder="your@email.com" required autocomplete="email" aria-required="true"/></div>
+              <div class="form-group"><label for="cf-message">What do you want to work on? <span class="req">*</span></label><textarea id="cf-message" name="message" placeholder="Tell me what you're struggling with or want to improve..." rows="4" required aria-required="true"></textarea></div>
+              <button type="submit" class="btn-primary form-submit"><i class="fa-solid fa-paper-plane"></i> Send Message &rarr;</button>
+              <div class="form-success" id="form-success" role="status" aria-live="polite" hidden><i class="fa-solid fa-circle-check"></i> Sent! I'll reply personally within 48 hours. &#9834;</div>
+              <div class="form-error" id="form-error" role="alert" aria-live="assertive" hidden><i class="fa-solid fa-triangle-exclamation"></i> Something went wrong — email me directly below.</div>
             </form>
           </div>
-
           <div class="contact-card glass-card card-accent-pink fade-el stagger-1">
             <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
             <h3>Prefer Direct Email?</h3>
-            <p>Either address works — I reply to every single one:</p>
+            <p>Either address — I reply to every single one:</p>
             <a href="mailto:arnav.chouksey@gmail.com" class="contact-email-link">arnav.chouksey@gmail.com</a>
             <a href="mailto:achouksey@students.wcpss.net" class="contact-email-link" style="margin-top:8px;">achouksey@students.wcpss.net</a>
             <p class="contact-note">You will hear from me. Every time.</p>
           </div>
-
           <div class="contact-big-cta fade-el stagger-2">
-            <p>Do it right now — before you close this tab. Five minutes could change your entire band year:</p>
+            <p class="pullquote">"You don't have to figure this out alone. I've got you."</p>
             <a href="mailto:arnav.chouksey@gmail.com" class="btn-primary btn-xl confetti-trigger">EMAIL ME — 5 MIN &amp; TOTALLY FREE &rarr;</a>
             <p class="contact-small">100% free. No pressure. Just a fellow student who wants to see you win.</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- FOOTER -->
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner fade-el">
-      <div class="footer-logo">
-        <i class="fa-solid fa-music spinning-icon-slow"></i>
-        <span>Arnav Chouksey Flute Academy</span>
-      </div>
+      <div class="footer-logo"><i class="fa-solid fa-music spinning-icon-slow"></i><span>Arnav Chouksey Flute Academy</span></div>
       <p class="footer-tagline">From Apex, NC &middot; 100% Free for 5th–8th Graders &middot; No catch. Ever. &#9834;</p>
       <p class="footer-tagline" style="margin-top:6px;font-size:.80rem;opacity:.7;">"Nothing is more important than tone…" — Mr. Erik Riggs</p>
-      <nav class="footer-nav" aria-label="Footer links">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#journey">Journey</a>
-        <a href="#services">Services</a>
-        <a href="#tutorials">Guides</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <nav class="footer-nav" aria-label="Footer links"><a href="#home">Home</a><a href="#about">About</a><a href="#journey">Journey</a><a href="#services">Services</a><a href="#tutorials">Guides</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
       <p class="footer-copy">&copy; 2025 Arnav Chouksey Flute Academy &middot; Made with &#9834; and a whole lot of heart</p>
     </div>
   </footer>
-
   <script src="script.js"></script>
 </body>
 </html>
