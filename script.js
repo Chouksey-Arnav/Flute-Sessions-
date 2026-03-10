@@ -278,7 +278,7 @@
     });
   }
 
-  // Mark + observe all .fade-el
+  // Mark + observe all .fade-el — fires EVERY time (scroll down AND back up)
   var allFadeEls = document.querySelectorAll('.fade-el');
   allFadeEls.forEach(function (el) { el.classList.add('will-fade'); });
 
@@ -286,20 +286,21 @@
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        fadeObserver.unobserve(entry.target);
+      } else {
+        // Remove so it re-animates next time it enters the viewport
+        entry.target.classList.remove('is-visible');
       }
     });
-  }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
   allFadeEls.forEach(function (el) { fadeObserver.observe(el); });
 
-  // Immediately reveal anything already in viewport
+  // Immediately reveal anything already in viewport on load
   requestAnimationFrame(function () {
     document.querySelectorAll('.fade-el').forEach(function (el) {
       var rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight - 10) {
         el.classList.add('is-visible');
-        fadeObserver.unobserve(el);
       }
     });
   });
