@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Arnav Chouksey Flute Academy — free, personalized flute mentoring for 5th–8th graders in Apex, NC. First Chair · All-County · All-District · NC Bandmasters Europe."/>
+  <title>Arnav Chouksey Flute Academy</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="bg-hero">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="bg-orb bg-orb-1"></div><div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div><div class="bg-orb bg-orb-4"></div>
+  </div>
+  <div class="ticker-wrap" aria-hidden="true"><div class="ticker-inner">
+    <span class="ticker-item">🏆 First Chair · Mills Park <span class="dot">✦</span></span>
+    <span class="ticker-item">🎵 All-County Honors <span class="dot">✦</span></span>
+    <span class="ticker-item">🥇 All-District Honors <span class="dot">✦</span></span>
+    <span class="ticker-item">✈️ NC Bandmasters Europe Trip <span class="dot">✦</span></span>
+    <span class="ticker-item">🎤 Pre-MPA Soloist <span class="dot">✦</span></span>
+    <span class="ticker-item">🌟 100% Free · 5th–8th Grade <span class="dot">✦</span></span>
+    <span class="ticker-item">🏆 First Chair · Mills Park <span class="dot">✦</span></span>
+    <span class="ticker-item">🎵 All-County Honors <span class="dot">✦</span></span>
+    <span class="ticker-item">🥇 All-District Honors <span class="dot">✦</span></span>
+    <span class="ticker-item">✈️ NC Bandmasters Europe Trip <span class="dot">✦</span></span>
+    <span class="ticker-item">🎤 Pre-MPA Soloist <span class="dot">✦</span></span>
+    <span class="ticker-item">🌟 100% Free · 5th–8th Grade <span class="dot">✦</span></span>
+  </div></div>
+  <div class="global-notes" aria-hidden="true">
+    <span class="gnote gnote-1">&#9834;</span><span class="gnote gnote-2">&#9835;</span>
+    <span class="gnote gnote-3">&#9833;</span><span class="gnote gnote-4">&#9836;</span>
+    <span class="gnote gnote-5">&#9834;</span><span class="gnote gnote-6">&#9835;</span>
+    <span class="gnote gnote-7">&#9833;</span><span class="gnote gnote-8">&#9836;</span>
+    <span class="gnote gnote-9">&#9834;</span><span class="gnote gnote-10">&#9837;</span>
+    <span class="gnote gnote-11">&#9839;</span><span class="gnote gnote-12">&#9837;</span>
+    <span class="gnote gnote-13">&#9839;</span><span class="gnote gnote-14">&#9838;</span>
+    <span class="gnote gnote-15">&#9838;</span><span class="gnote gnote-16">&#119070;</span>
+    <span class="gnote gnote-17">&#119070;</span><span class="gnote gnote-18">&#9835;</span>
+    <span class="gnote gnote-19">&#9836;</span><span class="gnote gnote-20">&#9837;</span>
+    <span class="gnote gnote-21">&#9834;</span><span class="gnote gnote-22">&#9839;</span>
+  </div>
+  <div id="confetti-container" aria-hidden="true"></div>
+
+  <!-- NAV -->
+
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">
+        <i class="fa-solid fa-music nav-logo-icon spinning-icon"></i>
+        <span>Arnav Chouksey Flute Academy</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#journey">My Story</a></li>
+        <li><a href="#services">How I Help</a></li>
+        <li><a href="#summer">Framework</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact" class="nav-cta-btn email-cta">Get in Touch &rarr;</a></li>
+      </ul>
+    </div>
+  </nav>
+  <a id="main-content" tabindex="-1" aria-hidden="true" style="position:absolute;top:0;"></a>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+
+  <section id="home" class="section hero-section" aria-labelledby="hero-title" tabindex="-1">
+    <div class="hero-notes" aria-hidden="true">
+      <span class="hnote hnote-1">&#9834;</span><span class="hnote hnote-2">&#9835;</span>
+      <span class="hnote hnote-3">&#127925;</span><span class="hnote hnote-4">&#127926;</span>
+      <span class="hnote hnote-5">&#9836;</span><span class="hnote hnote-6">&#9837;</span>
+      <span class="hnote hnote-7">&#9839;</span>
+    </div>
+    <div class="hero-watermark" aria-hidden="true"><span class="hero-watermark-text">FLUTE</span></div>
+    <div class="hero-content">
+      <div class="grade-badges">
+        <span class="grade-badge g5">🌟 5th</span>
+        <span class="grade-badge g6">💚 6th</span>
+        <span class="grade-badge g7">💙 7th</span>
+        <span class="grade-badge g8">⭐ 8th</span>
+      </div>
+      <div class="free-badge">🎶 100% FREE &middot; No Fees &middot; No Catch &middot; Just Real Results</div>
+      <h1 class="hero-title" id="hero-title">I WANT TO HELP<br><span class="accent-text">YOUR CHILD EXCEL.</span></h1>
+      <p class="hero-sub hero-sub-2">
+        My name is Arnav Chouksey — I'm an 8th grader at Mills Park Middle School in Apex, NC.
+        In one year, I went from <em>10th chair out of 16</em> to <strong>First Chair, All-County Honors, All-District Honors,</strong>
+        and a performance trip across <strong>Europe</strong> with the NC Bandmasters Association.
+        I documented every single step of that journey — and I'm offering it all to your child, <em>completely free, no strings attached.</em> &#9834;
+      </p>
+      <div class="hero-cta-group">
+        <a href="#contact" class="btn-primary confetti-trigger email-cta" id="main-cta">REACH OUT — 5 MINUTES, TOTALLY FREE &rarr;</a>
+        <a href="#journey" class="btn-ghost">📖 Read My Full Story</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">1st</span><span class="stat-label">Chair · Mills Park</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">2&times;</span><span class="stat-label">All-County &amp; All-District</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">&#9992;&#65039;</span><span class="stat-label">NC Bandmasters Europe</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">5–8</span><span class="stat-label">Grades Served</span></div>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <span>Keep scrolling</span>
+      <i class="fa-solid fa-chevron-down bounce"></i>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════════ -->
+
+  <section id="about" class="section about-section" aria-labelledby="about-title">
+    <div class="section-bg-deco" aria-hidden="true">
+      <div class="sec-orb sec-orb-a"></div>
+      <div class="sec-orb sec-orb-b"></div>
+      <div class="sec-line sec-line-1"></div>
+    </div>
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-photo-col fade-el fade-left">
+          <div class="photo-frame">
+            <div class="photo-placeholder" role="img" aria-label="Arnav Chouksey">
+              <i class="fa-solid fa-user photo-icon"></i>
+              <span>Arnav Chouksey</span>
+            </div>
+            <div class="photo-badge"><i class="fa-solid fa-star"></i> First Chair ✓</div>
+          </div>
+          <div class="about-accolades">
+            <div class="accolade fade-el stagger-1"><i class="fa-solid fa-trophy"></i> All-County Honors</div>
+            <div class="accolade fade-el stagger-2"><i class="fa-solid fa-medal"></i> All-District Honors</div>
+            <div class="accolade fade-el stagger-3"><i class="fa-solid fa-plane"></i> NC Bandmasters Europe</div>
+            <div class="accolade fade-el stagger-4"><i class="fa-solid fa-microphone"></i> Pre-MPA Soloist</div>
+          </div>
+        </div>
+        <div class="about-text-col fade-el fade-right">
+          <div class="section-tag">Who I Am &amp; Why I'm Doing This</div>
+          <h2 id="about-title">I Know Exactly What It Feels Like <span class="accent-text">to Struggle — and to Break Through.</span></h2>
+          <p>
+            In 7th grade, I sat <strong>10th chair out of 16.</strong> I practiced every single day,
+            but without the right direction, I kept reinforcing the same mistakes over and over.
+            What I truly needed was someone who had just been through it — someone who could look at me and say,
+            <em>"Here's exactly what to change, and here's how."</em>
+            That person didn't exist for me. So I made a decision: I would figure it out myself, document everything, and never let another student go without that guidance.
+          </p>
+          <p>
+            One focused summer later, I came back as <strong>First Chair, All-County Honors, All-District Honors, Pre-MPA soloist,</strong>
+            and was selected for the <strong>NC Bandmasters Association Europe performance trip</strong> —
+            one of the highest honors available to middle school band students in North Carolina.
+            Every technique, habit, and strategy that produced those results is now available to your child,
+            <strong>completely free, with no obligation of any kind.</strong>
+          </p>
+          <p class="pullquote fade-el">"Every student deserves someone genuinely in their corner. It would be my honor to be that person for your child."</p>
+          <a href="#contact" class="btn-primary email-cta">Get in Touch &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       JOURNEY / MY STORY
+  ═══════════════════════════════════════════ -->
+
+  <section id="journey" class="section journey-section" aria-labelledby="journey-title">
+    <div class="section-bg-deco" aria-hidden="true">
+      <div class="sec-orb sec-orb-c"></div>
+      <div class="sec-grid"></div>
+    </div>
+    <div class="container">
+      <div class="section-header fade-el">
+        <div class="section-tag">My Story</div>
+        <h2 id="journey-title">From 10th Chair <span class="accent-text">to Europe — in 12 Months.</span></h2>
+        <p class="section-intro">
+          I'm sharing this transparently because I want both parents and students to see:
+          every result I achieved was earned through a repeatable system, not natural talent.
+          Here is exactly how it happened.
+        </p>
+      </div>
+      <div class="timeline">
+
+```
+    <div class="timeline-item fade-el fade-left">
+      <div class="timeline-badge">7th</div>
+      <div class="timeline-content glass-card">
+        <h3>7th Grade: 10th Out of 16. My Turning Point. 🎯</h3>
+        <p>
+          That chair placement stung — I won't pretend otherwise. But it became the single most useful
+          thing that ever happened to me musically. Instead of accepting it, I treated it like a checklist:
+          every weak spot I could identify was something I could systematically fix.
+          <em>If your child is disappointed with where they currently stand, please know —
+          that placement is their starting point, not their ceiling.</em>
+        </p>
+        <div class="unlock-box unlock-box-blue fade-el stagger-4">
+          <span class="unlock-label">🔓 What This Mindset Unlocks</span>
+          Chair improvement &rarr; All-County &rarr; All-District &rarr; All-State pathway
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item timeline-right fade-el fade-right">
+      <div class="timeline-badge">☀️</div>
+      <div class="timeline-content glass-card">
+        <h3>The Summer I Changed Everything</h3>
+        <p>Between 7th and 8th grade, I committed to four habits — every single day, no exceptions.
+        They're not complicated. They just require real intention:</p>
+        <ul class="journey-list">
+          <li><i class="fa-solid fa-check-circle"></i> <strong>20 focused minutes daily</strong> — phone away, distraction-free, no exceptions for weekends or vacations.</li>
+          <li><i class="fa-solid fa-check-circle"></i> <strong>Recorded every session</strong> — listening back revealed what I couldn't hear while I was playing. Your ears lie to you in the moment.</li>
+          <li><i class="fa-solid fa-check-circle"></i> <strong>Addressed my weakest spot first</strong> — every session, before fatigue set in, before the comfortable stuff.</li>
+          <li><i class="fa-solid fa-check-circle"></i> <strong>Listened to professional flutists daily</strong> — James Galway, Emmanuel Pahud, Jasmine Choi. Your ears need a clear target before your hands can aim at one.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-el fade-left">
+      <div class="timeline-badge">8th</div>
+      <div class="timeline-content glass-card">
+        <h3>8th Grade: First Chair, All-County, All-District &amp; Europe. 🏆✈️</h3>
+        <p>
+          The same student who sat 10th out of 16 came back and earned <strong>First Chair.</strong>
+          That year I also received <strong>All-County Honors</strong> and <strong>All-District Honors,</strong>
+          performed as a <strong>Pre-MPA soloist</strong> in front of the full Green Level concert band,
+          and was selected for the <strong>NC Bandmasters Association Europe performance trip —</strong>
+          an honor I will carry for the rest of my life.
+        </p>
+        <p class="pullquote fade-el">"Every technique, every habit, every milestone is documented and available to your child — completely free."</p>
+        <div class="unlock-box unlock-box-gold fade-el stagger-4">
+          <span class="unlock-label">🔓 What This Stage Unlocks</span>
+          Top chairs &rarr; Pre-MPA &rarr; Europe trip &rarr; Macy's Parade pathway
+        </div>
+        <a href="#contact" class="btn-primary email-cta" style="margin-top:20px;display:inline-flex;">Start Your Child's Journey &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SERVICES + GRADE PLANS + FREE GUIDES
+  ═══════════════════════════════════════════ -->
+
+  <section id="services" class="section services-section" aria-labelledby="services-title">
+    <div class="section-bg-deco" aria-hidden="true">
+      <div class="sec-orb sec-orb-d"></div>
+      <div class="sec-orb sec-orb-e"></div>
+      <div class="sec-dots"></div>
+    </div>
+    <div class="container">
+
+```
+  <div class="section-header fade-el">
+    <div class="section-tag">How I Can Support Your Child</div>
+    <h2 id="services-title">Four Ways I Help Students Improve. <span class="accent-text">All Completely Free.</span></h2>
+    <p class="section-intro">No tiers. No upgrades. No hidden costs. I simply want your child to succeed — and I have the firsthand experience to help them do exactly that.</p>
+  </div>
+
+  <div class="cards-grid">
+    <div class="glass-card service-card card-accent-teal fade-el stagger-1">
+      <div class="card-icon"><i class="fa-solid fa-video"></i></div>
+      <h3>🎯 1-on-1 Video Sessions</h3>
+      <p>I listen to your child play, identify the specific areas holding them back, and provide a clear written action plan. Sessions are 30 minutes over video call — Zoom, Google Meet, or FaceTime, whatever is most convenient for your family.</p>
+      <div class="card-tag">Most Requested</div>
+    </div>
+    <div class="glass-card service-card card-accent-yellow fade-el stagger-2">
+      <div class="card-icon"><i class="fa-solid fa-trophy"></i></div>
+      <h3>🏆 Audition &amp; Competition Prep</h3>
+      <p>I've personally competed in and earned honors at All-County, All-District, and Pre-MPA auditions. I know precisely what evaluators listen for — and I'll prepare your child to walk into any audition room with real, grounded confidence.</p>
+      <div class="card-tag yellow">High Impact</div>
+    </div>
+    <div class="glass-card service-card card-accent-pink fade-el stagger-3">
+      <div class="card-icon"><i class="fa-solid fa-seedling"></i></div>
+      <h3>🌱 Beginner Foundation Program</h3>
+      <p>Designed specifically for 5th and 6th graders — I'll build the fundamentals that matter most: proper embouchure, correct hand position, breath support, and the habits that make everything easier later. Starting right makes all the difference.</p>
+      <div class="card-tag green">5th &amp; 6th Grade</div>
+    </div>
+    <div class="glass-card service-card card-accent-purple fade-el stagger-4">
+      <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+      <h3>📋 Personalized Practice Plans</h3>
+      <p>I'll design a structured, grade-appropriate daily routine targeting your child's specific weak areas — focused and achievable in 15–25 minutes. I learned the hard way that efficient, targeted practice consistently outperforms long, unfocused sessions.</p>
+      <div class="card-tag pink">Highly Effective</div>
+    </div>
+  </div>
+
+  <!-- GRADE PLANS CAROUSEL -->
+  <div class="grade-plans-header fade-el">
+    <div class="section-tag" style="margin-top:3.5rem;">Select Your Grade — See Your Plan</div>
+    <p class="section-intro" style="max-width:600px;margin:12px auto 0;">
+      I've built a specific practice roadmap for every grade level. Swipe through to find your child's plan.
+    </p>
+  </div>
+  <div class="cf-wrapper fade-el" id="cf-wrapper">
+    <div class="cf-row">
+      <button class="cf-arrow cf-prev" id="cf-prev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="cf-viewport" role="region" aria-live="polite">
+        <div class="cf-track" id="cf-track">
+          <div class="grade-plan-card glass-card card-accent-orange cf-slide" data-grade="5">
+            <div class="grade-plan-badge g5">🌟 5th Grade — Pre-Band Prep · 10–15 min/day</div>
+            <ul class="plan-list">
+              <li><i class="fa-solid fa-circle-check"></i><span><strong>Breathing foundation &amp; headjoint tone production</strong></span></li>
+              <li><i class="fa-solid fa-circle-check"></i><span><strong>Assembly, proper posture &amp; hand position</strong></span></li>
+              <li><i class="fa-solid fa-circle-check"></i><span><strong>Daily structure:</strong> 5 min breath work · 5 min tone</span></li>
+            </ul>
+            <div class="plan-unlock"><i class="fa-solid fa-lock-open"></i><span>Head-start on band · First clean tone · Zero first-day panic</span></div>
+          </div>
+          <div class="grade-plan-card glass-card card-accent-green cf-slide" data-grade="6">
+            <div class="grade-plan-badge g6">💚 6th Grade — Beginner Basics · 15–20 min/day</div>
+            <ul class="plan-list">
+              <li><i class="fa-solid fa-circle-check"></i><span><strong>Embouchure development &amp; breath support</strong></span></li>
+              <li><i class="fa-solid fa-circle-check"></i><span><strong>First 12 notes learned with correct fingering</strong></span></li>
+              <li><i class="fa-solid fa-circle-check"></i><span><strong>Daily structure:</strong> 5 tone · 5 notes · 5 problem spot</span></li>
+            </ul>
+            <div class="plan-unlock"><i class="fa-solid fa-lock-open"></i><span>Chair readiness · Competition eligibility · Real, consistent tone</span></div>
+          </div>
+          <div class="grade-plan-card glass-card card-accent-teal cf-slide" data-grade="7">
+            <div class="grade-plan-badge g7">💙 7th Grade — Audition Foundations · 20 min/day</div>
+            <ul class="plan-list">
+              <li><i class="fa-solid fa-circle-check"></i><span><strong>All major scales &amp; arpeggios</strong></span></li>
+              <li><i class="fa-solid fa-circle-check"></i><span><strong>Sight-reading strategy &amp; chair audition prep</strong></span></li>
+              <li><i class="fa-solid fa-circle-check"></i><span><strong>Daily structure:</strong> 5 scales · 5 sight-read · 5 piece · 5 weakness</span></li>
+            </ul>
+            <div class="plan-unlock"><i class="fa-solid fa-lock-open"></i><span>All-County · All-District · All-State · Honor bands</span></div>
+          </div>
+          <div class="grade-plan-card glass-card card-accent-yellow cf-slide" data-grade="8">
+            <div class="grade-plan-badge g8">⭐ 8th Grade — Advanced Mastery · 20–25 min/day</div>
+            <ul class="plan-list">
+              <li><i class="fa-solid fa-circle-check"></i><span><strong>Phrasing, dynamics &amp; Pre-MPA performance prep</strong></span></li>
+              <li><i class="fa-solid fa-circle-check"></i><span><strong>High school audition strategy &amp; repertoire selection</strong></span></li>
+              <li><i class="fa-solid fa-circle-check"></i><span><strong>Daily structure:</strong> 5 long tones · 5 scales · 5 piece · 5 artistry</span></li>
+            </ul>
+            <div class="plan-unlock"><i class="fa-solid fa-lock-open"></i><span>Top chairs · Macy's Parade pathway · Honors bands · Scholarships</span></div>
+          </div>
+        </div>
+      </div>
+      <button class="cf-arrow cf-next" id="cf-next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+    <div class="cf-dots" role="tablist">
+      <button class="cf-dot active" data-slide="0" role="tab" aria-selected="true">5th</button>
+      <button class="cf-dot" data-slide="1" role="tab" aria-selected="false">6th</button>
+      <button class="cf-dot" data-slide="2" role="tab" aria-selected="false">7th</button>
+      <button class="cf-dot" data-slide="3" role="tab" aria-selected="false">8th</button>
+    </div>
+  </div>
+
+  <!-- FREE GUIDES -->
+  <div class="section-header fade-el" style="margin-top:4.5rem;">
+    <div class="section-tag">Free Self-Study Guides</div>
+    <h2>Resources Your Child Can Use <span class="accent-text">Starting Today.</span></h2>
+    <p class="section-intro">These are the exact techniques I personally used — written clearly enough for any middle schooler to follow on their own, at any time.</p>
+  </div>
+
+  <div class="director-quote-block fade-el">
+    <div class="dq-deco">&#9834;</div>
+    <blockquote class="dq-text">"Nothing is more important than tone…"</blockquote>
+    <p class="dq-attribution">&mdash; Mr. Erik Riggs, Band Director, Mills Park Middle School</p>
+    <p class="dq-context">My director said this to our whole band in 6th grade. I didn't fully grasp it at the time. By 8th grade — after earning All-County, All-District, and a spot on the Europe trip — I understood it completely. It became the foundation of everything I now teach.</p>
+    <div class="dq-deco dq-deco-right">&#9835;</div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="glass-card tutorial-card card-accent-teal fade-el stagger-1">
+      <div class="card-icon"><i class="fa-solid fa-circle-play"></i></div>
+      <h3>🎵 Tone Bootcamp</h3>
+      <p>The exact warm-up routine and embouchure adjustments that eliminated my squeaky, thin tone and built a full, resonant sound. This is the single best place for any student — at any level — to start.</p>
+      <div class="card-tag free-tag">🆓 Free</div>
+    </div>
+    <div class="glass-card tutorial-card card-accent-yellow fade-el stagger-2">
+      <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+      <h3>📈 Scale Mastery</h3>
+      <p>Every piece your child will ever audition with is built on scales. I've included the exact scale sequence I used to prepare for my All-County audition — the one that earned me a spot in the top ensemble.</p>
+      <div class="card-tag free-tag">🆓 Free</div>
+    </div>
+    <div class="glass-card tutorial-card card-accent-pink fade-el stagger-3">
+      <div class="card-icon"><i class="fa-solid fa-eye"></i></div>
+      <h3>👁️ Sight-Reading Without Panic</h3>
+      <p>A 30-second preparation system that turns an unfamiliar piece into something manageable. Almost no middle schoolers practice sight-reading deliberately — the ones who do have a measurable advantage at every single audition.</p>
+      <div class="card-tag free-tag">🆓 Free</div>
+    </div>
+    <div class="glass-card tutorial-card card-accent-purple fade-el stagger-4">
+      <div class="card-icon"><i class="fa-solid fa-music"></i></div>
+      <h3>🎶 Dynamics &amp; Phrasing</h3>
+      <p>Two students can play identical notes and leave completely different impressions on a judge. This guide covers the expressive layer — what I developed as a Pre-MPA soloist — that transforms correct notes into a genuinely memorable performance.</p>
+      <div class="card-tag free-tag">🆓 Free</div>
+    </div>
+  </div>
+
+</div>
+```
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SUMMER / PRACTICE FRAMEWORK
+  ═══════════════════════════════════════════ -->
+
+  <section id="summer" class="section summer-section" aria-labelledby="summer-title">
+    <div class="section-bg-deco" aria-hidden="true">
+      <div class="sec-orb sec-orb-f"></div>
+      <div class="sec-line sec-line-2"></div>
+    </div>
+    <div class="container">
+      <div class="section-header fade-el">
+        <div class="section-tag">The Practice Framework</div>
+        <h2 id="summer-title">The Four Habits That <span class="accent-yellow">Produced Every Result I Have.</span></h2>
+        <p class="section-intro">
+          I committed to these four principles the summer between 7th and 8th grade.
+          They require no special equipment, no expensive lessons, and no prior talent —
+          just consistent intention. I share them with every student I work with.
+        </p>
+      </div>
+
+```
+  <div class="summer-pillars">
+    <div class="pillar glass-card card-accent-teal fade-el stagger-1">
+      <div class="pillar-number">01</div>
+      <div class="pillar-icon"><i class="fa-solid fa-clock"></i></div>
+      <h3>Consistent Daily Practice ⏰</h3>
+      <p>
+        I practiced every single day that summer — no exceptions for weekends, travel, or days when I didn't feel motivated.
+        <strong>Short, focused sessions done consistently will always outperform long, infrequent ones.</strong>
+        Here is what I recommend by grade:
+      </p>
+      <div class="summer-grade-note">
+        <div class="sgn-row sgn-orange"><strong>🌟 5th Grade:</strong> 10 min/day</div>
+        <div class="sgn-row sgn-green"><strong>💚 6th Grade:</strong> 15 min/day</div>
+        <div class="sgn-row sgn-blue"><strong>💙 7th Grade:</strong> 20 min/day</div>
+        <div class="sgn-row sgn-gold"><strong>⭐ 8th Grade:</strong> 20–25 min/day</div>
+      </div>
+    </div>
+    <div class="pillar glass-card card-accent-pink fade-el stagger-2">
+      <div class="pillar-number">02</div>
+      <div class="pillar-icon"><i class="fa-solid fa-crosshairs"></i></div>
+      <h3>Address Weaknesses First 🎯</h3>
+      <p>
+        Every session, I started with the hardest thing on my list — not the most comfortable.
+        <strong>Students naturally gravitate toward what they can already do well.
+        Real, measurable improvement lives in the spots you've been avoiding.</strong>
+        I assigned myself one problem area per week and didn't move forward until it was solved.
+      </p>
+    </div>
+    <div class="pillar glass-card card-accent-yellow fade-el stagger-3">
+      <div class="pillar-number">03</div>
+      <div class="pillar-icon"><i class="fa-solid fa-circle-dot"></i></div>
+      <h3>Record Every Session 📱</h3>
+      <p>
+        I recorded every single practice session on my phone — even the bad ones.
+        <em>Listening back was often humbling. What I believed sounded polished frequently revealed issues
+        I couldn't perceive while I was in the middle of playing.</em>
+        This one habit accelerated my improvement faster than anything else I did that summer.
+      </p>
+    </div>
+    <div class="pillar glass-card card-accent-purple fade-el stagger-4">
+      <div class="pillar-number">04</div>
+      <div class="pillar-icon"><i class="fa-solid fa-headphones"></i></div>
+      <h3>Listen to Elite Players Daily 🎧</h3>
+      <p>
+        Every morning I listened intentionally — not as background music — to James Galway, Emmanuel Pahud, and Jasmine Choi.
+        <strong>Your child's ear needs a vivid, accurate picture of what truly excellent playing sounds like
+        before their hands can begin to replicate it.</strong>
+        This is the most underrated, most overlooked habit in middle school band.
+      </p>
+    </div>
+  </div>
+
+  <div class="summer-cta fade-el">
+    <p class="pullquote">"These four habits — nothing more, nothing less — took me from 10th chair to First Chair, All-County, All-District, and a performance stage in Europe. All within a single school year."</p>
+    <a href="#contact" class="btn-primary btn-xl confetti-trigger email-cta">Request the Full Practice Framework &rarr;</a>
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FAQ
+  ═══════════════════════════════════════════ -->
+
+  <section id="faq" class="section faq-section" aria-labelledby="faq-title">
+    <div class="section-bg-deco" aria-hidden="true">
+      <div class="sec-orb sec-orb-a" style="opacity:.08;top:auto;bottom:-100px;right:5%;"></div>
+      <div class="sec-dots" style="opacity:.4;"></div>
+    </div>
+    <div class="container">
+      <div class="section-header fade-el">
+        <div class="section-tag">For Parents &amp; Students</div>
+        <h2 id="faq-title">Questions I Know <span class="accent-text">You're Probably Asking.</span></h2>
+        <p class="section-intro">Honest, thorough answers — because your family deserves to fully understand what this is before reaching out.</p>
+      </div>
+
+```
+  <div class="faq-list">
+    <details class="faq-item glass-card fade-el">
+      <summary class="faq-question">
+        <span>Is this genuinely free — no fees, no subscriptions, no upsells?</span>
+        <i class="fa-solid fa-plus faq-icon"></i>
+      </summary>
+      <div class="faq-answer">
+        <p>Completely and unconditionally free — with no conditions whatsoever attached. No sign-up fees, no subscription tiers, no "premium" content locked behind a paywall. I'm an 8th grader who benefited enormously from having the right guidance at the right time, and I want to make that same advantage available to other families in this community at absolutely no cost. Your child will never be asked to pay for anything, ever.</p>
+      </div>
+    </details>
+
+    <details class="faq-item glass-card fade-el">
+      <summary class="faq-question">
+        <span>Who is Arnav, and why should I trust him with my child's musical development?</span>
+        <i class="fa-solid fa-plus faq-icon"></i>
+      </summary>
+      <div class="faq-answer">
+        <p>I'm Arnav Chouksey, an 8th grader at Mills Park Middle School in Apex, NC. In the span of one year, I progressed from 10th chair out of 16 to <strong>First Chair, All-County Honors, All-District Honors, Pre-MPA soloist,</strong> and was selected for the <strong>NC Bandmasters Association Europe performance trip</strong> — one of the most prestigious recognitions available to a middle school band student in North Carolina. I don't teach theory I read in a book — I teach the exact system I personally used and verified. I document every technique, and I only share what I know works. Parents are always warmly welcome to join any session, observe, and ask questions directly.</p>
+      </div>
+    </details>
+
+    <details class="faq-item glass-card fade-el">
+      <summary class="faq-question">
+        <span>Is this appropriate for my child's current age and skill level?</span>
+        <i class="fa-solid fa-plus faq-icon"></i>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes — I work with students across every skill level from 5th through 8th grade. For 5th graders who haven't started band yet, I offer a Pre-Band Prep plan that establishes breathing fundamentals and basic tone production before school even begins — giving them a genuinely meaningful head-start. For advanced 8th graders preparing for All-State auditions or the transition to high school band, I work on expressive phrasing, competitive strategy, and audition psychology. Every session is built around your child's exact current stage. All sessions are conducted over video call in a focused, calm, age-appropriate environment, and parents are always welcome to observe.</p>
+      </div>
+    </details>
+
+    <details class="faq-item glass-card fade-el">
+      <summary class="faq-question">
+        <span>What does a session actually look like? What should we expect?</span>
+        <i class="fa-solid fa-plus faq-icon"></i>
+      </summary>
+      <div class="faq-answer">
+        <p>Sessions are 30 minutes over video call — Zoom, Google Meet, or FaceTime, whichever is most convenient for your family. Your child plays a short passage for me, I identify the specific areas to address, and we work through targeted exercises together in real time. At the close of every session, I provide a written, grade-appropriate practice plan that your child can follow independently until we meet again. I'm typically available on weekends and some weekday evenings — just send me an email at <a href="mailto:arnav.chouksey@gmail.com" class="faq-link">arnav.chouksey@gmail.com</a> and we'll find a time that works.</p>
+      </div>
+    </details>
+
+    <details class="faq-item glass-card fade-el">
+      <summary class="faq-question">
+        <span>My child already takes private lessons. Can they still benefit from working with you?</span>
+        <i class="fa-solid fa-plus faq-icon"></i>
+      </summary>
+      <div class="faq-answer">
+        <p>Absolutely — and in my experience, students who already take private lessons often benefit significantly from this as a complement. Private instructors typically focus on technique and long-term musical development, which is invaluable. I focus specifically on the middle school band experience: chair audition strategy, All-County and All-District preparation, sight-reading for school assessments, practice mindset, and the motivational side of competitive band from someone who just lived through it successfully. There's no conflict between the two — only additional, targeted support for your child.</p>
+      </div>
+    </details>
+
+    <details class="faq-item glass-card fade-el">
+      <summary class="faq-question">
+        <span>What if it isn't working, or the fit isn't right for our family?</span>
+        <i class="fa-solid fa-plus faq-icon"></i>
+      </summary>
+      <div class="faq-answer">
+        <p>Because there is no cost involved, there is never any pressure to continue. If at any point you feel it isn't the right fit — for any reason — you simply stop reaching out. No cancellations, no awkward conversations, no obligation of any kind. I genuinely want this to be valuable for your family, and if it isn't serving your child well, I'll happily suggest other resources that might serve them better. Your child's growth and wellbeing always come first.</p>
+      </div>
+    </details>
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CONTACT
+  ═══════════════════════════════════════════ -->
+
+  <section id="contact" class="section contact-section" aria-labelledby="contact-title">
+    <div class="section-bg-deco" aria-hidden="true">
+      <div class="sec-orb sec-orb-b" style="width:600px;height:600px;bottom:-150px;right:-120px;opacity:.12;"></div>
+      <div class="sec-line sec-line-1" style="opacity:.05;"></div>
+    </div>
+    <div class="container">
+      <div class="section-header fade-el">
+        <div class="section-tag">Reach Out</div>
+        <h2 id="contact-title">I'd Love to Work <span class="accent-text">With Your Child.</span></h2>
+        <p class="section-intro">Whether you're a parent exploring options or a student ready to take the first step — send me a message below. I personally read and respond to every single message within 48 hours.</p>
+      </div>
+
+```
+  <div class="contact-content">
+    <div class="contact-methods">
+
+      <div class="contact-form-card glass-card card-accent-teal fade-el">
+        <h3><i class="fa-solid fa-paper-plane"></i> Send Me a Message</h3>
+        <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="access_key" value="1318ba71-3ec3-4981-aa06-012090ac3b9e"/>
+          <input type="hidden" name="subject" value="New Flute Academy Message! 🎵"/>
+          <input type="hidden" name="from_name" value="Arnav Chouksey Flute Academy"/>
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off"/>
+          <div class="form-group">
+            <label for="cf-name">Your Name <span class="req">*</span></label>
+            <input type="text" id="cf-name" name="name" placeholder="e.g. Sarah Johnson (parent) or Alex Chen (student)" required autocomplete="name" aria-required="true"/>
+          </div>
+          <div class="form-group">
+            <label for="cf-grade">Grade Level <span class="req">*</span></label>
+            <select id="cf-grade" name="grade" required aria-required="true">
+              <option value="" disabled selected>Select grade level</option>
+              <option value="5th">🌟 5th Grade</option>
+              <option value="6th">💚 6th Grade</option>
+              <option value="7th">💙 7th Grade</option>
+              <option value="8th">⭐ 8th Grade</option>
+              <option value="parent">Parent / Guardian (inquiring for child)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cf-email">Email Address <span class="req">*</span></label>
+            <input type="email" id="cf-email" name="email" placeholder="your@email.com" required autocomplete="email" aria-required="true"/>
+          </div>
+          <div class="form-group">
+            <label for="cf-message">What would you like to work on? <span class="req">*</span></label>
+            <textarea id="cf-message" name="message" placeholder="Tell me a bit about your child's current level, what they're struggling with, or what goals they'd like to reach. There are no wrong answers here." rows="4" required aria-required="true"></textarea>
+          </div>
+          <button type="submit" class="btn-primary form-submit">
+            <i class="fa-solid fa-paper-plane"></i> Send Message &rarr;
+          </button>
+          <div class="form-success" id="form-success" role="status" aria-live="polite" hidden>
+            <i class="fa-solid fa-circle-check"></i> Message sent! I'll reply personally within 48 hours. &#9834;
+          </div>
+          <div class="form-error" id="form-error" role="alert" aria-live="assertive" hidden>
+            <i class="fa-solid fa-triangle-exclamation"></i> Something went wrong — please email me directly below.
+          </div>
+        </form>
+      </div>
+
+      <div class="contact-card glass-card card-accent-pink fade-el stagger-1">
+        <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+        <h3>Prefer to Email Directly?</h3>
+        <p style="font-size:.85rem;opacity:.8;margin-bottom:12px;">Either address reaches me — I personally read and respond to every message I receive:</p>
+        <a href="mailto:arnav.chouksey@gmail.com" class="contact-email-link">arnav.chouksey@gmail.com</a>
+        <a href="mailto:achouksey@students.wcpss.net" class="contact-email-link" style="margin-top:8px;">achouksey@students.wcpss.net</a>
+        <p class="contact-note">You will hear back from me. Every time, without exception.</p>
+      </div>
+
+      <div class="contact-big-cta fade-el stagger-2">
+        <p class="pullquote">"I started this because I genuinely wish someone had offered it to me. It would be a privilege to support your child's journey."</p>
+        <a href="mailto:arnav.chouksey@gmail.com" class="btn-primary btn-xl confetti-trigger">EMAIL ME DIRECTLY — FREE &amp; NO OBLIGATION &rarr;</a>
+        <p class="contact-small">No fees. No commitments. Just a dedicated student who wants to help your child succeed.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner fade-el">
+      <div class="footer-logo">
+        <i class="fa-solid fa-music spinning-icon-slow"></i>
+        <span>Arnav Chouksey Flute Academy</span>
+      </div>
+      <p class="footer-tagline">Apex, NC &middot; 100% Free for 5th–8th Graders &middot; No catch. No cost. Ever. &#9834;</p>
+      <p class="footer-tagline" style="margin-top:6px;font-size:.80rem;opacity:.7;">"Nothing is more important than tone…" — Mr. Erik Riggs, Band Director</p>
+      <nav class="footer-nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#journey">My Story</a>
+        <a href="#services">How I Help</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <p class="footer-copy">&copy; 2025 Arnav Chouksey Flute Academy &middot; Made with &#9834; and a whole lot of heart</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
