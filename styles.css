@@ -937,3 +937,33 @@ details[open] .faq-question{color:var(--teal)}
   .bg-orbs{display:none}
   .hero-watermark{display:none}
 }
+
+/* ===== SECTION BACKGROUND DECORATIONS ===== */
+.section-bg-deco{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.about-section,.journey-section,.services-section,.summer-section,.faq-section,.contact-section{position:relative}
+.about-section .container,.journey-section .container,.services-section .container,.summer-section .container,.faq-section .container,.contact-section .container{position:relative;z-index:1}
+
+/* Soft glowing orbs per section */
+.sec-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.18;animation:secOrbDrift 14s ease-in-out infinite alternate}
+.sec-orb-a{width:500px;height:500px;background:radial-gradient(circle,var(--teal),transparent 70%);top:-120px;right:-100px;animation-duration:16s}
+.sec-orb-b{width:360px;height:360px;background:radial-gradient(circle,var(--purple),transparent 70%);bottom:-80px;left:-80px;animation-duration:12s;animation-delay:-4s}
+.sec-orb-c{width:600px;height:600px;background:radial-gradient(circle,var(--cyan),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.10}
+.sec-orb-d{width:450px;height:450px;background:radial-gradient(circle,var(--pink),transparent 70%);top:-100px;left:-80px;animation-duration:18s}
+.sec-orb-e{width:350px;height:350px;background:radial-gradient(circle,var(--yellow),transparent 70%);bottom:-60px;right:-60px;animation-duration:14s;animation-delay:-6s}
+.sec-orb-f{width:500px;height:500px;background:radial-gradient(circle,var(--teal),transparent 70%);top:-80px;right:-120px;opacity:.15;animation-duration:15s}
+
+@keyframes secOrbDrift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(40px,30px) scale(1.08)}}
+
+/* Subtle dot grid */
+.sec-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);background-size:36px 36px;opacity:.7}
+
+/* Decorative diagonal lines */
+.sec-line{position:absolute;opacity:.06}
+.sec-line-1{width:2px;height:130%;background:linear-gradient(to bottom,transparent,var(--teal),transparent);top:-15%;right:15%;transform:rotate(18deg)}
+.sec-line-2{width:2px;height:130%;background:linear-gradient(to bottom,transparent,var(--yellow),transparent);top:-15%;left:12%;transform:rotate(-15deg)}
+
+/* Subtle top/bottom section dividers via pseudo-elements */
+.about-section::before,.journey-section::before,.summer-section::before,.faq-section::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,.08),transparent);z-index:1}
+
+/* Grid background for journey */
+.sec-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px}
